@@ -315,13 +315,13 @@ in
 		    }
 
 		    sqlite-lua
+		    telescope-fzf-native-nvim
+		    telescope-smart-history-nvim
+		    telescope-ui-select-nvim
 		    { 
 		    	plugin = telescope-nvim;
 			config = toLuaFile ./nvim/plugin/telescope.lua;
 		    }
-		    telescope-fzf-native-nvim
-		    telescope-smart-history-nvim
-		    telescope-ui-select-nvim
 
 		    vim-dadbod
 		    vim-dadbod-completion

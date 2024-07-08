@@ -11,8 +11,8 @@ require("nvim-treesitter").setup({
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = { "latex" }, -- , "markdown" }, 
-    disable = { "bibtex" }, --, "markdown" 
+    additional_vim_regex_highlighting = { "latex" }, -- , "markdown" },
+    disable = { "bibtex" }, --, "markdown"
   },
 
   indent = {
@@ -32,44 +32,44 @@ require("nvim-treesitter").setup({
 
   textobjects = {
     select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@conditional.outer",
+        ["ic"] = "@conditional.inner",
+        ["al"] = "@loop.outer",
+        ["il"] = "@loop.inner",
+        ["ai"] = "@comment.outer",
+        ["ii"] = "@comment.inner",
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
+        ["av"] = "@variable.outer",
+        ["iv"] = "@variable.inner",
+      },
+      move = {
         enable = true,
-        lookahead = true,
-      	keymaps = {
-      	  ["af"] = "@function.outer",
-      	  ["if"] = "@function.inner",
-      	  ["ac"] = "@conditional.outer",
-      	  ["ic"] = "@conditional.inner",
-      	  ["al"] = "@loop.outer",
-      	  ["il"] = "@loop.inner",
-      	  ["ai"] = "@comment.outer",
-      	  ["ii"] = "@comment.inner",
-      	  ["aa"] = "@parameter.outer",
-      	  ["ia"] = "@parameter.inner",
-      	  ["av"] = "@variable.outer",
-      	  ["iv"] = "@variable.inner",
-      	},
-        move = {
-          enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]p"] = "@parameter.inner",
-            ["]m"] = "@function.outer",
-            ["]]"] = "@class.outer",
-          },
-          goto_next_end = {
-            ["]M"] = "@function.outer",
-            ["]["] = "@class.outer",
-          },
-          goto_previous_start = {
-            ["[p"] = "@parameter.inner",
-            ["[m"] = "@function.outer",
-            ["[["] = "@class.outer",
-          },
-          goto_previous_end = {
-            ["[M"] = "@function.outer",
-            ["[]"] = "@class.outer",
-          },
-  	},
+        set_jumps = true,
+        goto_next_start = {
+          ["]p"] = "@parameter.inner",
+          ["]m"] = "@function.outer",
+          ["]]"] = "@class.outer",
+        },
+        goto_next_end = {
+          ["]M"] = "@function.outer",
+          ["]["] = "@class.outer",
+        },
+        goto_previous_start = {
+          ["[p"] = "@parameter.inner",
+          ["[m"] = "@function.outer",
+          ["[["] = "@class.outer",
+        },
+        goto_previous_end = {
+          ["[M"] = "@function.outer",
+          ["[]"] = "@class.outer",
+        },
+      },
     },
   },
 })
@@ -107,7 +107,7 @@ require("nvim-treesitter").setup({
 vim.api.nvim_create_autocmd("User", {
   pattern = "TSUpdate",
   callback = function()
-    local parsers = require "nvim-treesitter.parsers"
+    local parsers = require("nvim-treesitter.parsers")
 
     parsers.lua = {
       tier = 0,
@@ -121,4 +121,3 @@ vim.api.nvim_create_autocmd("User", {
     }
   end,
 })
-

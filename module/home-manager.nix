@@ -39,6 +39,7 @@ in
 		pkgs.poppler
 		pkgs.git
 		# pkgs.texlive
+		pkgs.uv
 		pkgs.rye
 		pkgs.sioyek
 		pkgs.tokei
@@ -248,10 +249,12 @@ in
 		package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 		defaultEditor = true;
 		extraPackages = [
-		    pkgs.cargo
 		    pkgs.cmake
 		    pkgs.luajitPackages.jsregexp
 		    pkgs.xclip
+
+                    # Latex 
+                    pkgs.texliveFull
 
 		    # Linter
 		    pkgs.stylua
@@ -399,6 +402,7 @@ in
 			    p.tree-sitter-ocaml
 			    p.tree-sitter-ocaml-interface
 			    p.tree-sitter-ocamllex
+			    p.tree-sitter-python
 			    p.tree-sitter-rust
 			    p.tree-sitter-toml
 			    p.tree-sitter-yaml

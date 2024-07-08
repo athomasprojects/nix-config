@@ -10,7 +10,7 @@ require("telescope").setup({
       limit = 100,
     },
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown {},
+      require("telescope.themes").get_dropdown({}),
     },
   },
 })
@@ -47,18 +47,21 @@ vim.keymap.set("n", "<c-space>", function()
   require("telescope.builtin").buffers(opts)
 end, { desc = "Telescope current buffers" })
 
-vim.keymap.set("n", "<space>bo", function()
+vim.keymap.set("n", "<space>vo", function()
   builtin.vim_options({
-    -- layout_config = {
-    --   width = 0.5,
-    -- },
-    sorting_strategy = "ascending"
+    layout_config = {
+      width = 0.5,
+    },
+    sorting_strategy = "ascending",
   })
 end, { desc = "Telescope vim options" })
 
 vim.keymap.set("n", "<space>f/", function()
-   builtin.live_grep({
-     grep_open_files = true,
-     path_display = { "shorten" },
-   })
+  builtin.live_grep({
+    grep_open_files = true,
+    path_display = { "shorten" },
+  })
 end, { desc = "Telescope live grep in open files" })
+
+vim.keymap.set("n", "<space>hg", builtin.highlights, { desc = "Telescope highlight groups" })
+vim.keymap.set("n", "<space>mm", builtin.marks, { desc = "Telescope marks" })

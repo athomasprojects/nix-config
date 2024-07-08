@@ -35,9 +35,8 @@ alias gdatelong="git log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s
 
 # Shortcuts - directories
 alias cac="cd $XDG_CACHE_HOME"
-alias cfg="cd $XDG_CONFIG_HOME"
+alias cf="cd $XDG_CONFIG_HOME"
 alias cfn="cd $HOME/nix-config/module/nvim"
-alias cfs="cd $HOME/nix-config/module/config.fish"
 alias cfk="cd $HOME/nix-config"
 alias lsh="cd $HOME/.local/share"
 alias d="cd $HOME/Downloads"
@@ -48,16 +47,17 @@ alias lbn="cd $HOME/.local/bin"
 alias c="cd $HOME/code"
 alias lt="cd $HOME/code/latexprojects"
 alias h="cd $HOME"
-alias mn="cd  /mnt"
-alias ph="cd  $HOME/Documents/phd"
-alias vv="cd  $HOME/Videos"
+alias ph="cd $HOME/Documents/phd"
+alias vv="cd $HOME/Videos"
+# alias mn="cd /mnt"
 #alias ="cd vc  $HOME/Videos/screencasts"
 
 # Shortcuts - files
-alias hm="nvim $HOME/nix-config/module/home-manager.nix" 
+alias hm="cd $HOME/nix-config && nvim module/home-manager.nix" 
 alias fl="nvim $HOME/nix-config/flake.nix"					
 alias ns="nvim $HOME/nix-config/system/nixos.nix"					
 alias cfx="nvim $HOME/nix-config/module/Xresources" 
+alias cfs="nvim $HOME/nix-config/module/config.fish"
 alias wz="nvim $HOME/nix-config/module/wezterm/wezterm.lua" 
 
 #alias ="gfy	$HOME/.config/yazi/yazirc	

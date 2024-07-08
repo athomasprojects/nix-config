@@ -39,6 +39,9 @@
 
     plugin-conf-vim.url = "github:tjdevries/conf.vim";
     plugin-conf-vim.flake = false;
+
+    plugin-ocaml-nvim.url = "github:tjdevries/ocaml.nvim";
+    plugin-ocaml-nvim.flake = false;
   };
 
   outputs = inputs @ { self, home-manager, nixpkgs, alejandra, rust-overlay, ... }: 
@@ -85,6 +88,14 @@
     	        own-conf-vim= prev.vimUtils.buildVimPlugin {
     	          name = "conf";
     	          src = inputs.plugin-conf-vim;
+    	        };
+    	      };
+    	  })
+	  (final: prev: {
+    	      vimPlugins = prev.vimPlugins // {
+    	        own-ocaml-nvim= prev.vimUtils.buildVimPlugin {
+    	          name = "ocaml";
+    	          src = inputs.plugin-ocaml-nvim;
     	        };
     	      };
     	  })

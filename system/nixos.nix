@@ -70,6 +70,11 @@ in
 
 	    desktopManager = {
 	        xterm.enable = false;
+                xfce = {
+                  enable = true;
+                  noDesktop = true;
+                  enableXfwm = false;
+                };
 		wallpaper.mode = "fill";
 	    };
 
@@ -78,7 +83,7 @@ in
 	    };
 	};
 
-	services.displayManager.defaultSession = "none+awesome";
+	services.displayManager.defaultSession = "xfce+awesome";
 
 	users.defaultUserShell = pkgs.fish;
         users.users."${username}" = {

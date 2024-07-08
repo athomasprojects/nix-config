@@ -18,9 +18,9 @@ in
 	home.packages = [
 		pkgs.ncpamixer
 		pkgs.atuin
-        	pkgs.btop
+		pkgs.btop
         	pkgs.obsidian
-        	pkgs.obs-studio
+		pkgs.obs-studio
         	pkgs.discord
 		pkgs.bat
 		pkgs.neofetch
@@ -282,9 +282,11 @@ in
 
 		extraConfig = ''
 		    ${builtins.readFile ./nvim/menu.vim}
+		    ${builtins.readFile ./nvim/auft.vim}
 		'';
 
 		plugins = with pkgs.vimPlugins; [
+		    vim-nix
 		    plenary-nvim
 		    nvim-web-devicons
 		    fidget-nvim
@@ -366,6 +368,8 @@ in
 		    neodev-nvim
 		    conform-nvim
 		    SchemaStore-nvim
+		
+		    pkgs.vimPlugins.own-ocaml-nvim
 
 		    # { 
 		    # 	plugin = luasnip;
@@ -408,7 +412,6 @@ in
 		vimAlias = true;
 		vimdiffAlias = true;
 	};
-
 
 	programs.zoxide = {
 		enable = true;

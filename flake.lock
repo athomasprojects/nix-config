@@ -377,6 +377,22 @@
         "type": "github"
       }
     },
+    "plugin-ocaml-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720032674,
+        "narHash": "sha256-jUz7J7lgUaXbMWSSEPPTYb5E1ZuX3Vi4XJcdv09fiaY=",
+        "owner": "tjdevries",
+        "repo": "ocaml.nvim",
+        "rev": "8735069ce4267940e1038c7a2942881cf15481ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tjdevries",
+        "repo": "ocaml.nvim",
+        "type": "github"
+      }
+    },
     "plugin-standard-vim": {
       "flake": false,
       "locked": {
@@ -404,6 +420,7 @@
         "plugin-conf-vim": "plugin-conf-vim",
         "plugin-edit-alternate": "plugin-edit-alternate",
         "plugin-express-line": "plugin-express-line",
+        "plugin-ocaml-nvim": "plugin-ocaml-nvim",
         "plugin-standard-vim": "plugin-standard-vim",
         "rust-overlay": "rust-overlay"
       }

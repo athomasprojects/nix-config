@@ -23,7 +23,7 @@ vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.opt.clipboard = "unnamedplus"
 
 -- Don't have `o` add a comment
-vim.opt.formatoptions:remove "o"
+vim.opt.formatoptions:remove("o")
 
 vim.opt.wrap = true
 vim.opt.linebreak = true

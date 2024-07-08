@@ -120,7 +120,6 @@ lspconfig.ocamllsp.setup({
     inlayHints = { enable = true },
     syntaxDocumentation = { enable = true },
   },
-
   filetypes = {
     "ocaml",
     "ocaml.interface",
@@ -128,6 +127,9 @@ lspconfig.ocamllsp.setup({
     "ocaml.cram",
     "ocaml.mlx",
   },
+  -- get_language_id = function(_, ftype)
+  --   return ftype
+  -- end,
 
   -- TODO: Check if i still need the filtypes stuff i had before
 })

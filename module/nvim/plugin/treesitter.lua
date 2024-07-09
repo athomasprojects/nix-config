@@ -1,4 +1,4 @@
-local group = vim.api.nvim_create_augroup("custom-treesitter", { clear = true })
+-- local group = vim.api.nvim_create_augroup("custom-treesitter", { clear = true })
 
 require("nvim-treesitter").setup({
   ensure_installed = {},
@@ -74,35 +74,44 @@ require("nvim-treesitter").setup({
   },
 })
 
--- local syntax_on = {
---   -- elixir = true,
---   -- php = true,
---   bash = true,
---   c = true,
---   cpp = true,
---   lua = true,
---   nix = true,
---   ocaml = true,
---   python = true,
---   rust = true,
---   latex = true,
---   markdown = true,
---   vimdoc = true,
---   bibtex = true,
--- }
---
--- vim.api.nvim_create_autocmd("FileType", {
---   group = group,
---   callback = function(args)
---     local bufnr = args.buf
---     local ft = vim.bo[bufnr].filetype
---     pcall(vim.treesitter.start)
---
---     if syntax_on[ft] then
---       vim.bo[bufnr].syntax = "on"
---     end
---   end,
--- })
+local syntax_on = {
+  -- elixir = true,
+  -- php = true,
+  bash = true,
+  bibtex = true,
+  c = true,
+  cmake = true,
+  cpp = true,
+  fish = true,
+  go = true,
+  html = true,
+  javascript = true,
+  json = true,
+  latex = true,
+  lua = true,
+  make = true,
+  markdown = true,
+  nix = true,
+  ocaml = true,
+  python = true,
+  rust = true,
+  toml = true,
+  vimdoc = true,
+  yaml = true,
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = group,
+  callback = function(args)
+    local bufnr = args.buf
+    local ft = vim.bo[bufnr].filetype
+    pcall(vim.treesitter.start)
+
+    if syntax_on[ft] then
+      vim.bo[bufnr].syntax = "on"
+    end
+  end,
+})
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "TSUpdate",

@@ -384,7 +384,8 @@ in
 		    # nvim-dap-virtual-text
 		    # Need to load these separately (fetch from Github)
 		    # telescope-luasnip 
-
+                    
+                    nvim-treesitter-textobjects
 		    { 
 		    	plugin = (nvim-treesitter.withPlugins (p: [
 		            # p.tree-sitter-lua

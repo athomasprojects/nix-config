@@ -1,7 +1,11 @@
-{ inputs, overlays, username, password }: system: 
-let 
-  	home-manager = import ../module/home-manager.nix { inherit inputs; };
-  	pkgs = inputs.nixpkgs.legacyPackages.${system};
+{
+  inputs,
+  overlays,
+  username,
+  password,
+}: system: let
+  home-manager = import ../module/home-manager.nix {inherit inputs;};
+  pkgs = inputs.nixpkgs.legacyPackages.${system};
 in
   inputs.nixpkgs.lib.nixosSystem {
     inherit system;
@@ -11,23 +15,25 @@ in
       ./hardware-configuration.nix
       ../module/configuration.nix
 
-      { nixpkgs.overlays = overlays; }
+      {nixpkgs.overlays = overlays;}
 
-      { 
-  	nixpkgs.config.allowUnfreePredicate = _: true;
+      {
+        nixpkgs.config.allowUnfreePredicate = _: true;
 
-  	programs.fish.enable = true;
+        programs.fish.enable = true;
 
-	environment = {
+        environment = {
           localBinInPath = true;
-          shells = [ pkgs.fish ];
+          shells = [pkgs.fish];
           systemPackages = with pkgs; [
-	    pkgs.awesome
+            pkgs.alejandra
+            pkgs.awesome
             brave
             # obs-studio
             # zoom-us
             mpv
-            nix-index
+            pkgs.nh
+            pkgs.nix-index
             unar
             unzip
             zip
@@ -40,58 +46,57 @@ in
 
             vim
             # (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
-          ]; 
-	};
+          ];
+        };
 
-  	programs.firefox.enable = true;
+        programs.firefox.enable = true;
 
-   	programs._1password.enable = true;
-   	programs._1password-gui = {
-   	  enable = true;
-   	  # Certain features, including CLI integration and system authentication support,
-   	  # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-   	  polkitPolicyOwners = [ "thegusbus" ];
-   	};
-
+        programs._1password.enable = true;
+        programs._1password-gui = {
+          enable = true;
+          # Certain features, including CLI integration and system authentication support,
+          # require enabling PolKit integration on some desktop environments (e.g. Plasma).
+          polkitPolicyOwners = ["thegusbus"];
+        };
       }
 
       {
         services.displayManager.autoLogin.user = username;
 
         # Use xfce desktop environment
-  	# services.xserver.displayManager.lightdm.enable = true;
-  	# services.xserver.desktopManager.xfce.enable = true;
+        # services.xserver.displayManager.lightdm.enable = true;
+        # services.xserver.desktopManager.xfce.enable = true;
 
-	services.xserver = {
-  	    displayManager = {
-		lightdm.enable = true;
-		sessionCommands = "~/.local/bin/remaps";
-	    };
+        services.xserver = {
+          displayManager = {
+            lightdm.enable = true;
+            sessionCommands = "~/.local/bin/remaps";
+          };
 
-	    desktopManager = {
-	        xterm.enable = false;
-                xfce = {
-                  enable = true;
-                  noDesktop = true;
-                  enableXfwm = false;
-                };
-		wallpaper.mode = "fill";
-	    };
+          desktopManager = {
+            xterm.enable = false;
+            xfce = {
+              enable = true;
+              noDesktop = true;
+              enableXfwm = false;
+            };
+            wallpaper.mode = "fill";
+          };
 
-	    windowManager = {
-	    	awesome.enable = true;
-	    };
-	};
+          windowManager = {
+            awesome.enable = true;
+          };
+        };
 
-	services.displayManager.defaultSession = "xfce+awesome";
+        services.displayManager.defaultSession = "xfce+awesome";
 
-	users.defaultUserShell = pkgs.fish;
+        users.defaultUserShell = pkgs.fish;
         users.users."${username}" = {
-          extraGroups = [ "networkmanager" "wheel" ];
+          extraGroups = ["networkmanager" "wheel"];
           home = "/home/${username}";
           isNormalUser = true;
           password = password;
-	  shell = pkgs.fish;
+          shell = pkgs.fish;
         };
       }
 

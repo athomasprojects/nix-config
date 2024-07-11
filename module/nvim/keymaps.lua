@@ -83,7 +83,7 @@ vim.keymap.set("n", "<leader>sx", ":close<CR>")
 vim.keymap.set("n", "<leader>sX", ":only<CR>")
 
 -- These mappings rotate the window positions
-vim.keymap.set("n", "<leader>sr", "<C-w>R", { desc = "rotate windows upwapds" })
+vim.keymap.set("n", "<leader>sr", "<C-w>R", { desc = "rotate windows upwards" })
 vim.keymap.set("n", "<leader>sR", "<C-w>r", { desc = "rotate windows downwards" })
 
 -- These mappings create new splits (vertical/horizontal)
@@ -135,3 +135,7 @@ vim.keymap.set("n", "<leader>zm", "zM", { desc = "Close all folds" })
 -- Managing Split Windows
 vim.keymap.set("n", "<leader>s+", "<C-w>|", { desc = "Focus horizontal split" })
 vim.keymap.set("n", "<leader>s-", "<C-w>_", { desc = "Focus vertical split" })
+
+-- Opens line below or above the current line
+vim.keymap.set("i", "<S-CR>", "<C-O>o")
+vim.keymap.set("i", "<C-CR>", "<C-O>O")

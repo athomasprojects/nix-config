@@ -43,7 +43,7 @@ vim.g.vimtex_view_sioyek_options = "--reuse-window"
 --vim.g.vimtex_callback_progpath = '~/bin/nvim'
 
 -- Don't automatically open PDF viewer after first compilation
-vim.cmd('let g:vimtex_view_automatic = 0')
+vim.cmd("let g:vimtex_view_automatic = 0")
 
 vim.g.vimtex_compiler_latexmk = {
   executable = "latexmk",

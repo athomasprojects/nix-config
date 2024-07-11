@@ -29,7 +29,7 @@ set -gx EDITOR nvim
 #-------------------------------------------------------------------------------
 # Logging helpers
 alias gls="git log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate"
-alias gllx="git log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --numstat"
+alias glx="git log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --numstat"
 alias gdate="git log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --date=relative"
 alias gdatelong="git log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --date=short"
 
@@ -37,7 +37,7 @@ alias gdatelong="git log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s
 alias cac="cd $XDG_CACHE_HOME"
 alias cf="cd $XDG_CONFIG_HOME"
 alias cfn="cd $HOME/nix-config/module/nvim"
-alias cfk="cd $HOME/nix-config"
+alias dfz="cd $HOME/nix-config"
 alias lsh="cd $HOME/.local/share"
 alias d="cd $HOME/Downloads"
 alias D="cd $HOME/Documents"

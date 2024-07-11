@@ -1,5 +1,8 @@
-{ inputs }: { pkgs, config, ... }: 
-let 
+{inputs}: {
+  pkgs,
+  config,
+  ...
+}: let
   onePassPath = "~/.1password/agent.sock";
   my-harpoon2 = pkgs.vimUtils.buildVimPlugin {
     name = "harpoon2";
@@ -10,454 +13,459 @@ let
       sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
     };
   };
-in
-{
-	# -------------------------------------------------------------------
-	# Packages
-	# -------------------------------------------------------------------
-	home.packages = [
-		pkgs.ncpamixer
-		pkgs.atuin
-		pkgs.btop
-        	pkgs.obsidian
-		pkgs.obs-studio
-        	pkgs.discord
-		pkgs.bat
-		pkgs.neofetch
-		pkgs.delta
-		pkgs.flameshot
-		pkgs.fd
-		pkgs.file
-		pkgs.fzf
-		pkgs.ripgrep
-		pkgs.jq
-		pkgs.nodejs
-		pkgs.tree
-		pkgs.eza
-		pkgs.ffmpeg
-		pkgs.ffmpegthumbnailer
-		pkgs.poppler
-		pkgs.git
-		# pkgs.texlive
-		pkgs.uv
-		pkgs.rye
-		pkgs.sioyek
-		pkgs.tokei
-		pkgs.starship
-		pkgs.wezterm
-		pkgs.yazi
-		pkgs.zoxide
-		pkgs.valgrind
-	];
-	
-	home.stateVersion = "24.11";
+in {
+  # -------------------------------------------------------------------
+  # Packages
+  # -------------------------------------------------------------------
+  home.packages = [
+    pkgs.ncpamixer
+    pkgs.atuin
+    pkgs.btop
+    pkgs.obsidian
+    pkgs.obs-studio
+    pkgs.discord
+    pkgs.bat
+    pkgs.neofetch
+    pkgs.delta
+    pkgs.flameshot
+    pkgs.fd
+    pkgs.file
+    pkgs.fzf
+    pkgs.ripgrep
+    pkgs.jq
+    pkgs.nodejs
+    pkgs.tree
+    pkgs.eza
+    pkgs.ffmpeg
+    pkgs.ffmpegthumbnailer
+    pkgs.poppler
+    pkgs.git
+    # pkgs.texlive
+    # pkgs.uv
+    # pkgs.rye
+    pkgs.sioyek
+    pkgs.tokei
+    pkgs.starship
+    pkgs.wezterm
+    pkgs.yazi
+    pkgs.zoxide
+    pkgs.valgrind
+  ];
 
-	xdg.enable = true;
+  home.stateVersion = "24.11";
 
-	fonts.fontconfig.enable = true;
+  xdg.enable = true;
 
-	home.sessionVariables = {
-	    LANG = "en_CA.UTF-8";
-	    LC_TYPE = "en_CA.UTF-8";
-	    LC_ALL = "en_CA.UTF-8";
-	    EDITOR = "nvim";
-	    MANPAGER = "nvim +Man!";
-      	    TERMINAL = "wezterm";
-      	    TERMINAL_PROG = "wezterm";
-      	    BROWSER = "brave";
-      	    DOTFILES="$HOME/nix";
-	    PAGER = "less -FirSwX";
-	    # Less pager
-            # LESS_TERMCAP_mb="$(printf '%b' '[1;31m')";
-            # LESS_TERMCAP_md="$(printf '%b' '[1;36m')";
-            # LESS_TERMCAP_me="$(printf '%b' '[0m')";
-            # LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')";
-            # LESS_TERMCAP_se="$(printf '%b' '[0m')";
-            # LESS_TERMCAP_us="$(printf '%b' '[1;32m')";
-            # LESS_TERMCAP_ue="$(printf '%b' '[0m')";
-            # LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null";
-	};
-	
-	home.file.".inputrc".source = ./inputrc;
+  fonts.fontconfig.enable = true;
 
-	programs.fish = {
-	    enable = true;
-	    interactiveShellInit = pkgs.lib.strings.concatStrings (pkgs.lib.strings.intersperse "\n" ([
-	        "set fish_greeting" 
-      		(builtins.readFile ./config.fish)
-      		"set -g SHELL ${pkgs.fish}/bin/fish"
-    	    ]));
-	    shellAliases = {
-		gs="git status";
-		gsh="git show";
-		gco="git checkout";
-		gpull="git pull";
-		gpush="git push";
-		gd="git diff";
-		gpr="git pull --rebase";
-		
-		# Adding helpers
-		gadd="git add .";
-		gca="git add . && git commit -av";
-		
-		# Branch helpers
-		gout="git checkout";
-		
-		gfind="git ls-files | grep -i";
-		
-		# Switching contexts
-		gwip=''git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "[WIP]: $(date)"'';
-		gnotes=''git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "[NOTES]: $(date)"'';
-		
-		# Oops savers
-		gundo="git reset HEAD~";
+  home.sessionVariables = {
+    LANG = "en_CA.UTF-8";
+    LC_TYPE = "en_CA.UTF-8";
+    LC_ALL = "en_CA.UTF-8";
+    EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
+    TERMINAL = "wezterm";
+    TERMINAL_PROG = "wezterm";
+    BROWSER = "brave";
+    DOTFILES = "$HOME/nix-config";
+    PAGER = "less -FirSwX";
+    # Less pager
+    # LESS_TERMCAP_mb="$(printf '%b' '[1;31m')";
+    # LESS_TERMCAP_md="$(printf '%b' '[1;36m')";
+    # LESS_TERMCAP_me="$(printf '%b' '[0m')";
+    # LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')";
+    # LESS_TERMCAP_se="$(printf '%b' '[0m')";
+    # LESS_TERMCAP_us="$(printf '%b' '[1;32m')";
+    # LESS_TERMCAP_ue="$(printf '%b' '[0m')";
+    # LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null";
+  };
 
-		pbcopy = "xclip";
-		pbpaste = "xclip -o";
+  home.file.".inputrc".source = ./inputrc;
 
-		ls="ls -F --color=auto --group-directories-first --sort=version";
-		ldr="ls --color --group-directories-first";
-		ldl="ls --color -l --group-directories-first";
-		ll="ls -al";
-		la="ls -A";
-		l="ls -CF";
-		
-		# This is GOLD for finding out what is taking so much space on your drives!
-		diskspace="du -S | sort -n -r |more";
-		
-		# Show me the size (sorted) of only the folders in this directory
-		folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn";
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = pkgs.lib.strings.concatStrings (pkgs.lib.strings.intersperse "\n" [
+      "set fish_greeting"
+      (builtins.readFile ./config.fish)
+      "set -g SHELL ${pkgs.fish}/bin/fish"
+    ]);
+    shellAliases = {
+      gs = "git status";
+      gsh = "git show";
+      gco = "git checkout";
+      gpull = "git pull";
+      gpush = "git push";
+      gd = "git diff";
+      gpr = "git pull --rebase";
 
-	        xsc="xclip -r -selection clipboard";
-		cp="cp -iv";
-		mv="mv -iv";
-		rm="rm -vI";
-        	mkd="mkdir -pv";
+      # Adding helpers
+      gadd = "git add .";
+      gca = "git add . && git commit -av";
 
-    		ffmpeg="ffmpeg -hide_banner";
+      # Branch helpers
+      gout = "git checkout";
 
-		es="eza --time-style=long-iso --group-directories-first --no-permissions --no-user";
-		esa="eza --all --time-style=long-iso --group-directories-first --no-permissions --no-user";
-		est="eza --tree --time-style=long-iso --group-directories-first --no-permissions --no-user";
+      gfind = "git ls-files | grep -i";
 
-		my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs";
-		my_eip="curl ifconfig.co";
+      # Switching contexts
+      gwip = ''git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "[WIP]: $(date)"'';
+      gnotes = ''git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "[NOTES]: $(date)"'';
 
-		ref="~/.local/bin/shortcuts >/dev/null; source ${config.xdg.configHome}/shell/shortcutrc ; source ${config.xdg.configHome}/shell/zshnameddirrc";
+      # Oops savers
+      gundo = "git reset HEAD~";
 
-		# prepcam="sudo modprobe v4l2loopback && pkill gphoto";
-		# dslrcam="canonwbc";
-	    };
+      pbcopy = "xclip";
+      pbpaste = "xclip -o";
 
-	    functions = {
-		gbn = {
-		    body = "git checkout -b $argv[1]";	
-		};
-	    };
+      ls = "ls -F --color=auto --group-directories-first --sort=version";
+      ldr = "ls --color --group-directories-first";
+      ldl = "ls --color -l --group-directories-first";
+      ll = "ls -al";
+      la = "ls -A";
+      l = "ls -CF";
 
-	    plugins = map (n: {
-	          name = n;
-	          src  = pkgs.fishPlugins.${n}.src;
-	        }) [
-	          "fzf-fish"
-	          "z"
-	        ];
-	};
-	
-	programs.eza = {
-	    enableFishIntegration = false;
-	};
+      # This is GOLD for finding out what is taking so much space on your drives!
+      diskspace = "du -S | sort -n -r |more";
 
-	programs.atuin = {
-	    enable = true;
-	    flags = [
-	      "--disable-up-arrow"
-	    ];
-	};
+      # Show me the size (sorted) of only the folders in this directory
+      folders = "find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn";
 
-	programs.starship = {
-	    enable = true;
-	    settings = {
-		gcloud = {
-		    disabled = true;
-		};
-	    };
-	};
+      xsc = "xclip -r -selection clipboard";
+      cp = "cp -iv";
+      mv = "mv -iv";
+      rm = "rm -vI";
+      mkd = "mkdir -pv";
 
-	programs.bat = {
-	    enable = true;
-    	    config = {
-    		theme = "Sublime Snazzy";
-    	    };
-	};
+      ffmpeg = "ffmpeg -hide_banner";
 
-	programs.ssh = {
-	    enable = true;
-	    extraConfig = ''
-	      Host *
-	          IdentityAgent ${onePassPath}
-	    '';
-	};
+      es = "eza --time-style=long-iso --group-directories-first --no-permissions --no-user";
+      esa = "eza --all --time-style=long-iso --group-directories-first --no-permissions --no-user";
+      est = "eza --tree --time-style=long-iso --group-directories-first --no-permissions --no-user";
 
-	programs.git = {
-  	  enable = true;
-    	  userEmail = "amanda.thomas14@gmail.com";
-    	  userName = "athomasprojects";
-    	  aliases = {
-    	    lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative";
-    	  };
-    	  delta = {
-    	    enable = true;
-    	    options = {
-    	      line-numbers = true;
-    	      syntax-theme = "Sublime Snazzy";
-    	      side-by-side = false;
-    	      file-modified-label = "modified:";
-    	    };
-    	  };
-  	  extraConfig = {
-  	    gpg = {
-  	      format = "ssh";
-  	    };
-  	    "gpg \"ssh\"" = {
-  	      program = "${pkgs.lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
-  	    };
-  	    commit = {
-  	      gpgsign = true;
-  	    };
+      my_ip = "ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs";
+      my_eip = "curl ifconfig.co";
 
-  	    user = {
-  	      signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAo7MRrDY9I4IDpUSz3IsjaAwONhEArRqJhsq6bXRKqQ";
-  	    };
-  	  };
-  	};
+      ref = "~/.local/bin/shortcuts >/dev/null; source ${config.xdg.configHome}/shell/shortcutrc ; source ${config.xdg.configHome}/shell/zshnameddirrc";
 
-	# xdg.configFile = {
-	#     nvim = {
-	#       source = config.lib.file.mkOutOfStoreSymlink ../config/nvim;
-	#       recursive = true;
-	#     };
-	# };
+      # prepcam="sudo modprobe v4l2loopback && pkill gphoto";
+      # dslrcam="canonwbc";
+    };
 
-	programs.neovim = 
-	let
-  	  # toLua = str: "lua << EOF\n${str}\nEOF\n";
-  	  toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-  	in
-	{
-		enable = true;
-		package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-		defaultEditor = true;
-		extraPackages = [
-		    pkgs.cmake
-		    pkgs.luajitPackages.jsregexp
-		    pkgs.xclip
+    functions = {
+      gbn = {
+        body = "git checkout -b $argv[1]";
+      };
+    };
 
-                    # Latex 
-                    pkgs.texliveFull
+    plugins =
+      map (n: {
+        name = n;
+        src = pkgs.fishPlugins.${n}.src;
+      }) [
+        "fzf-fish"
+        "z"
+      ];
+  };
 
-		    # Linter
-		    pkgs.stylua
-		    pkgs.ruff
+  programs.direnv = {
+    enable = true;
+    # config = {
+    #   exact = [ "$HOME/.envrc" ];
+    # };
+    nix-direnv.enable = true;
+  };
 
-		    # LSP
-		    pkgs.clang-tools
-		    pkgs.clang
-		    pkgs.lua-language-server
-		    pkgs.bash-language-server
- 		    pkgs.ocamlPackages.ocaml-lsp
-		    (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
-		    pkgs.nil
-		    pkgs.pyright
-		    pkgs.ruff-lsp
-		    pkgs.yaml-language-server
-		    pkgs.nodePackages_latest.vscode-json-languageserver
+  programs.eza = {
+    enableFishIntegration = false;
+  };
 
-		    # TODO: add texlive lualatex or pdflatex pkgs so that vimtex can access the compiler
-		];
+  programs.atuin = {
+    enable = true;
+    flags = [
+      "--disable-up-arrow"
+    ];
+  };
 
-		extraLuaConfig = ''
-		    ${builtins.readFile ./nvim/options.lua}
-		    ${builtins.readFile ./nvim/keymaps.lua}
-		    ${builtins.readFile ./nvim/terminal.lua}
-		    ${builtins.readFile ./nvim/spell.lua}
-		'';
+  programs.starship = {
+    enable = true;
+    settings = {
+      gcloud = {
+        disabled = true;
+      };
+    };
+  };
 
-		extraConfig = ''
-		    ${builtins.readFile ./nvim/menu.vim}
-		    ${builtins.readFile ./nvim/auft.vim}
-		'';
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "Sublime Snazzy";
+    };
+  };
 
-		plugins = with pkgs.vimPlugins; [
-		    vim-nix
-		    plenary-nvim
-		    nvim-web-devicons
-		    fidget-nvim
-		    { 
-		    	plugin = undotree;
-			config = toLuaFile ./nvim/plugin/undotree.lua;
-		    }
-		    {
-		        plugin = colorbuddy-nvim;
-			config = toLuaFile ./nvim/plugin/colorscheme.lua;
-		    }
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+      Host *
+          IdentityAgent ${onePassPath}
+    '';
+  };
 
-		    {
-		        plugin = pkgs.vimPlugins.own-express-line;
-			config = toLuaFile ./nvim/plugin/statusline.lua;
-		    }
-		    
-		    { 
-		    	plugin = oil-nvim;
-			config = toLuaFile ./nvim/plugin/oil.lua;
-		    }
+  programs.git = {
+    enable = true;
+    userEmail = "amanda.thomas14@gmail.com";
+    userName = "athomasprojects";
+    aliases = {
+      lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative";
+    };
+    delta = {
+      enable = true;
+      options = {
+        line-numbers = true;
+        syntax-theme = "Sublime Snazzy";
+        side-by-side = false;
+        file-modified-label = "modified:";
+      };
+    };
+    extraConfig = {
+      gpg = {
+        format = "ssh";
+      };
+      "gpg \"ssh\"" = {
+        program = "${pkgs.lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
+      };
+      commit = {
+        gpgsign = true;
+      };
 
-		    {   
-		    	plugin = mini-nvim;
-		    	config = toLuaFile ./nvim/plugin/mini.lua;
-		    }
+      user = {
+        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAo7MRrDY9I4IDpUSz3IsjaAwONhEArRqJhsq6bXRKqQ";
+      };
+    };
+  };
 
-		    sqlite-lua
-		    telescope-fzf-native-nvim
-		    telescope-smart-history-nvim
-		    telescope-ui-select-nvim
-		    { 
-		    	plugin = telescope-nvim;
-			config = toLuaFile ./nvim/plugin/telescope.lua;
-		    }
+  # xdg.configFile = {
+  #     nvim = {
+  #       source = config.lib.file.mkOutOfStoreSymlink ../config/nvim;
+  #       recursive = true;
+  #     };
+  # };
 
-		    vim-dadbod
-		    vim-dadbod-completion
-		    vim-dadbod-ui
+  programs.neovim = let
+    # toLua = str: "lua << EOF\n${str}\nEOF\n";
+    toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+  in {
+    enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    defaultEditor = true;
+    extraPackages = [
+      pkgs.cmake
+      pkgs.luajitPackages.jsregexp
+      pkgs.xclip
 
-		    lspkind-nvim
-		    cmp-path
-		    cmp-buffer
-		    cmp_luasnip
-		    cmp-nvim-lsp
-		    { 
-		    	plugin = nvim-cmp;
-			config = toLuaFile ./nvim/plugin/completion.lua;
-		    }
-		    pkgs.vimPlugins.own-cmp-vimtex
+      # Latex
+      pkgs.texliveFull
 
-		    { 
-		    	plugin = vimtex;
-			config = toLuaFile ./nvim/plugin/vimtex.lua;
-		    }
-		    
-		    { 
-		    	plugin = zen-mode-nvim;
-			config = toLuaFile ./nvim/plugin/zenmode.lua;
-		    }
+      # Linter
+      pkgs.stylua
+      pkgs.ruff
 
-		    pkgs.vimPlugins.own-standard-vim
-		    pkgs.vimPlugins.own-conf-vim 
-		    { 
-		    	plugin = pkgs.vimPlugins.own-edit-alternate;
-			config = toLuaFile ./nvim/plugin/edit_alternate.lua;
-		    }
+      # LSP
+      pkgs.clang-tools
+      pkgs.clang
+      pkgs.lua-language-server
+      pkgs.bash-language-server
+      pkgs.ocamlPackages.ocaml-lsp
+      (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
+      pkgs.nil
+      pkgs.pyright
+      pkgs.ruff-lsp
+      pkgs.yaml-language-server
+      pkgs.nodePackages_latest.vscode-json-languageserver
 
-		    { 
-		    	plugin = my-harpoon2;
-			config = toLuaFile ./nvim/plugin/hrpn.lua;
-		    }
+      # TODO: add texlive lualatex or pdflatex pkgs so that vimtex can access the compiler
+    ];
 
-		    { 
-		        plugin = nvim-lspconfig;
-		        config = toLuaFile ./nvim/plugin/lsp.lua;
-		    }
-		    lsp_lines-nvim
-		    neodev-nvim
-		    conform-nvim
-		    SchemaStore-nvim
-		
-		    pkgs.vimPlugins.own-ocaml-nvim
+    extraLuaConfig = ''
+      ${builtins.readFile ./nvim/options.lua}
+      ${builtins.readFile ./nvim/keymaps.lua}
+      ${builtins.readFile ./nvim/terminal.lua}
+      ${builtins.readFile ./nvim/spell.lua}
+    '';
 
-		    # { 
-		    # 	plugin = luasnip;
-		    #     config = toLuaFile ./nvim/plugin/snippets.lua;
-		    # }
-		    # nvim-dap
-		    # nvim-dap-ui
-		    # nvim-dap-python
-		    # nvim-dap-virtual-text
-		    # Need to load these separately (fetch from Github)
-		    # telescope-luasnip 
-                    
-                    nvim-treesitter-textobjects
-		    { 
-		    	plugin = (nvim-treesitter.withPlugins (p: [
-		            # p.tree-sitter-lua
-			    p.tree-sitter-bash
-			    p.tree-sitter-bibtex
-			    p.tree-sitter-devicetree
-			    p.tree-sitter-fish
-			    p.tree-sitter-go
-			    p.tree-sitter-html
-			    p.tree-sitter-javascript
-			    p.tree-sitter-json
-			    p.tree-sitter-latex
-			    p.tree-sitter-make
-			    p.tree-sitter-nix
-			    p.tree-sitter-ocaml
-			    p.tree-sitter-ocaml-interface
-			    p.tree-sitter-ocamllex
-			    p.tree-sitter-python
-			    p.tree-sitter-rust
-			    p.tree-sitter-toml
-			    p.tree-sitter-yaml
-		    	]));
-			config = toLuaFile ./nvim/plugin/treesitter.lua;
-		    }
-		];
-		withPython3 = true;
-		withNodeJs = true;
-		viAlias = true;
-		vimAlias = true;
-		vimdiffAlias = true;
-	};
+    extraConfig = ''
+      ${builtins.readFile ./nvim/menu.vim}
+      ${builtins.readFile ./nvim/auft.vim}
+    '';
 
-	programs.zoxide = {
-		enable = true;
-	};
+    plugins = with pkgs.vimPlugins; [
+      vim-nix
+      plenary-nvim
+      nvim-web-devicons
+      fidget-nvim
+      {
+        plugin = undotree;
+        config = toLuaFile ./nvim/plugin/undotree.lua;
+      }
+      {
+        plugin = colorbuddy-nvim;
+        config = toLuaFile ./nvim/plugin/colorscheme.lua;
+      }
 
-        programs.yazi = {
-		enable = true;
-		enableFishIntegration = true;
-	};
+      {
+        plugin = pkgs.vimPlugins.own-express-line;
+        config = toLuaFile ./nvim/plugin/statusline.lua;
+      }
 
-	programs.ncmpcpp = {
-		enable = true;
-	};
+      {
+        plugin = oil-nvim;
+        config = toLuaFile ./nvim/plugin/oil.lua;
+      }
 
-	xresources.extraConfig = builtins.readFile ./Xresources;
+      {
+        plugin = mini-nvim;
+        config = toLuaFile ./nvim/plugin/mini.lua;
+      }
 
-	home.pointerCursor = {
-	    name = "Vanilla-DMZ";
-    	    package = pkgs.vanilla-dmz;
-    	    size = 128;
-    	    x11.enable = true;
-    	};
+      sqlite-lua
+      telescope-fzf-native-nvim
+      telescope-smart-history-nvim
+      telescope-ui-select-nvim
+      {
+        plugin = telescope-nvim;
+        config = toLuaFile ./nvim/plugin/telescope.lua;
+      }
 
-	xdg.configFile = {
-	    wezterm = {
-	      source = config.lib.file.mkOutOfStoreSymlink ./wezterm;
-	      recursive = true;
-	    };
-	};
-	
-	# xdg.configFile = {
-	#     awesome = {
-	#       source = config.lib.file.mkOutOfStoreSymlink ./awesome;
-	#       recursive = true;
-	#     };
-	# };
+      vim-dadbod
+      vim-dadbod-completion
+      vim-dadbod-ui
 
-	xsession.windowManager.awesome = {
-	   enable = true; 
-	   package = pkgs.awesome;
-	   luaModules = with pkgs.luaPackages; [ luarocks luadbi-mysql ]; 
-	};
+      lspkind-nvim
+      cmp-path
+      cmp-buffer
+      cmp_luasnip
+      cmp-nvim-lsp
+      {
+        plugin = nvim-cmp;
+        config = toLuaFile ./nvim/plugin/completion.lua;
+      }
+      pkgs.vimPlugins.own-cmp-vimtex
 
+      {
+        plugin = vimtex;
+        config = toLuaFile ./nvim/plugin/vimtex.lua;
+      }
+
+      {
+        plugin = zen-mode-nvim;
+        config = toLuaFile ./nvim/plugin/zenmode.lua;
+      }
+
+      pkgs.vimPlugins.own-standard-vim
+      pkgs.vimPlugins.own-conf-vim
+      {
+        plugin = pkgs.vimPlugins.own-edit-alternate;
+        config = toLuaFile ./nvim/plugin/edit_alternate.lua;
+      }
+
+      {
+        plugin = my-harpoon2;
+        config = toLuaFile ./nvim/plugin/hrpn.lua;
+      }
+
+      {
+        plugin = nvim-lspconfig;
+        config = toLuaFile ./nvim/plugin/lsp.lua;
+      }
+      lsp_lines-nvim
+      neodev-nvim
+      conform-nvim
+      SchemaStore-nvim
+
+      pkgs.vimPlugins.own-ocaml-nvim
+
+      # {
+      # 	plugin = luasnip;
+      #     config = toLuaFile ./nvim/plugin/snippets.lua;
+      # }
+      # nvim-dap
+      # nvim-dap-ui
+      # nvim-dap-python
+      # nvim-dap-virtual-text
+      # Need to load these separately (fetch from Github)
+      # telescope-luasnip
+
+      nvim-treesitter-textobjects
+      {
+        plugin = nvim-treesitter.withPlugins (p: [
+          # p.tree-sitter-lua
+          p.tree-sitter-bash
+          p.tree-sitter-bibtex
+          p.tree-sitter-devicetree
+          p.tree-sitter-fish
+          p.tree-sitter-go
+          p.tree-sitter-html
+          p.tree-sitter-javascript
+          p.tree-sitter-json
+          p.tree-sitter-latex
+          p.tree-sitter-make
+          p.tree-sitter-nix
+          p.tree-sitter-ocaml
+          p.tree-sitter-ocaml-interface
+          p.tree-sitter-ocamllex
+          p.tree-sitter-python
+          p.tree-sitter-rust
+          p.tree-sitter-toml
+          p.tree-sitter-yaml
+        ]);
+        config = toLuaFile ./nvim/plugin/treesitter.lua;
+      }
+    ];
+    withPython3 = true;
+    withNodeJs = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+  };
+
+  programs.yazi = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  programs.ncmpcpp = {
+    enable = true;
+  };
+
+  xresources.extraConfig = builtins.readFile ./Xresources;
+
+  home.pointerCursor = {
+    name = "Vanilla-DMZ";
+    package = pkgs.vanilla-dmz;
+    size = 128;
+    x11.enable = true;
+  };
+
+  xdg.configFile = {
+    wezterm = {
+      source = config.lib.file.mkOutOfStoreSymlink ./wezterm;
+      recursive = true;
+    };
+  };
+
+  # xdg.configFile = {
+  #     awesome = {
+  #       source = config.lib.file.mkOutOfStoreSymlink ./awesome;
+  #       recursive = true;
+  #     };
+  # };
+
+  xsession.windowManager.awesome = {
+    enable = true;
+    package = pkgs.awesome;
+    luaModules = with pkgs.luaPackages; [luarocks luadbi-mysql];
+  };
 }

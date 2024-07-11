@@ -1,4 +1,4 @@
--- local group = vim.api.nvim_create_augroup("custom-treesitter", { clear = true })
+local group = vim.api.nvim_create_augroup("custom-treesitter", { clear = true })
 
 require("nvim-treesitter").setup({
   ensure_installed = {},
@@ -31,6 +31,35 @@ require("nvim-treesitter").setup({
   },
 
   textobjects = {
+    move = {
+      enable = true,
+      set_jumps = true,
+      goto_next_start = {
+        ["]p"] = "@parameter.inner",
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[p"] = "@parameter.inner",
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+
+    selection_modes = {
+      ["@parameter.outer"] = "v", -- charwise
+      ["@function.outer"] = "V", -- linewise
+      ["@class.outer"] = "<c-v>", -- blockwise
+    },
+
     select = {
       enable = true,
       lookahead = true,
@@ -47,28 +76,6 @@ require("nvim-treesitter").setup({
         ["ia"] = "@parameter.inner",
         ["av"] = "@variable.outer",
         ["iv"] = "@variable.inner",
-      },
-      move = {
-        enable = true,
-        set_jumps = true,
-        goto_next_start = {
-          ["]p"] = "@parameter.inner",
-          ["]m"] = "@function.outer",
-          ["]]"] = "@class.outer",
-        },
-        goto_next_end = {
-          ["]M"] = "@function.outer",
-          ["]["] = "@class.outer",
-        },
-        goto_previous_start = {
-          ["[p"] = "@parameter.inner",
-          ["[m"] = "@function.outer",
-          ["[["] = "@class.outer",
-        },
-        goto_previous_end = {
-          ["[M"] = "@function.outer",
-          ["[]"] = "@class.outer",
-        },
       },
     },
   },

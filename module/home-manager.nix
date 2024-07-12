@@ -339,6 +339,7 @@ in {
       vim-dadbod-completion
       vim-dadbod-ui
 
+      sg-nvim
       lspkind-nvim
       cmp-path
       cmp-buffer
@@ -383,6 +384,7 @@ in {
 
       pkgs.vimPlugins.own-ocaml-nvim
 
+      luasnip
       # {
       # 	plugin = luasnip;
       #     config = toLuaFile ./nvim/plugin/snippets.lua;

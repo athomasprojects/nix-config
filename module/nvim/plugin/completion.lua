@@ -9,9 +9,10 @@ local cmp = require("cmp")
 cmp.setup({
   sources = {
     { name = "nvim_lsp" },
-    -- { name = "cody" },
+    { name = "cody" },
     { name = "path" },
     { name = "buffer" },
+    { name = "luasnip" },
   },
   mapping = {
     ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -23,6 +24,8 @@ cmp.setup({
       }),
       { "i", "c" }
     ),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
   },
 
   -- Enable luasnip to handle snippet expansion for nvim-cmp
@@ -47,5 +50,6 @@ cmp.setup.filetype({ "tex", "plaintex", "bibtex" }, {
     { name = "vimtex" },
     { name = "path" },
     { name = "buffer" },
+    { name = "luasnip" },
   },
 })

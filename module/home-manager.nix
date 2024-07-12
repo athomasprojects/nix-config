@@ -96,6 +96,7 @@ in {
       gpull = "git pull";
       gpush = "git push";
       gd = "git diff";
+      gdh = "git diff HEAD";
       gpr = "git pull --rebase";
 
       # Adding helpers

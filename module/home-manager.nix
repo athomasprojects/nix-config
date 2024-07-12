@@ -172,7 +172,6 @@ in {
     # config = {
     #   exact = [ "$HOME/.envrc" ];
     # };
-    nix-direnv.enable = true;
   };
 
   programs.eza = {

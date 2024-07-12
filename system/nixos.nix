@@ -29,11 +29,8 @@ in
             pkgs.alejandra
             pkgs.awesome
             brave
-            # obs-studio
-            # zoom-us
             mpv
             pkgs.nh
-            pkgs.nix-index
             unar
             unzip
             zip
@@ -109,5 +106,7 @@ in
       }
 
       # add more nix modules here
+
+      inputs.nix-index-database.nixosModules.nix-index
     ];
   }

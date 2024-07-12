@@ -25,6 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     plugin-cmp-vimtex.url = "github:micangl/cmp-vimtex";
     plugin-cmp-vimtex.flake = false;
 
@@ -50,6 +55,7 @@
     nixpkgs,
     rust-overlay,
     alejandra,
+    nix-index-database,
     ...
   }: let
     system = "x86_64-linux";

@@ -440,6 +440,11 @@ in {
     enable = true;
   };
 
+  programs.nix-index = {
+    enable = true;
+    # comma.enable = true;
+  };
+
   xresources.extraConfig = builtins.readFile ./Xresources;
 
   home.pointerCursor = {

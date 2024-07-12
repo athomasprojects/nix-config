@@ -40,6 +40,7 @@ in {
     pkgs.ffmpegthumbnailer
     pkgs.poppler
     pkgs.git
+    pkgs.src-cli
     # pkgs.texlive
     # pkgs.uv
     # pkgs.rye

@@ -39,6 +39,9 @@ lspconfig.lua_ls.setup({
   capabilities = capabilities,
   settings = {
     Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
@@ -59,6 +62,11 @@ lspconfig.bashls.setup({
 })
 
 lspconfig.ruff_lsp.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+lspconfig.vimls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })

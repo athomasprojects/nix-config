@@ -11,3 +11,5 @@ autocmd FileType ocaml setlocal shiftwidth=2
 autocmd FileType sql setlocal commentstring=--%s
 
 autocmd FileType tex setlocal  expandtab autoindent tabstop=2 softtabstop=2 shiftwidth=2 
+
+autocmd FileType rust setlocal formatoptions-=o

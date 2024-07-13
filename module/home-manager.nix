@@ -277,6 +277,7 @@ in {
       # LSP
       pkgs.clang-tools
       pkgs.clang
+      pkgs.vim-language-server
       pkgs.lua-language-server
       pkgs.bash-language-server
       pkgs.ocamlPackages.ocaml-lsp

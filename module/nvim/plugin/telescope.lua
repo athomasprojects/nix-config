@@ -2,6 +2,9 @@ local data = assert(vim.fn.stdpath("data")) --[[@as string]]
 
 local set = vim.keymap.set
 
+local builtin = require("telescope.builtin")
+local themes = require("telescope.themes")
+
 require("telescope").setup({
   extensions = {
     wrap_results = true,
@@ -12,7 +15,7 @@ require("telescope").setup({
       limit = 100,
     },
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown({}),
+      themes.get_dropdown({}),
     },
   },
 })
@@ -21,8 +24,6 @@ pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "smart_history")
 pcall(require("telescope").load_extension, "ui-select")
 pcall(require("telescope").load_extension, "manix")
-
-local builtin = require("telescope.builtin")
 
 set("n", "<space>fd", builtin.find_files, { desc = "Telescope find files" })
 set("n", "<space>ft", builtin.git_files, { desc = "Telescope git files" })
@@ -39,15 +40,18 @@ set("n", "<space>ff", function()
 end)
 
 set("n", "<space>en", function()
-  builtin.find_files({ cwd = "$HOME/nix-config" })
+  builtin.find_files({
+    prompt_title = "~ dotfiles ~",
+    shorten_path = false,
+    cwd = "$HOME/nix-config",
+  })
 end)
 
 -- Some convenience functions
-local themes = require("telescope.themes")
 
 set("n", "<c-space>", function()
   local opts = themes.get_ivy({ hidden = false, sorting_strategy = "descending" })
-  require("telescope.builtin").buffers(opts)
+  builtin.buffers(opts)
 end, { desc = "Telescope current buffers" })
 
 set("n", "<space>vo", function()
@@ -69,3 +73,10 @@ end, { desc = "Telescope live grep in open files" })
 set("n", "<space>hg", builtin.highlights, { desc = "Telescope highlight groups" })
 set("n", "<space>mm", builtin.marks, { desc = "Telescope marks" })
 set("n", "<space>nx", "<cmd>Telescope manix<CR>", { desc = "Telescope manix" })
+
+set("n", "<space>vs", function()
+  require("telescope").extensions.luasnip.luasnip(themes.get_dropdown({
+    layout_config = { width = 0.9, height = 0.9, prompt_position = "top", mirror = true },
+    layout_strategy = "vertical",
+  }))
+end, { desc = "Telescope luasnip" })

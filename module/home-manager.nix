@@ -307,6 +307,10 @@ in {
       vim-nix
       plenary-nvim
       nvim-web-devicons
+      {
+        plugin = nvim-nonicons;
+        config = toLuaFile ./nvim/plugin/fonts.lua;
+      }
       fidget-nvim
       {
         plugin = undotree;

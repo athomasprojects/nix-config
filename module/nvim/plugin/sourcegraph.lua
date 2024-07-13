@@ -4,7 +4,7 @@ if not ok then
   return
 end
 
-require("plugin.sourcegraph").setup({
+require("sg").setup({
   enable_cody = true,
 })
 

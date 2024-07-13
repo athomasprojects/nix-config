@@ -45,7 +45,7 @@ ls.config.set_config({
 --   loadfile(ft_path)()
 -- end
 
-require("luasnip.loaders.from_lua").lazy_load({ paths = "$HOME/nix-config/module/nvim/snippets/" })
+require("luasnip.loaders.from_lua").lazy_load({ paths = "~/nix-config/module/nvim/snippets/" })
 
 vim.keymap.set({ "i", "s" }, "<c-k>", function()
   return vim.snippet.active({ direction = 1 }) and vim.snippet.jump(1)
@@ -66,4 +66,4 @@ end)
 vim.keymap.set("i", "<c-u>", require("luasnip.extras.select_choice"))
 
 -- Shorcut to source my luasnips file again, which will reload my snippets
-vim.keymap.set("n", "<leader><leader>s", "<cmd>source $HOME/nix-config/module/nvim/plugin/snippets.lua<CR>")
+vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/nix-config/module/nvim/plugin/snippets.lua<CR>")

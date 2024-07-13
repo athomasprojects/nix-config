@@ -1,5 +1,7 @@
 local data = assert(vim.fn.stdpath("data")) --[[@as string]]
 
+local set = vim.keymap.set
+
 require("telescope").setup({
   extensions = {
     wrap_results = true,
@@ -22,33 +24,33 @@ pcall(require("telescope").load_extension, "manix")
 
 local builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<space>fd", builtin.find_files, { desc = "Telescope find files" })
-vim.keymap.set("n", "<space>ft", builtin.git_files, { desc = "Telescope git files" })
-vim.keymap.set("n", "<space>fh", builtin.help_tags, { desc = "Telescope help tags" })
-vim.keymap.set("n", "<space>fg", builtin.live_grep, { desc = "Telescope live grep" })
-vim.keymap.set("n", "<space>fk", builtin.keymaps, { desc = "Telescope keymaps" })
-vim.keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find, { desc = "Telescope current buffer fuzzy find" })
+set("n", "<space>fd", builtin.find_files, { desc = "Telescope find files" })
+set("n", "<space>ft", builtin.git_files, { desc = "Telescope git files" })
+set("n", "<space>fh", builtin.help_tags, { desc = "Telescope help tags" })
+set("n", "<space>fg", builtin.live_grep, { desc = "Telescope live grep" })
+set("n", "<space>fk", builtin.keymaps, { desc = "Telescope keymaps" })
+set("n", "<space>/", builtin.current_buffer_fuzzy_find, { desc = "Telescope current buffer fuzzy find" })
 
-vim.keymap.set("n", "<space>gw", builtin.grep_string, { desc = "Telescope grep string" })
+set("n", "<space>gw", builtin.grep_string, { desc = "Telescope grep string" })
 
-vim.keymap.set("n", "<space>ff", function()
+set("n", "<space>ff", function()
   ---@diagnostic disable-next-line: param-type-mismatch
   builtin.find_files({ cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy") })
 end)
 
-vim.keymap.set("n", "<space>en", function()
+set("n", "<space>en", function()
   builtin.find_files({ cwd = "$HOME/nix-config" })
 end)
 
 -- Some convenience functions
 local themes = require("telescope.themes")
 
-vim.keymap.set("n", "<c-space>", function()
+set("n", "<c-space>", function()
   local opts = themes.get_ivy({ hidden = false, sorting_strategy = "descending" })
   require("telescope.builtin").buffers(opts)
 end, { desc = "Telescope current buffers" })
 
-vim.keymap.set("n", "<space>vo", function()
+set("n", "<space>vo", function()
   builtin.vim_options({
     layout_config = {
       width = 0.5,
@@ -57,13 +59,13 @@ vim.keymap.set("n", "<space>vo", function()
   })
 end, { desc = "Telescope vim options" })
 
-vim.keymap.set("n", "<space>f/", function()
+set("n", "<space>f/", function()
   builtin.live_grep({
     grep_open_files = true,
     path_display = { "shorten" },
   })
 end, { desc = "Telescope live grep in open files" })
 
-vim.keymap.set("n", "<space>hg", builtin.highlights, { desc = "Telescope highlight groups" })
-vim.keymap.set("n", "<space>mm", builtin.marks, { desc = "Telescope marks" })
-vim.keymap.set("n", "<space>nx", "<cmd>Telescope manix<CR>", { desc = "Telescope manix" })
+set("n", "<space>hg", builtin.highlights, { desc = "Telescope highlight groups" })
+set("n", "<space>mm", builtin.marks, { desc = "Telescope marks" })
+set("n", "<space>nx", "<cmd>Telescope manix<CR>", { desc = "Telescope manix" })

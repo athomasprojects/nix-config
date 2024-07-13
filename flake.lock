@@ -429,6 +429,22 @@
         "type": "github"
       }
     },
+    "plugin-telescope-luasnip": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717879659,
+        "narHash": "sha256-jzLzucF2rAa3nkHE5n4g2StkSUjMOMK93JCH/g09DQY=",
+        "owner": "benfowler",
+        "repo": "telescope-luasnip.nvim",
+        "rev": "11668478677de360dea45cf2b090d34f21b8ae07",
+        "type": "github"
+      },
+      "original": {
+        "owner": "benfowler",
+        "repo": "telescope-luasnip.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "alejandra": "alejandra",
@@ -443,6 +459,7 @@
         "plugin-express-line": "plugin-express-line",
         "plugin-ocaml-nvim": "plugin-ocaml-nvim",
         "plugin-standard-vim": "plugin-standard-vim",
+        "plugin-telescope-luasnip": "plugin-telescope-luasnip",
         "rust-overlay": "rust-overlay"
       }
     },

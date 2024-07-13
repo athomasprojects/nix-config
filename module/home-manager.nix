@@ -267,8 +267,11 @@ in {
       # Latex
       pkgs.texliveFull
 
-      # Linter
+      # Formatters
+      inputs.alejandra.defaultPackage.${pkgs.system}
       pkgs.stylua
+
+      # Linters
       pkgs.ruff
 
       # LSP
@@ -334,6 +337,7 @@ in {
       telescope-smart-history-nvim
       telescope-ui-select-nvim
       telescope-manix
+      pkgs.vimPlugins.own-telescope-luasnip
       {
         plugin = telescope-nvim;
         config = toLuaFile ./nvim/plugin/telescope.lua;

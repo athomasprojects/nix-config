@@ -47,6 +47,9 @@
 
     plugin-ocaml-nvim.url = "github:tjdevries/ocaml.nvim";
     plugin-ocaml-nvim.flake = false;
+
+    plugin-telescope-luasnip.url = "github:benfowler/telescope-luasnip.nvim";
+    plugin-telescope-luasnip.flake = false;
   };
 
   outputs = inputs @ {
@@ -120,6 +123,16 @@
             own-ocaml-nvim = prev.vimUtils.buildVimPlugin {
               name = "ocaml";
               src = inputs.plugin-ocaml-nvim;
+            };
+          };
+      })
+      (final: prev: {
+        vimPlugins =
+          prev.vimPlugins
+          // {
+            own-telescope-luasnip = prev.vimUtils.buildVimPlugin {
+              name = "telescope-luasnip";
+              src = inputs.plugin-telescope-luasnip;
             };
           };
       })

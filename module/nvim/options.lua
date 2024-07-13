@@ -20,7 +20,8 @@ vim.opt.splitright = true
 vim.opt.signcolumn = "yes"
 vim.opt.shada = { "'10", "<0", "s10", "h" }
 
-vim.opt.clipboard = "unnamedplus"
+-- This uses the clipboard for everything instead of the default register.
+-- vim.opt.clipboard = "unnamedplus"
 
 -- Don't have `o` add a comment
 vim.opt.formatoptions:remove("o")

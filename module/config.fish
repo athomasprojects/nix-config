@@ -24,6 +24,10 @@ contains $HOME/bin $fish_user_paths; or set -Ua fish_user_paths $HOME/bin
 # Editor
 set -gx EDITOR nvim
 
+# Sourcegraph 
+set -gx SRC_ENDPOINT 'https://sourcegraph.example.com'
+set -gx SRC_ACCESS_TOKEN (cat $HOME/.sg-access-token)
+
 #-------------------------------------------------------------------------------
 # Aliases
 #-------------------------------------------------------------------------------

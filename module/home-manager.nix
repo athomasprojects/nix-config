@@ -340,7 +340,6 @@ in {
       vim-dadbod-completion
       vim-dadbod-ui
 
-      sg-nvim
       lspkind-nvim
       cmp-path
       cmp-buffer
@@ -351,6 +350,11 @@ in {
         config = toLuaFile ./nvim/plugin/completion.lua;
       }
       pkgs.vimPlugins.own-cmp-vimtex
+
+      {
+        plugin = sg-nvim;
+        config = toLuaFile ./nvim/plugin/sourcegraph.lua;
+      }
 
       {
         plugin = vimtex;

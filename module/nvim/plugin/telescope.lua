@@ -18,6 +18,7 @@ require("telescope").setup({
 pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "smart_history")
 pcall(require("telescope").load_extension, "ui-select")
+pcall(require("telescope").load_extension, "manix")
 
 local builtin = require("telescope.builtin")
 
@@ -65,3 +66,4 @@ end, { desc = "Telescope live grep in open files" })
 
 vim.keymap.set("n", "<space>hg", builtin.highlights, { desc = "Telescope highlight groups" })
 vim.keymap.set("n", "<space>mm", builtin.marks, { desc = "Telescope marks" })
+vim.keymap.set("n", "<space>nx", "<cmd>Telescope manix<CR>", { desc = "Telescope manix" })

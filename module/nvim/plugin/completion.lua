@@ -4,6 +4,8 @@ vim.opt.shortmess:append("c")
 local lspkind = require("lspkind")
 lspkind.init({})
 
+-- local luasnip = require("luasnip")
+
 local cmp = require("cmp")
 
 cmp.setup({
@@ -12,7 +14,7 @@ cmp.setup({
     { name = "cody" },
     { name = "path" },
     { name = "buffer" },
-    { name = "luasnip" },
+    -- { name = "luasnip" },
   },
   mapping = {
     ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -26,6 +28,20 @@ cmp.setup({
     ),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-space>"] = cmp.mapping({
+      i = cmp.mapping.complete(),
+      c = function(
+        _ --[[fallback]]
+      )
+        if cmp.visible() then
+          if not cmp.confirm({ select = true }) then
+            return
+          end
+        else
+          cmp.complete()
+        end
+      end,
+    }),
   },
 
   -- Enable luasnip to handle snippet expansion for nvim-cmp
@@ -50,6 +66,6 @@ cmp.setup.filetype({ "tex", "plaintex", "bibtex" }, {
     { name = "vimtex" },
     { name = "path" },
     { name = "buffer" },
-    { name = "luasnip" },
+    -- { name = "luasnip" },
   },
 })

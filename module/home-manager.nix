@@ -40,11 +40,12 @@ in {
     pkgs.ffmpegthumbnailer
     pkgs.poppler
     pkgs.git
-    pkgs.src-cli
+    pkgs.manix
     # pkgs.texlive
     # pkgs.uv
     # pkgs.rye
     pkgs.sioyek
+    pkgs.src-cli
     pkgs.tokei
     pkgs.starship
     pkgs.wezterm
@@ -291,6 +292,7 @@ in {
       ${builtins.readFile ./nvim/keymaps.lua}
       ${builtins.readFile ./nvim/terminal.lua}
       ${builtins.readFile ./nvim/spell.lua}
+      ${builtins.readFile ./nvim/ftypes.lua}
     '';
 
     extraConfig = ''
@@ -331,9 +333,15 @@ in {
       telescope-fzf-native-nvim
       telescope-smart-history-nvim
       telescope-ui-select-nvim
+      telescope-manix
       {
         plugin = telescope-nvim;
         config = toLuaFile ./nvim/plugin/telescope.lua;
+      }
+
+      {
+        plugin = pkgs.luajitPackages.luasnip;
+        config = toLuaFile ./nvim/plugin/snippets.lua;
       }
 
       vim-dadbod
@@ -389,11 +397,6 @@ in {
 
       pkgs.vimPlugins.own-ocaml-nvim
 
-      luasnip
-      # {
-      # 	plugin = luasnip;
-      #     config = toLuaFile ./nvim/plugin/snippets.lua;
-      # }
       # nvim-dap
       # nvim-dap-ui
       # nvim-dap-python
@@ -422,6 +425,7 @@ in {
           p.tree-sitter-python
           p.tree-sitter-rust
           p.tree-sitter-toml
+          p.tree-sitter-vim
           p.tree-sitter-yaml
         ]);
         config = toLuaFile ./nvim/plugin/treesitter.lua;

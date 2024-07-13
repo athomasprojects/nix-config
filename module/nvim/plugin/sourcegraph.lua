@@ -5,11 +5,6 @@ if not ok then
 end
 
 require("plugin.sourcegraph").setup({
-  -- Pass your own custom attach function
-  --    If you do not pass your own attach function, then the following maps are provide:
-  --        - gd -> goto definition
-  --        - gr -> goto references
-  on_attach = require("lsp.on_attach"),
   enable_cody = true,
 })
 

@@ -340,7 +340,7 @@ in {
       }
 
       {
-        plugin = pkgs.luajitPackages.luasnip;
+        plugin = luasnip;
         config = toLuaFile ./nvim/plugin/snippets.lua;
       }
 

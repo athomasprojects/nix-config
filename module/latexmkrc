@@ -1,0 +1,3 @@
+$pdfmode = 4;
+$pdflatex = "lualatex -file-line-error -interaction=nonstopmode -synctex=1";
+$maxrepeat = 7;

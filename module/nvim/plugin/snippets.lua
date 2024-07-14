@@ -39,6 +39,7 @@ ls.config.set_config({
   history = true,
   updateevents = "TextChanged,TextChangedI",
   override_builtin = true,
+  enable_autosnippets = true,
 })
 
 -- for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/custom/snippets/*.lua", true)) do

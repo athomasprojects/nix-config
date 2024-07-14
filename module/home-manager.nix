@@ -481,6 +481,12 @@ in {
     };
   };
 
+  xdg.configFile = {
+    latexmkrc = {
+      source = config.lib.file.mkOutOfStoreSymlink ./latexmkrc;
+    };
+  };
+
   # xdg.configFile = {
   #     awesome = {
   #       source = config.lib.file.mkOutOfStoreSymlink ./awesome;

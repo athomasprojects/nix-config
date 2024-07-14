@@ -66,6 +66,6 @@ cmp.setup.filetype({ "tex", "plaintex", "bibtex" }, {
     { name = "vimtex" },
     { name = "path" },
     { name = "buffer" },
-    -- { name = "luasnip" },
+    { name = "luasnip" },
   },
 })

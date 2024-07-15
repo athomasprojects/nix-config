@@ -25,6 +25,7 @@ local f = ls.function_node
 local sn = ls.snippet_node
 
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
+
 local get_date = function()
   -- return os.date "%Y-%m-%d"
   return os.date()
@@ -39,7 +40,6 @@ local get_visual = function(args, parent)
 end
 
 -- Add snippets
-
 ls.add_snippets("tex", {
   -- DELIMITERS:
   -- Left/right parens
@@ -1861,5 +1861,5 @@ ls.add_snippets("tex", {
 })
 
 -- -- FONTS:
--- local fonts = require("thegusbus.snips.tex.fonts")
+-- local fonts = require("custom.tex.fonts")
 -- ls.add_snippets("tex", fonts)

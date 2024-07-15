@@ -251,7 +251,7 @@ in {
   #       recursive = true;
   #     };
   # };
-
+  #
   # home.file."${config.xdg.configHome}/nvim/spell/en.utf-8.add".source = ./en.utf-8.add;
   # home.file."${config.xdg.configHome}/nvim/spell/en.utf-8.add.spl".source = ./en.utf-8.add.spl;
 
@@ -412,6 +412,15 @@ in {
       SchemaStore-nvim
 
       pkgs.vimPlugins.own-ocaml-nvim
+
+      {
+        plugin = nvim-bqf;
+        config = toLuaFile ./nvim/plugin/nvim_bqf.lua;
+      }
+      {
+        plugin = pkgs.vimPlugins.own-qf-helper;
+        config = toLuaFile ./nvim/plugin/qf_helper.lua;
+      }
 
       # nvim-dap
       # nvim-dap-ui

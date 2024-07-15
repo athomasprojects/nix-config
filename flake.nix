@@ -50,6 +50,9 @@
 
     plugin-telescope-luasnip.url = "github:benfowler/telescope-luasnip.nvim";
     plugin-telescope-luasnip.flake = false;
+
+    plugin-qf-helper.url = "github:stevearc/qf_helper.nvim";
+    plugin-qf-helper.flake = false;
   };
 
   outputs = inputs @ {
@@ -133,6 +136,16 @@
             own-telescope-luasnip = prev.vimUtils.buildVimPlugin {
               name = "telescope-luasnip";
               src = inputs.plugin-telescope-luasnip;
+            };
+          };
+      })
+      (final: prev: {
+        vimPlugins =
+          prev.vimPlugins
+          // {
+            own-qf-helper = prev.vimUtils.buildVimPlugin {
+              name = "qf_helper";
+              src = inputs.plugin-qf-helper;
             };
           };
       })

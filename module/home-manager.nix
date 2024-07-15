@@ -285,6 +285,8 @@ in {
   # home.file."${config.xdg.configHome}/nvim/spell/en.utf-8.add".source = ./en.utf-8.add;
   # home.file."${config.xdg.configHome}/nvim/spell/en.utf-8.add.spl".source = ./en.utf-8.add.spl;
 
+  home.file.".latexmkrc".source = config.lib.file.mkOutOfStoreSymlink ./latexmkrc;
+
   home.file."${config.xdg.configHome}/nvim/after/ftplugin" = {
     source = config.lib.file.mkOutOfStoreSymlink ./nvim/after/ftplugin;
     recursive = true;
@@ -533,11 +535,6 @@ in {
       recursive = true;
     };
   };
-  # xdg.configFile = {
-  #   latexmkrc = {
-  #     source = config.lib.file.mkOutOfStoreSymlink ./latexmkrc;
-  #   };
-  # };
 
   # xdg.configFile = {
   #     awesome = {

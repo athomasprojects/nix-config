@@ -48,8 +48,8 @@ vim.cmd("let g:vimtex_view_automatic = 0")
 vim.g.vimtex_compiler_latexmk = {
   executable = "latexmk",
   options = {
-    "-lualatex",
     -- "-pdflatex",
+    "-lualatex",
     "-file-line-error",
     "-synctex=1",
     "-interaction=nonstopmode",

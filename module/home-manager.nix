@@ -13,6 +13,38 @@
       sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
     };
   };
+  tex = pkgs.texlive.combine {
+    inherit
+      (pkgs.texlive)
+      scheme-full
+      latexmk
+      graphics
+      fontspec
+      babel
+      inputenx
+      csquotes
+      amsmath
+      amsfonts
+      mathtools
+      physics
+      siunitx
+      mhchem
+      chemformula
+      fancyhdr
+      etoolbox
+      hyperref
+      multirow
+      cleveref
+      booktabs
+      dvips
+      pstricks
+      float
+      extract
+      datetime2
+      subfiles
+      ; # lualatex fontspec graphicx babel csquotes dcolumn inputenc;
+    #(setq org-latex-compiler "lualatex")
+  };
 in {
   # -------------------------------------------------------------------
   # Packages
@@ -41,11 +73,9 @@ in {
     pkgs.poppler
     pkgs.git
     pkgs.manix
-    # pkgs.texlive
-    # pkgs.uv
-    # pkgs.rye
     pkgs.sioyek
     pkgs.src-cli
+    tex
     pkgs.tokei
     pkgs.starship
     pkgs.wezterm
@@ -273,7 +303,7 @@ in {
       pkgs.xclip
 
       # Latex
-      pkgs.texliveFull
+      # pkgs.texlive.combined.scheme-full
 
       # Formatters
       inputs.alejandra.defaultPackage.${pkgs.system}
@@ -413,10 +443,10 @@ in {
 
       pkgs.vimPlugins.own-ocaml-nvim
 
-      {
-        plugin = nvim-bqf;
-        config = toLuaFile ./nvim/plugin/nvim_bqf.lua;
-      }
+      # {
+      #   plugin = nvim-bqf;
+      #   config = toLuaFile ./nvim/plugin/nvim_bqf.lua;
+      # }
       {
         plugin = pkgs.vimPlugins.own-qf-helper;
         config = toLuaFile ./nvim/plugin/qf_helper.lua;
@@ -497,6 +527,12 @@ in {
     };
   };
 
+  xdg.configFile = {
+    sioyek = {
+      source = config.lib.file.mkOutOfStoreSymlink ./sioyek;
+      recursive = true;
+    };
+  };
   # xdg.configFile = {
   #   latexmkrc = {
   #     source = config.lib.file.mkOutOfStoreSymlink ./latexmkrc;

@@ -303,7 +303,7 @@ in {
       pkgs.xclip
 
       # Latex
-      # pkgs.texlive.combined.scheme-full
+      tex
 
       # Formatters
       inputs.alejandra.defaultPackage.${pkgs.system}

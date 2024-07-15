@@ -136,7 +136,7 @@ vim.cmd([[
 set("n", "<leader>zr", "zR", { desc = "Open all folds" })
 set("n", "<leader>zm", "zM", { desc = "Close all folds" })
 
--- Managing Split Windows
+-- Managing split windows
 set("n", "<leader>s+", "<C-w>|", { desc = "Focus horizontal split" })
 set("n", "<leader>s-", "<C-w>_", { desc = "Focus vertical split" })
 
@@ -144,16 +144,17 @@ set("n", "<leader>s-", "<C-w>_", { desc = "Focus vertical split" })
 set("i", "<S-CR>", "<C-O>o")
 set("i", "<C-CR>", "<C-O>O")
 
--- greatest remap ever
+-- Greatest remap ever
 set("x", "<leader>p", [["_dP]])
 
--- next greatest remap ever : asbjornHaland
+-- Next greatest remap ever : asbjornHaland
 set({ "n", "v" }, "<leader>y", [["+y]])
 set("n", "<leader>Y", [["+Y]])
 
--- delete to void register
+-- Delete to void register
 set({ "n", "v" }, "<leader>d", [["_d]])
 
+-- Toggle lsp inlay inhints
 set("n", "<space>tt", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
 end)

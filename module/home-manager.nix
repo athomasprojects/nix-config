@@ -252,6 +252,14 @@ in {
   #     };
   # };
 
+  # home.file."${config.xdg.configHome}/nvim/spell/en.utf-8.add".source = ./en.utf-8.add;
+  # home.file."${config.xdg.configHome}/nvim/spell/en.utf-8.add.spl".source = ./en.utf-8.add.spl;
+
+  home.file."${config.xdg.configHome}/nvim/after/ftplugin" = {
+    source = config.lib.file.mkOutOfStoreSymlink ./nvim/after/ftplugin;
+    recursive = true;
+  };
+
   programs.neovim = let
     # toLua = str: "lua << EOF\n${str}\nEOF\n";
     toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
@@ -301,7 +309,6 @@ in {
 
     extraConfig = ''
       ${builtins.readFile ./nvim/menu.vim}
-      ${builtins.readFile ./nvim/auft.vim}
     '';
 
     plugins = with pkgs.vimPlugins; [

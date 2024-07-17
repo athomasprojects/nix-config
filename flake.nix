@@ -2,8 +2,10 @@
   description = "Example kickstart NixOS desktop environment.";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    darwin.url = "github:lnl7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     home-manager = {
@@ -11,14 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # flake-parts.url = "github:hercules-ci/flake-parts";
-
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
@@ -30,33 +28,36 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    
     plugin-cmp-vimtex.url = "github:micangl/cmp-vimtex";
     plugin-cmp-vimtex.flake = false;
-
+    
     plugin-express-line.url = "github:tjdevries/express_line.nvim";
     plugin-express-line.flake = false;
-
+    
     plugin-edit-alternate.url = "github:tjdevries/edit_alternate.vim";
     plugin-edit-alternate.flake = false;
-
+    
     plugin-standard-vim.url = "github:tjdevries/standard.vim";
     plugin-standard-vim.flake = false;
-
+    
     plugin-conf-vim.url = "github:tjdevries/conf.vim";
     plugin-conf-vim.flake = false;
-
+    
     plugin-ocaml-nvim.url = "github:tjdevries/ocaml.nvim";
     plugin-ocaml-nvim.flake = false;
-
+    
     plugin-telescope-luasnip.url = "github:benfowler/telescope-luasnip.nvim";
     plugin-telescope-luasnip.flake = false;
-
+    
     plugin-qf-helper.url = "github:stevearc/qf_helper.nvim";
     plugin-qf-helper.flake = false;
   };
 
   outputs = inputs @ {
     self,
+    darwin,
     home-manager,
     nixpkgs,
     rust-overlay,
@@ -64,7 +65,7 @@
     nix-index-database,
     ...
   }: let
-    system = "x86_64-linux";
+    system = "aarch64-darwin";
 
     overlays = [
       rust-overlay.overlays.default
@@ -151,34 +152,13 @@
       })
     ];
 
-    nixos-system = import ./system/nixos.nix {
-      # specialArgs = {
-      # 	pkgs-stable = import nixpkgs-stable {
-      # 		inherit system;
-      # 		config.allowUnfree = true;
-      # 	};
-      # 	inherit inputs system;
-      # };
-
+    darwin-system = import ./system/darwin.nix {
       inherit inputs overlays;
-      username = "thegusbus"; # TODO: replace with user name and remove throw
-      password = "neemo123"; # TODO: replace with password and remove throw
+      username = "amanda";
     };
   in {
-    nixosConfigurations = {
-      x86_64 = nixos-system system;
+    darwinConfigurations = {
+      aarch64 = darwin-system system;
     };
   };
-  #  flake-parts.lib.mkFlake { inherit inputs; } {
-  #  	flake = {
-  #    		nixosConfigurations = {
-  #    		  x86_64 = nixos-system system;
-  #    		};
-  # };
-  # systems = [ system ];
-  #
-  # # perSystem = { pkgs, ... }: {
-  # #     formatter = pkgs.alejandra;
-  # # };
-  #  };
 }

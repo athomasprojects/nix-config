@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  onePassPath = "~/.1password/agent.sock";
+  onePassPath = ''~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock'';
   my-harpoon2 = pkgs.vimUtils.buildVimPlugin {
     name = "harpoon2";
     src = pkgs.fetchFromGitHub {
@@ -42,24 +42,22 @@
       extract
       datetime2
       subfiles
-      ; # lualatex fontspec graphicx babel csquotes dcolumn inputenc;
+      ;
     #(setq org-latex-compiler "lualatex")
   };
 in {
   # -------------------------------------------------------------------
   # Packages
   # -------------------------------------------------------------------
+
   home.packages = [
-    pkgs.ncpamixer
+    (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
+    pkgs.coreutils
     pkgs.atuin
     pkgs.btop
-    pkgs.obsidian
-    pkgs.obs-studio
-    pkgs.discord
     pkgs.bat
     pkgs.neofetch
     pkgs.delta
-    pkgs.flameshot
     pkgs.fd
     pkgs.file
     pkgs.fzf
@@ -73,18 +71,20 @@ in {
     pkgs.poppler
     pkgs.git
     pkgs.manix
+    pkgs.gnused
     pkgs.sioyek
     pkgs.src-cli
     tex
     pkgs.tokei
     pkgs.starship
-    pkgs.wezterm
+    # pkgs.wezterm
     pkgs.yazi
     pkgs.zoxide
-    pkgs.valgrind
   ];
 
   home.stateVersion = "24.11";
+
+  home.homeDirectory = "/Users/amanda";
 
   xdg.enable = true;
 
@@ -263,7 +263,7 @@ in {
         format = "ssh";
       };
       "gpg \"ssh\"" = {
-        program = "${pkgs.lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
+        program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
       };
       commit = {
         gpgsign = true;
@@ -327,8 +327,6 @@ in {
       pkgs.ruff-lsp
       pkgs.yaml-language-server
       pkgs.nodePackages_latest.vscode-json-languageserver
-
-      # TODO: add texlive lualatex or pdflatex pkgs so that vimtex can access the compiler
     ];
 
     extraLuaConfig = ''
@@ -504,22 +502,9 @@ in {
     enableFishIntegration = true;
   };
 
-  programs.ncmpcpp = {
-    enable = true;
-  };
-
   programs.nix-index = {
     enable = true;
     # comma.enable = true;
-  };
-
-  xresources.extraConfig = builtins.readFile ./Xresources;
-
-  home.pointerCursor = {
-    name = "Vanilla-DMZ";
-    package = pkgs.vanilla-dmz;
-    size = 128;
-    x11.enable = true;
   };
 
   xdg.configFile = {
@@ -534,18 +519,5 @@ in {
       source = config.lib.file.mkOutOfStoreSymlink ./sioyek;
       recursive = true;
     };
-  };
-
-  # xdg.configFile = {
-  #     awesome = {
-  #       source = config.lib.file.mkOutOfStoreSymlink ./awesome;
-  #       recursive = true;
-  #     };
-  # };
-
-  xsession.windowManager.awesome = {
-    enable = true;
-    package = pkgs.awesome;
-    luaModules = with pkgs.luaPackages; [luarocks luadbi-mysql];
   };
 }

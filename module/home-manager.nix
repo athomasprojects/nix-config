@@ -16,6 +16,10 @@
   tex = pkgs.texlive.combine {
     inherit
       (pkgs.texlive)
+      enumitem
+      geometry
+      changepage
+      microtype
       scheme-full
       latexmk
       graphics
@@ -45,6 +49,7 @@
       ;
     #(setq org-latex-compiler "lualatex")
   };
+  core_ls = "${pkgs.coreutils}/bin/ls";
 in {
   # -------------------------------------------------------------------
   # Packages
@@ -52,7 +57,6 @@ in {
 
   home.packages = [
     (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
-    pkgs.coreutils
     pkgs.atuin
     pkgs.btop
     pkgs.bat
@@ -150,7 +154,7 @@ in {
       pbcopy = "xclip";
       pbpaste = "xclip -o";
 
-      ls = "ls -F --color=auto --group-directories-first --sort=version";
+      ls = " -F --color=auto --group-directories-first --sort=version";
       ldr = "ls --color --group-directories-first";
       ldl = "ls --color -l --group-directories-first";
       ll = "ls -al";
@@ -287,6 +291,14 @@ in {
 
   home.file.".latexmkrc".source = config.lib.file.mkOutOfStoreSymlink ./latexmkrc;
 
+  home.file."${config.xdg.configHome}/nvim/lua" = {
+    source = config.lib.file.mkOutOfStoreSymlink ./nvim/lua;
+    recursive = true;
+  };
+  # home.file."${config.xdg.configHome}/nvim/queries" = {
+  #   source = config.lib.file.mkOutOfStoreSymlink ./nvim/queries;
+  #   recursive = true;
+  # };
   home.file."${config.xdg.configHome}/nvim/after/ftplugin" = {
     source = config.lib.file.mkOutOfStoreSymlink ./nvim/after/ftplugin;
     recursive = true;
@@ -303,6 +315,7 @@ in {
       pkgs.cmake
       pkgs.luajitPackages.jsregexp
       pkgs.xclip
+      pkgs.ripgrep
 
       # Latex
       tex
@@ -355,6 +368,10 @@ in {
         config = toLuaFile ./nvim/plugin/undotree.lua;
       }
       {
+        plugin = nvim-colorizer-lua;
+        config = toLuaFile ./nvim/plugin/colours.lua;
+      }
+      {
         plugin = colorbuddy-nvim;
         config = toLuaFile ./nvim/plugin/colorscheme.lua;
       }
@@ -382,7 +399,7 @@ in {
       pkgs.vimPlugins.own-telescope-luasnip
       {
         plugin = telescope-nvim;
-        config = toLuaFile ./nvim/plugin/telescope.lua;
+        config = toLuaFile ./nvim/lua/telescope.lua;
       }
 
       {
@@ -442,6 +459,7 @@ in {
       SchemaStore-nvim
 
       pkgs.vimPlugins.own-ocaml-nvim
+      pkgs.vimPlugins.markdown-preview-nvim
 
       # {
       #   plugin = nvim-bqf;
@@ -456,8 +474,6 @@ in {
       # nvim-dap-ui
       # nvim-dap-python
       # nvim-dap-virtual-text
-      # Need to load these separately (fetch from Github)
-      # telescope-luasnip
 
       nvim-treesitter-textobjects
       {

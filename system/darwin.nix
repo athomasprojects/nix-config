@@ -25,19 +25,21 @@ in
           shells = [pkgs.fish pkgs.zsh];
           loginShell = pkgs.fish;
           systemPackages = with pkgs; [
-            pkgs.alejandra
-            pkgs.cmake
-            pkgs.ninja
-            pkgs.gcc
-            pkgs.nh
-            pkgs.gnused
+            alejandra
+            cmake
+            ninja
+            gcc
+            nh
+            gnused
             unar
             unzip
             zip
             xclip
             vim
-            pkgs.xdg-user-dirs
-            pkgs.xdg-utils
+            xdg-user-dirs
+            xdg-utils
+            coreutils
+            findutils
           ];
         };
       }

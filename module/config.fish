@@ -37,35 +37,42 @@ alias glx="git log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%c
 alias gdate="git log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --date=relative"
 alias gdatelong="git log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --date=short"
 
-# Shortcuts - directories
-alias cac="cd $XDG_CACHE_HOME"
-alias cf="cd $XDG_CONFIG_HOME"
-alias cfn="cd $HOME/nix-config/module/nvim"
-alias dfz="cd $HOME/nix-config"
-alias lsh="cd $HOME/.local/share"
-alias d="cd $HOME/Downloads"
-alias D="cd $HOME/Documents"
-alias pp="cd $HOME/Pictures"
-alias hbn="cd $HOME/bin"
-alias lbn="cd $HOME/.local/bin"
-alias c="cd $HOME/code"
-alias lt="cd $HOME/code/latexprojects"
-alias h="cd $HOME"
-alias ph="cd $HOME/Documents/phd"
-alias vv="cd $HOME/Videos"
-# alias mn="cd /mnt"
+# #alias gfy="$HOME/.config/yazi/yazirc"
+# #alias gfX="$HOME/.config/nsxiv/exec/key-handler" 
+
+#-------------------------------------------------------------------------------
+# Abbreviations
+#-------------------------------------------------------------------------------
+# Trying out abbreviations for my commonly used shortcuts
+abbr cac "cd $XDG_CACHE_HOME"
+abbr cf "cd $XDG_CONFIG_HOME"
+abbr cfn "cd $HOME/nix-config/module/nvim"
+abbr dfz "cd $HOME/nix-config"
+abbr lsh "cd $HOME/.local/share"
+abbr lst "cd $HOME/.local/state"
+abbr d "cd $HOME/Downloads"
+abbr D "cd $HOME/Documents"
+abbr pp "cd $HOME/Pictures"
+abbr hbn "cd $HOME/bin"
+abbr lbn "cd $HOME/.local/bin"
+abbr c "cd $HOME/code"
+abbr lt "cd $HOME/code/latexprojects"
+abbr h "cd $HOME"
+abbr ph "cd $HOME/Documents/phd"
+abbr vv "cd $HOME/Videos"
+# abbr mn "cd /mnt"
 #alias ="cd vc  $HOME/Videos/screencasts"
 
 # Shortcuts - files
-alias hm="cd $HOME/nix-config && nvim module/home-manager.nix" 
-alias fl="nvim $HOME/nix-config/flake.nix"					
-alias ns="nvim $HOME/nix-config/system/nixos.nix"					
-alias cfx="nvim $HOME/nix-config/module/Xresources" 
-alias cfs="nvim $HOME/nix-config/module/config.fish"
-alias wz="nvim $HOME/nix-config/module/wezterm/wezterm.lua" 
+abbr hm "cd $HOME/nix-config && nvim module/home-manager.nix" 
+abbr fl "nvim $HOME/nix-config/flake.nix"					
+abbr ns "nvim $HOME/nix-config/system/nixos.nix"					
+abbr cfx "nvim $HOME/nix-config/module/Xresources" 
+abbr cfs "nvim $HOME/nix-config/module/config.fish"
+abbr wz "nvim $HOME/nix-config/module/wezterm/wezterm.lua" 
 
-#alias ="gfy	$HOME/.config/yazi/yazirc	
-#alias ="gfX	$HOME/.config/nsxiv/exec/key-handler" 
+# abbr gfy "$HOME/.config/yazi/yazirc"
+# abbr gfX "$HOME/.config/nsxiv/exec/key-handler" 
 
 #-------------------------------------------------------------------------------
 # Functions

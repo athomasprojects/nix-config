@@ -49,7 +49,6 @@
       ;
     #(setq org-latex-compiler "lualatex")
   };
-  core_ls = "${pkgs.coreutils}/bin/ls";
 in {
   # -------------------------------------------------------------------
   # Packages
@@ -154,7 +153,7 @@ in {
       pbcopy = "xclip";
       pbpaste = "xclip -o";
 
-      ls = " -F --color=auto --group-directories-first --sort=version";
+      ls = "${pkgs.coreutils}/bin/ls -F --color=auto --group-directories-first --sort=version";
       ldr = "ls --color --group-directories-first";
       ldl = "ls --color -l --group-directories-first";
       ll = "ls -al";

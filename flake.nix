@@ -29,28 +29,28 @@
     };
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    
+
     plugin-cmp-vimtex.url = "github:micangl/cmp-vimtex";
     plugin-cmp-vimtex.flake = false;
-    
+
     plugin-express-line.url = "github:tjdevries/express_line.nvim";
     plugin-express-line.flake = false;
-    
+
     plugin-edit-alternate.url = "github:tjdevries/edit_alternate.vim";
     plugin-edit-alternate.flake = false;
-    
+
     plugin-standard-vim.url = "github:tjdevries/standard.vim";
     plugin-standard-vim.flake = false;
-    
+
     plugin-conf-vim.url = "github:tjdevries/conf.vim";
     plugin-conf-vim.flake = false;
-    
+
     plugin-ocaml-nvim.url = "github:tjdevries/ocaml.nvim";
     plugin-ocaml-nvim.flake = false;
-    
+
     plugin-telescope-luasnip.url = "github:benfowler/telescope-luasnip.nvim";
     plugin-telescope-luasnip.flake = false;
-    
+
     plugin-qf-helper.url = "github:stevearc/qf_helper.nvim";
     plugin-qf-helper.flake = false;
   };

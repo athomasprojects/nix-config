@@ -5,8 +5,7 @@ nvim module/home-manager.nix
 alejandra . &>/dev/null
 git diff -U0 *.nix
 echo "Nix-darwin Rebuilding..."
-sudo darwin-rebuild switch --flake ./#x86_64 &>darwin-switch.log || (
- cat darwin-switch.log | grep --color error && false)
-gen=$(darwin-rebuild list-generations | grep current)
+(sudo darwin-rebuild switch --flake ./#aarch64) &>darwin-switch.log || (grep --color error darwin-switch.log && false)
+gen=$(sudo darwin-rebuild --list-generations | grep current)
 git commit -am "$gen"
 popd

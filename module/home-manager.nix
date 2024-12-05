@@ -327,6 +327,7 @@ in {
       pkgs.ruff
 
       # LSP
+      pkgs.zls
       # inputs.odin-overlay.packages.${pkgs.system}.ols
       pkgs.clang-tools
       pkgs.clang
@@ -498,6 +499,8 @@ in {
           p.tree-sitter-toml
           p.tree-sitter-vim
           p.tree-sitter-yaml
+          p.tree-sitter-odin
+          p.tree-sitter-zig
         ]);
         config = toLuaFile ./nvim/plugin/treesitter.lua;
       }

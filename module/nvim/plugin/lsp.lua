@@ -143,6 +143,18 @@ lspconfig.ocamllsp.setup({
   -- TODO: Check if i still need the filtypes stuff i had before
 })
 
+-- lspconfig.ols.setup({
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   -- filetypes = { "odin" },
+-- })
+
+lspconfig.zls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "zig", "zir" },
+})
+
 lspconfig.clangd.setup({
   -- TODO: Could include cmd, but not sure those were all relevant flags.
   --    looks like something i would have added while i was floundering

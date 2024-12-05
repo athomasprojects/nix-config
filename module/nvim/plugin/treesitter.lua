@@ -100,12 +100,14 @@ local syntax_on = {
   markdown = true,
   nix = true,
   ocaml = true,
+  odin = true,
   python = true,
   rust = true,
   toml = true,
   vimdoc = true,
   vim = true,
   yaml = true,
+  zig = true,
 }
 
 vim.api.nvim_create_autocmd("FileType", {

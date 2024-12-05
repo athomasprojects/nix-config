@@ -110,7 +110,7 @@
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   # systemd.services."getty@tty1".enable = false;
   # systemd.services."autovt@tty1".enable = false;
-  
+
   users.mutableUsers = false;
 
   # This value determines the NixOS release from which the default
@@ -120,5 +120,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }

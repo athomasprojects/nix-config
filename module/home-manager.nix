@@ -99,8 +99,8 @@ in {
     LC_ALL = "en_CA.UTF-8";
     EDITOR = "nvim";
     MANPAGER = "nvim +Man!";
-    TERMINAL = "wezterm";
-    TERMINAL_PROG = "wezterm";
+    TERMINAL = "ghostty";
+    TERMINAL_PROG = "ghostty";
     BROWSER = "brave";
     DOTFILES = "$HOME/nix-config";
     PAGER = "less -FirSwX";
@@ -327,6 +327,7 @@ in {
       pkgs.ruff
 
       # LSP
+      # inputs.odin-overlay.packages.${pkgs.system}.ols
       pkgs.clang-tools
       pkgs.clang
       pkgs.vim-language-server
@@ -520,6 +521,10 @@ in {
   programs.nix-index = {
     enable = true;
     # comma.enable = true;
+  };
+
+  xdg.configFile = {
+    "ghostty/config".text = builtins.readFile ./ghostty.mac;
   };
 
   xdg.configFile = {

@@ -53,6 +53,8 @@
 
     plugin-qf-helper.url = "github:stevearc/qf_helper.nvim";
     plugin-qf-helper.flake = false;
+
+    odin-overlay.url = "github:kilzm/odin-overlay";
   };
 
   outputs = inputs @ {
@@ -69,6 +71,7 @@
 
     overlays = [
       rust-overlay.overlays.default
+      inputs.odin-overlay.overlays.default
       inputs.neovim-nightly-overlay.overlays.default
       (final: prev: {
         vimPlugins =

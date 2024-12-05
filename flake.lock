@@ -139,6 +139,23 @@
         "type": "indirect"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "id": "flake-utils",
+        "type": "indirect"
+      }
+    },
     "flakeCompat": {
       "flake": false,
       "locked": {
@@ -353,6 +370,41 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1723175592,
+        "narHash": "sha256-M0xJ3FbDUc4fRZ84dPGx5VvgFsOzds77KiBMW/mMTnI=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5e0ca22929f3342b19569b21b2f3462f053e497b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "odin-overlay": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1730074138,
+        "narHash": "sha256-UVf6q0szd3LXGRmUGWHzzAJGAb3wzK2E8r0nZZEI6r8=",
+        "owner": "kilzm",
+        "repo": "odin-overlay",
+        "rev": "5b2f0920bbf795da9446d751020c508aa2fe06e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kilzm",
+        "repo": "odin-overlay",
+        "type": "github"
+      }
+    },
     "plugin-cmp-vimtex": {
       "flake": false,
       "locked": {
@@ -490,6 +542,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
+        "odin-overlay": "odin-overlay",
         "plugin-cmp-vimtex": "plugin-cmp-vimtex",
         "plugin-conf-vim": "plugin-conf-vim",
         "plugin-edit-alternate": "plugin-edit-alternate",
@@ -535,6 +588,21 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
         "type": "github"
       }
     }

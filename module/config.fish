@@ -2,6 +2,16 @@
 set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.local/bin" $PATH;
 
 #-------------------------------------------------------------------------------
+# Ghostty Shell Integration
+#-------------------------------------------------------------------------------
+# Ghostty supports auto-injection but Nix-darwin hard overwrites XDG_DATA_DIRS
+# which make it so that we can't use the auto-injection. We have to source
+# manually.
+if set -q GHOSTTY_RESOURCES_DIR
+    source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
+end
+
+#-------------------------------------------------------------------------------
 # Prompt
 #-------------------------------------------------------------------------------
 # Do not show any greeting
@@ -70,6 +80,7 @@ abbr ns "nvim $HOME/nix-config/system/nixos.nix"
 abbr cfx "nvim $HOME/nix-config/module/Xresources" 
 abbr cfs "nvim $HOME/nix-config/module/config.fish"
 abbr wz "nvim $HOME/nix-config/module/wezterm/wezterm.lua" 
+abbr gst "nvim $HOME/nix-config/module/ghostty.mac"
 
 # abbr gfy "$HOME/.config/yazi/yazirc"
 # abbr gfX "$HOME/.config/nsxiv/exec/key-handler" 

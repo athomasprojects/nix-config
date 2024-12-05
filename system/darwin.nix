@@ -22,6 +22,7 @@ in
         programs.zsh.enable = true;
 
         environment = {
+          systemPath = ["~/.local/bin"];
           shells = [pkgs.fish pkgs.zsh];
           loginShell = pkgs.fish;
           systemPackages = with pkgs; [

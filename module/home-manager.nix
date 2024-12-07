@@ -51,7 +51,7 @@ in {
     # tex
     pkgs.tokei
     pkgs.starship
-    pkgs.wezterm
+    # pkgs.wezterm
     pkgs.yazi
     pkgs.zoxide
     pkgs.valgrind
@@ -65,6 +65,36 @@ in {
     mime = {
       enable = true;
     };
+    mimeApps = {
+      enable = true;
+      associations.added = {
+        "text/x-shellscript" = ["text.desktop"];
+        "text/plain" = ["text.desktop"];
+        "image/png" = ["img.desktop"];
+        "image/jpeg" = ["img.desktop"];
+        "image/gif" = ["img.desktop"];
+      };
+      defaultApplications = {
+        "text/x-shellscript" = ["text.desktop"];
+        "text/plain" = ["text.desktop"];
+        "image/png" = ["img.desktop"];
+        "image/jpeg" = ["img.desktop"];
+        "image/gif" = ["img.desktop"];
+      };
+    };
+    desktopEntries = {
+      text = {
+        name = "Text editor";
+        type = "Application";
+        # exec = "${inputs.ghostty.packages.x86_64-linux.default}/bin/ghostty* -e nvim %u";
+        exec = "ghostty -e nvim %u";
+      };
+      img = {
+        name = "Image viewer";
+        type = "Application";
+        exec = "nsxiv -a %f";
+      };
+    };
   };
 
   fonts.fontconfig.enable = true;
@@ -74,11 +104,12 @@ in {
     LC_TYPE = "en_CA.UTF-8";
     LC_ALL = "en_CA.UTF-8";
     EDITOR = "nvim";
+    VISUAL = "nvim";
     MANPAGER = "nvim +Man!";
     TERMINAL = "ghostty";
     TERMINAL_PROG = "ghostty";
     # TERMINFO_DIRS = "${/etc/profiles/per-user/thegusbus/share/terminfo}";
-    TERM = "ghostty";
+    # TERM = "ghostty";
     BROWSER = "brave";
     DOTFILES = "$HOME/nix-config";
     PAGER = "less -FirSwX";
@@ -90,12 +121,12 @@ in {
     "ghostty/config".text = builtins.readFile ./ghostty.linux;
   };
 
-  xdg.configFile = {
-    wezterm = {
-      source = config.lib.file.mkOutOfStoreSymlink ./wezterm;
-      recursive = true;
-    };
-  };
+  # xdg.configFile = {
+  #   wezterm = {
+  #     source = config.lib.file.mkOutOfStoreSymlink ./wezterm;
+  #     recursive = true;
+  #   };
+  # };
 
   home.file."${config.xdg.configHome}/awesome/rc.lua".source = config.lib.file.mkOutOfStoreSymlink ./awesome/rc.lua;
 

@@ -31,6 +31,7 @@ in
             awesome
             brave
             mpv
+            nsxiv
             nh
             unar
             unzip
@@ -44,9 +45,10 @@ in
             usbutils
             gucharmap
             nautilus
+            # nautilus-python
             adwaita-icon-theme
             gnomeExtensions.appindicator
-            xfce.xfce4-terminal
+            # xfce.xfce4-terminal
 
             # C/C++ build tools
             gcc
@@ -69,35 +71,22 @@ in
 
             vim
             inputs.ghostty.packages.x86_64-linux.default
-
-            # gtk4
-            # libadwaita
-            # (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
           ];
 
-          # gnome.excludePackages = (with pkgs; [
-          #   gnome-photos
-          #   gnome-tour
-          #   gedit # text editor
-          # ]) ++ (with pkgs.gnome; [
-          #   cheese # webcam tool
-          #   gnome-music
-          #   gnome-terminal
-          #   epiphany # web browser
-          #   geary # email reader
-          #   evince # document viewer
-          #   gnome-characters
-          #   totem # video player
-          #   tali # poker game
-          #   iagno # go game
-          #   hitori # sudoku game
-          #   atomix # puzzle game
-          # ]);
+          # sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
+          # pathsToLink = [
+          #   "/share/nautilus-python/extensions"
+          # ];
         };
 
         # I think we should only need to enable these settings if we are trying
         # to run GNOME applications outside of a GNOME DE.
         programs.dconf.enable = true;
+
+        # programs.nautilus-open-any-terminal = {
+        #   enable = true;
+        #   terminal = "ghostty";
+        # };
 
         programs._1password.enable = true;
         programs._1password-gui = {
@@ -176,6 +165,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users."${username}" = home-manager;
+        home-manager.backupFileExtension = "backup";
       }
 
       # add more nix modules here

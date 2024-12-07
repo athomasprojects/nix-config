@@ -34,6 +34,7 @@ contains $HOME/bin $fish_user_paths; or set -Ua fish_user_paths $HOME/bin
 
 # Editor
 set -gx EDITOR nvim
+set -gx TERMIAL ghostty
 
 # Sourcegraph 
 set -gx SRC_ENDPOINT "https://sourcegraph.com"
@@ -80,7 +81,8 @@ abbr fl "nvim $HOME/nix-config/flake.nix"
 abbr ns "nvim $HOME/nix-config/system/nixos.nix"					
 abbr cfx "nvim $HOME/nix-config/module/Xresources" 
 abbr cfs "nvim $HOME/nix-config/module/config.fish"
-abbr wz "nvim $HOME/nix-config/module/wezterm/wezterm.lua" 
+# abbr gst "nvim $HOME/nix-config/module/ghostty.linux" 
+# abbr wz "nvim $HOME/nix-config/module/wezterm/wezterm.lua" 
 
 # abbr gfy "$HOME/.config/yazi/yazirc"
 # abbr gfX "$HOME/.config/nsxiv/exec/key-handler" 

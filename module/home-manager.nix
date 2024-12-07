@@ -75,10 +75,10 @@ in {
     LC_ALL = "en_CA.UTF-8";
     EDITOR = "nvim";
     MANPAGER = "nvim +Man!";
-    TERMINAL = "wezterm";
-    TERMINAL_PROG = "wezterm";
+    TERMINAL = "ghostty";
+    TERMINAL_PROG = "ghostty";
     # TERMINFO_DIRS = "${/etc/profiles/per-user/thegusbus/share/terminfo}";
-    TERM = "wezterm";
+    TERM = "ghostty";
     BROWSER = "brave";
     DOTFILES = "$HOME/nix-config";
     PAGER = "less -FirSwX";

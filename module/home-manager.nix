@@ -86,8 +86,7 @@ in {
       text = {
         name = "Text editor";
         type = "Application";
-        # exec = "${inputs.ghostty.packages.x86_64-linux.default}/bin/ghostty* -e nvim %u";
-        exec = "ghostty -e nvim %u";
+        exec = "ghostty -e nvim %U";
       };
       img = {
         name = "Image viewer";

@@ -6,7 +6,7 @@
 }: system: let
   home-manager = import ../module/home-manager.nix {inherit inputs;};
   pkgs = inputs.nixpkgs.legacyPackages.${system};
-  sweet-cursors-theme = import ../module/themes/sweet-cursors-theme.nix {inherit pkgs;};
+  # sweet-cursors-theme = import ../module/themes/sweet-cursors-theme.nix {inherit pkgs;};
 in
   inputs.nixpkgs.lib.nixosSystem {
     inherit system;

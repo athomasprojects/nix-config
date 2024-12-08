@@ -73,17 +73,18 @@ lspconfig.vimls.setup({
 })
 
 lspconfig.pyright.setup({
+  filetypes = { "python" },
   capabilities = capabilities,
   settings = {
-    disableLanguageServices = true,
-    disableOrganizeImports = true,
-    -- useLibraryCodeForTypes = false,
-    -- stubPath = "/home/thegusbus/stubs/python-type-stubs/stubs",
+    pyright = {
+      disableOrganizeImports = true, -- using ruff
+    },
     python = {
       analysis = {
+        -- ignore = { "*" }, -- using ruff
+        -- typeCheckingMode = "off",
         autoSearchPaths = true,
-        typeCheckingMode = "off",
-        diagnosticMode = "off",
+        -- diagnosticMode = "workspace",
       },
     },
   },

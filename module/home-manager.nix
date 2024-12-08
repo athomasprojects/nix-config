@@ -70,6 +70,7 @@ in {
       associations.added = {
         "text/x-shellscript" = ["text.desktop"];
         "text/plain" = ["text.desktop"];
+        "application/pdf" = ["sioyek.desktop"];
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];
@@ -77,6 +78,7 @@ in {
       defaultApplications = {
         "text/x-shellscript" = ["text.desktop"];
         "text/plain" = ["text.desktop"];
+        "application/pdf" = ["sioyek.desktop"];
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];

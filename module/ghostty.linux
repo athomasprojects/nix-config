@@ -16,10 +16,11 @@ adw-toolbar-style = flat
 
 keybind = ctrl+enter=unbind
 
-theme = Hybrid 
-# theme = SpaceGray
+theme = SpaceGray
+# theme = Hybrid 
 # theme = NvimDark 
 
+background = 161719
 # background = #111111
 # cursor-color = #ffffff
 

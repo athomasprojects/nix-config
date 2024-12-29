@@ -4,15 +4,15 @@
   ...
 }: let
   onePassPath = "~/.1password/agent.sock";
-  my-harpoon2 = pkgs.vimUtils.buildVimPlugin {
-    name = "harpoon2";
-    src = pkgs.fetchFromGitHub {
-      owner = "ThePrimeagen";
-      repo = "harpoon";
-      rev = "0378a6c428a0bed6a2781d459d7943843f374bce";
-      sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
-    };
-  };
+  # my-harpoon2 = pkgs.vimUtils.buildVimPlugin {
+  #   name = "harpoon2";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "ThePrimeagen";
+  #     repo = "harpoon";
+  #     rev = "0378a6c428a0bed6a2781d459d7943843f374bce";
+  #     sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
+  #   };
+  # };
   tex = pkgs.texlive.combined.scheme-full;
   sweet-cursors-theme = import ./themes/sweet-cursors-theme.nix {inherit pkgs;};
   pointer_cursor_size = 128;
@@ -488,7 +488,8 @@ in {
       }
 
       {
-        plugin = my-harpoon2;
+        # plugin = my-harpoon2;
+        plugin = pkgs.vimPlugins.harpoon2;
         config = toLuaFile ./nvim/plugin/hrpn.lua;
       }
 

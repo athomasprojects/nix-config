@@ -2060,6 +2060,7 @@ ls.add_snippets("tex", {
         }, {}),
         i(4),
         c(5, {
+          t("\\nano\\meter"),
           t("\\centi\\meter^{-3}"),
           t("\\centi\\meter^{-2}"),
           t("\\electronvolt"),
@@ -2084,6 +2085,7 @@ ls.add_snippets("tex", {
       {
         mode = c(1, { t(""), sn(nil, { t("["), i(1), t("="), i(2), t("]") }) }, {}),
         unit = c(2, {
+          t("\\nano\\meter"),
           t("\\centi\\meter^{-3}"),
           t("\\centi\\meter^{-2}"),
           t("\\electronvolt"),
@@ -2092,6 +2094,14 @@ ls.add_snippets("tex", {
       }
     ),
     {}
+  ),
+
+  -- citation
+  s(
+    { trig = "cc", name = "cite", docstring = [[\cite{<>}]] },
+    fmta([[\cite{<>}]], {
+      i(1),
+    })
   ),
 })
 

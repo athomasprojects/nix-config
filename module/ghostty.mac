@@ -6,6 +6,7 @@ font-style-bold-italic = Bold Italic
 font-family = nonicons
 
 mouse-hide-while-typing = true
+macos-option-as-alt = true
 
 keybind = ctrl+enter=unbind
 

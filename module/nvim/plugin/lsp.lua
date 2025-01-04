@@ -123,6 +123,25 @@ lspconfig.yamlls.setup({
   },
 })
 
+lspconfig.ols.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  -- filetypes = { "odin" },
+})
+
+lspconfig.zls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "zig", "zir" },
+})
+
+lspconfig.clangd.setup({
+  -- TODO: Could include cmd, but not sure those were all relevant flags.
+  --    looks like something i would have added while i was floundering
+  init_options = { clangdFileStatus = true },
+  -- filetypes = { "c", "cpp" },
+})
+
 lspconfig.ocamllsp.setup({
   -- manual_install = true,
   settings = {
@@ -144,24 +163,7 @@ lspconfig.ocamllsp.setup({
   -- TODO: Check if i still need the filtypes stuff i had before
 })
 
-lspconfig.ols.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  -- filetypes = { "odin" },
-})
-
-lspconfig.zls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "zig", "zir" },
-})
-
-lspconfig.clangd.setup({
-  -- TODO: Could include cmd, but not sure those were all relevant flags.
-  --    looks like something i would have added while i was floundering
-  init_options = { clangdFileStatus = true },
-  -- filetypes = { "c", "cpp" },
-})
+-- require("ocaml").setup()
 
 -- Add a border to the hover frame.
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
@@ -177,6 +179,7 @@ require("conform").setup({
     python = { "ruff_format" },
     nix = { "alejandra" },
     odin = { "odinfmt" },
+    -- ocaml = { "ocamlformat" },
   },
 })
 

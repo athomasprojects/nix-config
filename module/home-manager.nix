@@ -4,15 +4,6 @@
   ...
 }: let
   onePassPath = "~/.1password/agent.sock";
-  # my-harpoon2 = pkgs.vimUtils.buildVimPlugin {
-  #   name = "harpoon2";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "ThePrimeagen";
-  #     repo = "harpoon";
-  #     rev = "0378a6c428a0bed6a2781d459d7943843f374bce";
-  #     sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
-  #   };
-  # };
   tex = pkgs.texlive.combined.scheme-full;
   sweet-cursors-theme = import ./themes/sweet-cursors-theme.nix {inherit pkgs;};
   pointer_cursor_size = 128;
@@ -362,12 +353,15 @@ in {
       # LSPs
       inputs.odin-overlay.packages.${pkgs.system}.ols
       pkgs.zls
-      # inputs.odin-overlay.packages.${pkgs.system}.odin-latest
       pkgs.clang-tools
       pkgs.vim-language-server
       pkgs.lua-language-server
       pkgs.bash-language-server
+
+      # Todo: need to pass dune developer preview to neovim
+      # inputs.ocaml-overlay.legacyPackages.${pkgs.system}.ocaml-ng.ocamlPackages.dune-dev
       pkgs.ocamlPackages.ocaml-lsp
+
       (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
       pkgs.nil
       pkgs.pyright
@@ -502,7 +496,7 @@ in {
       conform-nvim
       SchemaStore-nvim
 
-      pkgs.vimPlugins.own-ocaml-nvim
+      # pkgs.vimPlugins.own-ocaml-nvim
 
       # {
       #   plugin = nvim-bqf;
@@ -521,30 +515,31 @@ in {
 
       # nvim-treesitter-textobjects
       {
-        plugin = nvim-treesitter.withPlugins (p: [
-          # p.tree-sitter-lua
-          p.tree-sitter-bash
-          p.tree-sitter-bibtex
-          p.tree-sitter-devicetree
-          p.tree-sitter-fish
-          p.tree-sitter-go
-          p.tree-sitter-html
-          p.tree-sitter-javascript
-          p.tree-sitter-json
-          # p.tree-sitter-latex
-          p.tree-sitter-make
-          p.tree-sitter-nix
-          p.tree-sitter-ocaml
-          p.tree-sitter-ocaml-interface
-          p.tree-sitter-ocamllex
-          p.tree-sitter-python
-          p.tree-sitter-rust
-          p.tree-sitter-toml
-          p.tree-sitter-vim
-          p.tree-sitter-yaml
-          p.tree-sitter-odin
-          p.tree-sitter-zig
-        ]);
+        plugin = nvim-treesitter.withPlugins (plugins:
+          with plugins; [
+            # p.tree-sitter-lua
+            bash
+            bibtex
+            devicetree
+            fish
+            go
+            html
+            javascript
+            json
+            # latex
+            make
+            nix
+            ocaml
+            ocaml-interface
+            ocamllex
+            python
+            rust
+            toml
+            vim
+            yaml
+            odin
+            zig
+          ]);
         config = toLuaFile ./nvim/plugin/treesitter.lua;
       }
     ];

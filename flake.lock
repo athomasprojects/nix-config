@@ -492,22 +492,6 @@
         "type": "github"
       }
     },
-    "plugin-ocaml-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1731617878,
-        "narHash": "sha256-I3BQv4a1v2ejW/x4Uu6uaFuz3ViOCexEPf1Mrj8L1Z8=",
-        "owner": "tjdevries",
-        "repo": "ocaml.nvim",
-        "rev": "6d6619b899b260e9d845b45a16b385ec2071e692",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tjdevries",
-        "repo": "ocaml.nvim",
-        "type": "github"
-      }
-    },
     "plugin-qf-helper": {
       "flake": false,
       "locked": {
@@ -586,7 +570,6 @@
         "plugin-conf-vim": "plugin-conf-vim",
         "plugin-edit-alternate": "plugin-edit-alternate",
         "plugin-express-line": "plugin-express-line",
-        "plugin-ocaml-nvim": "plugin-ocaml-nvim",
         "plugin-qf-helper": "plugin-qf-helper",
         "plugin-standard-vim": "plugin-standard-vim",
         "plugin-telescope-luasnip": "plugin-telescope-luasnip",

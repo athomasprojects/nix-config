@@ -26,6 +26,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # ocaml-overlay = {
+    #   url = "github:nix-ocaml/nix-overlays";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     odin-overlay.url = "github:kilzm/odin-overlay";
 
     ghostty = {
@@ -54,8 +59,8 @@
     plugin-conf-vim.url = "github:tjdevries/conf.vim";
     plugin-conf-vim.flake = false;
 
-    plugin-ocaml-nvim.url = "github:tjdevries/ocaml.nvim";
-    plugin-ocaml-nvim.flake = false;
+    # plugin-ocaml-nvim.url = "github:tjdevries/ocaml.nvim";
+    # plugin-ocaml-nvim.flake = false;
 
     plugin-telescope-luasnip.url = "github:benfowler/telescope-luasnip.nvim";
     plugin-telescope-luasnip.flake = false;
@@ -149,16 +154,6 @@
         vimPlugins =
           prev.vimPlugins
           // {
-            own-ocaml-nvim = prev.vimUtils.buildVimPlugin {
-              name = "ocaml";
-              src = inputs.plugin-ocaml-nvim;
-            };
-          };
-      })
-      (final: prev: {
-        vimPlugins =
-          prev.vimPlugins
-          // {
             own-telescope-luasnip = prev.vimUtils.buildVimPlugin {
               name = "telescope-luasnip";
               src = inputs.plugin-telescope-luasnip;
@@ -175,6 +170,16 @@
             };
           };
       })
+      # (final: prev: {
+      #   vimPlugins =
+      #     prev.vimPlugins
+      #     // {
+      #       own-ocaml-nvim = prev.vimUtils.buildVimPlugin {
+      #         name = "ocaml";
+      #         src = inputs.plugin-ocaml-nvim;
+      #       };
+      #     };
+      # })
     ];
 
     nixos-system = import ./system/nixos.nix {

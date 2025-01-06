@@ -83,8 +83,6 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = inputs.nixpkgs.legacyPackages.${system};
-    hm = import ../module/home.nix {inherit inputs;};
     overlays = [
       (import ./overlays/sioyek.nix)
       rust-overlay.overlays.default

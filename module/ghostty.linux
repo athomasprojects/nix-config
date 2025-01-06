@@ -17,16 +17,6 @@ adw-toolbar-style = flat
 keybind = ctrl+enter=unbind
 
 theme = SpaceGray
-# theme = Hybrid 
-# theme = NvimDark 
-
 background = 161719
-# background = #111111
-# cursor-color = #ffffff
-
-# Modify builtin `NvimDark` theme to my custom colours
-
-# cyan
-# palette = 6=#98f9f8
-# palette = 14=#98f9f8
-
+selection-background = #3A404A
+# selection-background = #41454E

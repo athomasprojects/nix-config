@@ -492,6 +492,22 @@
         "type": "github"
       }
     },
+    "plugin-nvim-dap-nio": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720707425,
+        "narHash": "sha256-i6imNTb1xrfBlaeOyxyIwAZ/+o6ew9C4/z34a7/BgFg=",
+        "owner": "nvim-neotest",
+        "repo": "nvim-nio",
+        "rev": "a428f309119086dc78dd4b19306d2d67be884eee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neotest",
+        "repo": "nvim-nio",
+        "type": "github"
+      }
+    },
     "plugin-qf-helper": {
       "flake": false,
       "locked": {
@@ -570,6 +586,7 @@
         "plugin-conf-vim": "plugin-conf-vim",
         "plugin-edit-alternate": "plugin-edit-alternate",
         "plugin-express-line": "plugin-express-line",
+        "plugin-nvim-dap-nio": "plugin-nvim-dap-nio",
         "plugin-qf-helper": "plugin-qf-helper",
         "plugin-standard-vim": "plugin-standard-vim",
         "plugin-telescope-luasnip": "plugin-telescope-luasnip",

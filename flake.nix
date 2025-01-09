@@ -70,6 +70,9 @@
 
     plugin-vimtex.url = "github:lervag/vimtex";
     plugin-vimtex.flake = false;
+
+    plugin-nvim-dap-nio.url = "github:nvim-neotest/nvim-nio";
+    plugin-nvim-dap-nio.flake = false;
   };
 
   outputs = {
@@ -165,6 +168,16 @@
             own-qf-helper = prev.vimUtils.buildVimPlugin {
               name = "qf_helper";
               src = inputs.plugin-qf-helper;
+            };
+          };
+      })
+      (final: prev: {
+        vimPlugins =
+          prev.vimPlugins
+          // {
+            own-nvim-dap-nio = prev.vimUtils.buildVimPlugin {
+              name = "nio";
+              src = inputs.plugin-nvim-dap-nio;
             };
           };
       })

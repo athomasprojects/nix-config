@@ -368,6 +368,9 @@ in {
       pkgs.ruff-lsp
       pkgs.yaml-language-server
       pkgs.nodePackages_latest.vscode-json-languageserver
+
+      # Debuggers
+      pkgs.vscode-extensions.vadimcn.vscode-lldb
     ];
 
     extraLuaConfig = ''
@@ -507,11 +510,29 @@ in {
         config = toLuaFile ./nvim/plugin/qf_helper.lua;
       }
 
-      # nvim-dap
-      # nvim-dap-ui
-      # nvim-dap-python
-      # nvim-dap-virtual-text
-      # Need to load these separately (fetch from Github)
+      {
+        plugin = nvim-dap;
+        # Note: We most likely don't need to do this anymore since we are using the codelldb binary that we packaged ourselves.
+        config = let
+          str = ''
+            dap.adapters.codelldb = {
+              type = 'server',
+              port = "''${port}",
+              executable = {
+                command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb",
+                args = {"--port", "''${port}"},
+
+                -- On windows you may have to uncomment this:
+                -- detached = false,
+              }
+            }
+          '';
+        in "lua << EOF\n${builtins.readFile ./nvim/plugin/dap.lua}\n\n${str}\nEOF\n";
+      }
+      own-nvim-dap-nio
+      nvim-dap-ui
+      nvim-dap-python
+      nvim-dap-virtual-text
 
       # nvim-treesitter-textobjects
       {
@@ -543,6 +564,8 @@ in {
         config = toLuaFile ./nvim/plugin/treesitter.lua;
       }
     ];
+
+    extraPython3Packages = pyPkgs: with pyPkgs; [debugpy];
     withPython3 = true;
     withNodeJs = true;
     viAlias = true;

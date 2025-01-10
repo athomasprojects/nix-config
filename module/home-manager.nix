@@ -47,9 +47,13 @@ in {
     pkgs.zoxide
     pkgs.valgrind
     pkgs.ruff
+    pkgs.kitty
   ];
 
   home.stateVersion = "24.11";
+
+  # Add kitty pkgs for kitten
+  programs.kitty.enable = true;
 
   xdg = {
     enable = true;

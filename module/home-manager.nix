@@ -48,6 +48,7 @@ in {
     pkgs.valgrind
     pkgs.ruff
     pkgs.kitty
+    pkgs.imagemagick
   ];
 
   home.stateVersion = "24.11";
@@ -584,6 +585,10 @@ in {
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
+  };
+
+  xdg.configFile = {
+    "yazi/yazi.toml".text = builtins.readFile ./yazi.toml;
   };
 
   programs.ncmpcpp = {

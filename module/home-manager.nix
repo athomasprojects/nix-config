@@ -512,7 +512,7 @@ in {
       # }
       {
         plugin = pkgs.vimPlugins.own-qf-helper;
-        config = toLuaFile ./nvim/plugin/qf_helper.lua;
+        config = toLuaFile ./nvim/plugin/quickfix.lua;
       }
 
       {

@@ -36,7 +36,7 @@ vim.cmd([[
 vim.g.vimtex_quickfix_open_on_warning = 0
 
 vim.g.vimtex_view_method = "sioyek"
---vim.g.vimtex_view_general_viewer = 'sioyek'
+vim.g.vimtex_view_general_viewer = "sioyek"
 --vim.g.vimtex_callback_progpath = '~/bin/nvim'
 
 vim.g.vimtex_subfile_start_local = 1

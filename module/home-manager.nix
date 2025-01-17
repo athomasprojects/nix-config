@@ -490,7 +490,6 @@ in {
       }
 
       {
-        # plugin = my-harpoon2;
         plugin = pkgs.vimPlugins.harpoon2;
         config = toLuaFile ./nvim/plugin/hrpn.lua;
       }
@@ -499,6 +498,12 @@ in {
         plugin = nvim-lspconfig;
         config = toLuaFile ./nvim/plugin/lsp.lua;
       }
+
+      {
+        plugin = pkgs.vimPlugins.nvterm;
+        config = toLuaFile ./nvim/plugin/toggle_term.lua;
+      }
+
       lsp_lines-nvim
       neodev-nvim
       conform-nvim

@@ -66,8 +66,7 @@ in {
       associations.added = {
         "text/x-shellscript" = ["text.desktop"];
         "text/plain" = ["text.desktop"];
-        "application/pdf" = ["pdf.desktop"]; # ["sioyek.desktop"];
-        # "application/postscript" = ["pdf.desktop"];
+        "application/pdf" = ["sioyek.desktop"];
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];
@@ -75,7 +74,7 @@ in {
       defaultApplications = {
         "text/x-shellscript" = ["text.desktop"];
         "text/plain" = ["text.desktop"];
-        "application/pdf" = ["pdf.desktop"];
+        "application/pdf" = ["sioyek.desktop"];
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];
@@ -92,16 +91,16 @@ in {
         type = "Application";
         exec = "nsxiv -a %f";
       };
-      pdf = {
-        name = "Sioyek";
-        comment = "PDF viewer for reading research papers and technical books";
-        exec = "sioyek %u";
-        terminal = false;
-        type = "Application";
-        icon = "sioyek-icon-linux";
-        categories = ["Development" "Viewer"];
-        mimeType = ["application/pdf"];
-      };
+      # pdf = {
+      #   name = "Sioyek";
+      #   comment = "PDF viewer for reading research papers and technical books";
+      #   exec = "sioyek %u";
+      #   terminal = false;
+      #   type = "Application";
+      #   icon = "sioyek-icon-linux";
+      #   categories = ["Development" "Viewer"];
+      #   mimeType = ["application/pdf"];
+      # };
     };
   };
 

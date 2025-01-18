@@ -66,7 +66,8 @@ in {
       associations.added = {
         "text/x-shellscript" = ["text.desktop"];
         "text/plain" = ["text.desktop"];
-        "application/pdf" = ["sioyek.desktop"];
+        "application/pdf" = ["pdf.desktop"]; # ["sioyek.desktop"];
+        # "application/postscript" = ["pdf.desktop"];
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];
@@ -74,7 +75,7 @@ in {
       defaultApplications = {
         "text/x-shellscript" = ["text.desktop"];
         "text/plain" = ["text.desktop"];
-        "application/pdf" = ["sioyek.desktop"];
+        "application/pdf" = ["pdf.desktop"];
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];
@@ -90,6 +91,16 @@ in {
         name = "Image viewer";
         type = "Application";
         exec = "nsxiv -a %f";
+      };
+      pdf = {
+        name = "Sioyek";
+        comment = "PDF viewer for reading research papers and technical books";
+        exec = "sioyek %u";
+        terminal = false;
+        type = "Application";
+        icon = "sioyek-icon-linux";
+        categories = ["Development" "Viewer"];
+        mimeType = ["application/pdf"];
       };
     };
   };
@@ -134,13 +145,23 @@ in {
   #     };
   # };
 
-  # TODO: Sioyek isn't using Berkeley mono font for some reason.
   xdg.configFile = {
     sioyek = {
       source = config.lib.file.mkOutOfStoreSymlink ./sioyek;
       recursive = true;
     };
   };
+
+  # home.file."sioyek/keys_user.config".text = builtins.readFile ./sioyek/keys_user.config;
+  #
+  # home.file. "sioyek/prefs_user.config".text = ''
+  #   ${builtins.readFile ./sioyek/prefs_user.config}
+  #
+  #   # ----------------------
+  #   # inverse search command
+  #   # ----------------------
+  #   inverse_search_command "${inputs.neovim-nightly-overlay}/bin/nvim" --headless -c "VimtexInverseSearch %1 '%2'"
+  # '';
 
   programs.sioyek.enable = true;
 
@@ -334,7 +355,7 @@ in {
   # };
 
   programs.neovim = let
-    # toLua = str: "lua << EOF\n${str}\nEOF\n";
+    toLua = str: "lua << EOF\n${str}\nEOF\n";
     toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
   in {
     enable = true;
@@ -347,6 +368,8 @@ in {
 
       # Latex
       tex
+      # pkgs.xdotool
+      # pkgs.pstree
 
       # Formatters
       inputs.alejandra.defaultPackage.${pkgs.system}
@@ -465,12 +488,16 @@ in {
 
       {
         plugin = pkgs.vimPlugins.own-vimtex;
+        config = toLua ''
+          ${builtins.readFile ./nvim/plugin/vimtex.lua}
+          vim.g.vimtex_view_sioyek_exe = "${pkgs.sioyek}/bin/sioyek"
+          vim.g.vimtex_callback_progpath= "${inputs.neovim-nightly-overlay}/bin/nvim"
+        '';
+
+        # config = toLuaFile ./nvim/plugin/vimtex.lua;
         # config = toLua ''
         #   ${builtins.readFile ./nvim/plugin/vimtex.lua}
-        #   vim.g.vimtex_view_sioyek_exe = "${pkgs.sioyek}/bin/sioyek"
-        #   vim.g.vimtex_callback_progpath= "${inputs.neovim-nightly-overlay.packages.${pkgs.system}.default}/bin/sh"
         # '';
-        config = toLuaFile ./nvim/plugin/vimtex.lua;
       }
 
       {

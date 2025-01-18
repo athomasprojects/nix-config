@@ -1,4 +1,5 @@
 $pdf_mode = 5;
 # $pdflatex = "lualatex -file-line-error -interaction=nonstopmode -synctex=1";
-$pdflatex = "xelatex -file-line-error -interaction=nonstopmode -synctex=1";
+# $pdflatex = "xelatex -file-line-error -interaction=nonstopmode -synctex=1";
+$pdflatex = "xelatex";
 $maxrepeat = 10;

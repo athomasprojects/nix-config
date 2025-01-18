@@ -12,7 +12,8 @@ window-decoration = false
 gtk-titlebar = false
 gtk-tabs-location = bottom
 gtk-wide-tabs = false
-adw-toolbar-style = flat
+gtk-adwaita = false
+# adw-toolbar-style = flat
 
 keybind = ctrl+enter=unbind
 

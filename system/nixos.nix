@@ -66,7 +66,7 @@ in
               ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode 134 = Hyper_L"
               ${pkgs.xorg.xmodmap}/bin/xmodmap -e "remove mod4 = Hyper_L"
               ${pkgs.xorg.xmodmap}/bin/xmodmap -e "add mod3 = Hyper_L"
-              xset r rate 425 25
+              xset r rate 200 40
             '')
 
             vim

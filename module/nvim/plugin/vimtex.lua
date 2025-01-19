@@ -40,6 +40,8 @@ vim.g.vimtex_view_method = "sioyek"
 -- vim.g.vimtex_callback_progpath = "/nix/store/gmcb0b2yqk2373qkq05605cp9s93hnad-neovim-unwrapped-nightly/bin/nvim"
 
 -- vim.g.vimtex_subfile_start_local = 1
+-- Not sure we weed to explicitly tell sioyek to reuse the same pdf window...
+-- `turn_on_synctex` tells sioyek to start the sioyek instance with synctex mode turned on by default.
 -- vim.g.vimtex_view_sioyek_options = "--reuse-window --execute-command turn_on_synctex"
 -- vim.g.vimtex_view_sioyek_options = "--execute-command turn_on_synctex"
 
@@ -54,28 +56,3 @@ vim.g.vimtex_compiler_latexmk = {
     "-interaction=nonstopmode",
   },
 }
-
-local augroup = vim.api.nvim_create_augroup("vimtex", {})
-
--- vim.api.nvim_create_autocmd({ "FileType" }, {
---   pattern = { "bib", "tex" },
---   group = augroup,
---   callback = function()
---     vim.wo.conceallevel = 0
---   end,
--- })
---
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "VimtexEventViewReverse",
---   group = augroup,
---   command = "call b:vimtex.viewer.xdo_focus_vim()",
--- })
-
--- local augroup = vim.api.nvim_create_augroup("vimtex", {})
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "VimtexEventViewReverse",
---   group = augroup,
---   callback = function()
---     vim.system { "open", "${inputs.ghostty}/bin/ghostty" }
---   end,
--- })

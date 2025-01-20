@@ -40,10 +40,8 @@ vim.g.vimtex_view_method = "sioyek"
 -- vim.g.vimtex_callback_progpath = "/nix/store/gmcb0b2yqk2373qkq05605cp9s93hnad-neovim-unwrapped-nightly/bin/nvim"
 
 -- vim.g.vimtex_subfile_start_local = 1
--- Not sure we weed to explicitly tell sioyek to reuse the same pdf window...
--- `turn_on_synctex` tells sioyek to start the sioyek instance with synctex mode turned on by default.
--- vim.g.vimtex_view_sioyek_options = "--reuse-window --execute-command turn_on_synctex"
--- vim.g.vimtex_view_sioyek_options = "--execute-command turn_on_synctex"
+-- `--execute-command turn_on_synctex` tells sioyek to start the sioyek instance with synctex mode turned on by default.
+vim.g.vimtex_view_sioyek_options = "--reuse-window"
 
 vim.g.vimtex_compiler_latexmk = {
   executable = "latexmk",

@@ -49,6 +49,7 @@ in
             adwaita-icon-theme
             gnomeExtensions.appindicator
             # xfce.xfce4-terminal
+            libreoffice-qt6-fresh
 
             # C/C++ build tools
             gcc

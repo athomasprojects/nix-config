@@ -98,6 +98,7 @@ in
         };
 
         fonts.packages = with pkgs; [
+          cm_unicode
           jetbrains-mono
         ];
       }

@@ -11,10 +11,10 @@ local cmp = require("cmp")
 cmp.setup({
   sources = {
     { name = "nvim_lsp" },
-    -- { name = "cody" }, -- disable while learning Zig
+    { name = "cody" },
     { name = "path" },
     { name = "buffer" },
-    -- { name = "luasnip" },
+    { name = "luasnip" },
   },
   mapping = {
     ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -64,6 +64,17 @@ cmp.setup.filetype({ "sql" }, {
 cmp.setup.filetype({ "tex", "plaintex", "bibtex" }, {
   sources = {
     { name = "vimtex" },
+    { name = "path" },
+    { name = "buffer" },
+    { name = "luasnip" },
+  },
+})
+
+-- Setup zig completion sources (disable cody while learning Zig)
+-- I'll turn this off once I feel like I've got a solid grasp of the std library and zig patterns/idioms.
+cmp.setup.filetype({ "zig" }, {
+  sources = {
+    { name = "nvim_lsp" },
     { name = "path" },
     { name = "buffer" },
     { name = "luasnip" },

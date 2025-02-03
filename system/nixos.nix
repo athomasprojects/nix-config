@@ -30,6 +30,7 @@ in
             alejandra
             awesome
             brave
+            fiji
             mpv
             nsxiv
             nh

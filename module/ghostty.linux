@@ -12,7 +12,7 @@ window-decoration = false
 gtk-titlebar = false
 gtk-tabs-location = bottom
 gtk-wide-tabs = false
-gtk-adwaita = false
+# gtk-adwaita = false
 # adw-toolbar-style = flat
 
 keybind = ctrl+shift+w=close_surface

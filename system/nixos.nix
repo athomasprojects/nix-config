@@ -20,12 +20,6 @@ in
 
       {
         nixpkgs.config.allowUnfreePredicate = _: true;
-        # nixpkgs.config.allowUnfree = true;
-        # nixpkgs.config.allowlistedLicenses = with pkgs.lib.licenses; [unfreeRedistributable];
-        # nixpkgs.config.allowUnfreePredicate = pkg:
-        #   builtins.elem (pkgs.lib.getName pkg) [
-        #     "masterpdfeditor"
-        #   ];
 
         programs.fish.enable = true;
 
@@ -53,7 +47,6 @@ in
             xdg-launch
             usbutils
             gucharmap
-            # masterpdfeditor
             # nautilus-python
             # xfce.xfce4-terminal
             libreoffice-qt6-fresh

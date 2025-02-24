@@ -20,6 +20,12 @@ in
 
       {
         nixpkgs.config.allowUnfreePredicate = _: true;
+        # nixpkgs.config.allowUnfree = true;
+        # nixpkgs.config.allowlistedLicenses = with pkgs.lib.licenses; [unfreeRedistributable];
+        # nixpkgs.config.allowUnfreePredicate = pkg:
+        #   builtins.elem (pkgs.lib.getName pkg) [
+        #     "masterpdfeditor"
+        #   ];
 
         programs.fish.enable = true;
 
@@ -30,7 +36,9 @@ in
             alejandra
             awesome
             brave
-            # fiji
+            nautilus
+            adwaita-icon-theme
+            gnomeExtensions.appindicator
             mpv
             nsxiv
             nh
@@ -45,10 +53,8 @@ in
             xdg-launch
             usbutils
             gucharmap
-            nautilus
+            # masterpdfeditor
             # nautilus-python
-            adwaita-icon-theme
-            gnomeExtensions.appindicator
             # xfce.xfce4-terminal
             libreoffice-qt6-fresh
 
@@ -73,6 +79,8 @@ in
 
             vim
             inputs.ghostty.packages.x86_64-linux.default
+
+            # fiji
           ];
 
           # sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";

@@ -13,6 +13,7 @@ in {
   # Packages
   # -------------------------------------------------------------------
   home.packages = [
+    pkgs.fiji
     pkgs.masterpdfeditor
     pkgs.ncpamixer
     pkgs.atuin

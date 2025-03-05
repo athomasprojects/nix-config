@@ -200,11 +200,11 @@
         "zig2nix": "zig2nix"
       },
       "locked": {
-        "lastModified": 1740418886,
-        "narHash": "sha256-JhLqPTPXt/3GyudMg90Zibk9GhDTXIUIpPkC1sHrwxw=",
+        "lastModified": 1741102560,
+        "narHash": "sha256-ICmSAbBjPlvTTjs6QH4dO2yZ96tZOY6Zppk6vtrcIks=",
         "ref": "refs/heads/main",
-        "rev": "ce8bfe45eddd7976da0bda2572484c8c72a9f162",
-        "revCount": 9628,
+        "rev": "66e8d919572fddc5fd145eb563a555deeb249b35",
+        "revCount": 9705,
         "type": "git",
         "url": "ssh://git@github.com/ghostty-org/ghostty"
       },

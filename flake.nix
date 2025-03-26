@@ -34,12 +34,7 @@
     odin-overlay.url = "github:kilzm/odin-overlay";
 
     ghostty = {
-      url = "git+ssh://git@github.com/ghostty-org/ghostty";
-
-      # NOTE: The below 2 lines are only required on nixos-unstable,
-      # if you're on stable, they may break your build
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
+      url = "github:ghostty-org/ghostty";
     };
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";

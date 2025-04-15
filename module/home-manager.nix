@@ -229,7 +229,7 @@ in {
       es = "eza --time-style=long-iso --group-directories-first --no-permissions --no-user";
       esa = "eza --all --time-style=long-iso --group-directories-first --no-permissions --no-user";
       est = "eza --tree --time-style=long-iso --group-directories-first --no-permissions --no-user";
-      esl = "eza --long --header --time-style=long-iso --group-directories-first --sort Name";
+      esl = "eza --all --long --header --time-style=long-iso --group-directories-first --sort Name";
       el = "eza --long --time-style=long-iso --group-directories-first --sort Name --no-permissions --no-user";
 
       my_ip = "ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs";

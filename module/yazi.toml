@@ -1,4 +1,5 @@
 [plugin]
 prepend_previewers = [
 	{ mime = "image/tiff", run = "magick" },
+	{ mime = "image/ppm", run = "magick" },
 ]

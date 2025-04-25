@@ -7,6 +7,8 @@ font-family = nonicons
 
 mouse-hide-while-typing = true
 macos-option-as-alt = true
+# macos-auto-secure-input = true
+macos-secure-input-indication = true
 
 keybind = ctrl+enter=unbind
 

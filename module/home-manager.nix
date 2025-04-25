@@ -4,15 +4,15 @@
   ...
 }: let
   onePassPath = ''~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock'';
-  my-harpoon2 = pkgs.vimUtils.buildVimPlugin {
-    name = "harpoon2";
-    src = pkgs.fetchFromGitHub {
-      owner = "ThePrimeagen";
-      repo = "harpoon";
-      rev = "0378a6c428a0bed6a2781d459d7943843f374bce";
-      sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
-    };
-  };
+  # my-harpoon2 = pkgs.vimUtils.buildVimPlugin {
+  #   name = "harpoon2";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "ThePrimeagen";
+  #     repo = "harpoon";
+  #     rev = "0378a6c428a0bed6a2781d459d7943843f374bce";
+  #     sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
+  #   };
+  # };
   tex = pkgs.texlive.combine {
     inherit
       (pkgs.texlive)
@@ -177,6 +177,8 @@ in {
       es = "eza --time-style=long-iso --group-directories-first --no-permissions --no-user";
       esa = "eza --all --time-style=long-iso --group-directories-first --no-permissions --no-user";
       est = "eza --tree --time-style=long-iso --group-directories-first --no-permissions --no-user";
+      esl = "eza --long --header --time-style=long-iso --group-directories-first --sort Name";
+      el = "eza --long --time-style=long-iso --group-directories-first --sort Name --no-permissions --no-user";
 
       my_ip = "ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs";
       my_eip = "curl ifconfig.co";
@@ -446,7 +448,7 @@ in {
       }
 
       {
-        plugin = my-harpoon2;
+        plugin = harpoon2;
         config = toLuaFile ./nvim/plugin/hrpn.lua;
       }
 

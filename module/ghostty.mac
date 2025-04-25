@@ -1,8 +1,8 @@
 font-size = 16
 font-family = Berkeley Mono
 font-style-bold = Bold
-font-style-italic = Italic
-font-style-bold-italic = Bold Italic
+font-style-italic = Oblique
+font-style-bold-italic = Bold Oblique
 font-family = nonicons
 
 mouse-hide-while-typing = true
@@ -11,6 +11,8 @@ macos-option-as-alt = true
 keybind = ctrl+enter=unbind
 
 theme = SpaceGray
-
 background = 161719
+selection-background = #3A404A
+# selection-background = #41454E
 
+background-opacity = 0.95

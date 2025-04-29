@@ -235,7 +235,7 @@ in {
   programs.bat = {
     enable = true;
     config = {
-      theme = "Sublime Snazzy";
+      theme = "ansi"; # "Sublime Snazzy";
     };
   };
 
@@ -258,7 +258,7 @@ in {
       enable = true;
       options = {
         line-numbers = true;
-        syntax-theme = "Sublime Snazzy";
+        syntax-theme = "ansi";
         side-by-side = false;
         file-modified-label = "modified:";
       };

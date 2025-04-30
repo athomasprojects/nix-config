@@ -9,3 +9,4 @@ local c = colorbuddy.colors
 local Group = colorbuddy.Group
 
 Group.new("FloatBorder", c.black, c.black)
+Group.new("LineNr", c.gray2:light(), c.gray0)

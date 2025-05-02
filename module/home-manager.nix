@@ -141,7 +141,11 @@ in {
       # Branch helpers
       gout = "git checkout";
 
-      gfind = "git ls-files | grep -i";
+      # See when a file or directory was added/removed/renamed.
+      gfollow = "git log --follow";
+
+      # Shows the path of a file or directory on the current index and working tree.
+      # gfind = "git ls-files | grep -i";
 
       # Switching contexts
       gwip = ''git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "[WIP]: $(date)"'';
@@ -189,11 +193,12 @@ in {
       # dslrcam="canonwbc";
     };
 
-    functions = {
-      gbn = {
-        body = "git checkout -b $argv[1]";
-      };
-    };
+    # functions = {
+    #   gbn = {
+    #     body = "git checkout -b $argv[1]";
+    #     description = "Creates and checks out a new branch";
+    #   };
+    # };
 
     plugins =
       map (n: {

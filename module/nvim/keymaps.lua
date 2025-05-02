@@ -40,11 +40,11 @@ set("n", "<c-right>", "gt")
 set("n", "<M-n>", "<cmd>cnext<CR>zz")
 set("n", "<M-p>", "<cmd>cprev<CR>zz")
 
--- Navigate quickfix list
+-- Navigate location list
 set("n", "<M-N>", "<cmd>lnext<CR>zz")
 set("n", "<M-P>", "<cmd>lprev<CR>zz")
 
--- Sweet search and replace current word under cursor ... chef's kiss!
+-- Sweet search and replace current word under cursor...chef's kiss!
 set(
   "n",
   "<leader>s",

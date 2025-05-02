@@ -70,6 +70,7 @@
     system = "aarch64-darwin";
 
     overlays = [
+      # (import ./overlays/sioyek.nix)
       rust-overlay.overlays.default
       inputs.odin-overlay.overlays.default
       inputs.neovim-nightly-overlay.overlays.default

@@ -79,6 +79,15 @@ abbr fl "nvim $HOME/nix-config/flake.nix"
 abbr ns "nvim $HOME/nix-config/system/nixos.nix"					
 abbr cfx "nvim $HOME/nix-config/module/Xresources" 
 abbr cfs "nvim $HOME/nix-config/module/config.fish"
+
+
+# Darwin rebuild
+abbr drc "darwin-rebuild check --flake \".#aarch64\""
+abbr drs "darwin-rebuild switch --flake \".#aarch64\""
+
+# Creates and checks out a new branch
+abbr gbn "git checkout -b"
+
 # abbr wz "nvim $HOME/nix-config/module/wezterm/wezterm.lua" 
 # abbr gst "nvim $HOME/nix-config/module/ghostty.mac"
 
@@ -92,3 +101,85 @@ abbr cfs "nvim $HOME/nix-config/module/config.fish"
 # `fnix -p go` to get an environment with Go but use the fish shell along
 # with it.
 alias fnix "nix-shell --run fish"
+
+function gfind --description 'Shows the path of a file or directory if it exists in a given branch (default current index and working tree)'
+    set -l options h/help b/branch=
+    argparse $options -- $argv
+    or return
+
+    if set -ql _flag_help
+        echo "gfind [-h|--help] [-b|--branch=BRANCH] [NAME]"
+        return 0
+    end
+
+    if test (count $argv) -eq 0
+        echo "Error: missing required NAME argument" >&2
+        echo "Run 'gfind --help' for usage." >&2
+        return 1
+    end
+
+    if set -ql _flag_branch
+        for name in $argv
+            git ls-tree -r --name-only $_flag_branch | grep -i --color=always -- $name
+        end
+    else
+        for name in $argv
+            git ls-files | grep -i --color=always -- $name
+        end
+    end
+end
+
+function glf --description 'Shows which commits on a branch (default HEAD) changed a given file or directory'
+    set -l options h/help b/branch=
+        argparse --max-args=2 $options -- $argv
+    or return
+
+    if set -ql _flag_help
+        echo "Usage: glf [-h|--help] [-b|--branch=BRANCH] [NAME]"
+        return 0
+    end
+
+    if test (count $argv) -eq 0
+        echo "Error: missing required NAME argument" >&2
+        echo "Run 'glf --help' for usage." >&2
+        return 1
+    end
+
+
+    if set -ql _flag_branch
+        echo "== Commits from '$_flag_branch' that affected '$argv' =="
+        git log --name-only --pretty=medium $_flag_branch -- $argv
+    else
+        echo "== Commits from HEAD that affected '$argv' =="
+        git log --name-only --pretty=medium -- $argv
+    end
+end
+
+function gg --description 'Searches for one or more substrings in all tracked files across either across all branches (default) or in a given branch'
+    set -l options h/help b/branch=
+    argparse $options -- $argv
+    or return
+
+    if set -ql _flag_help or 
+        echo "gg [-h|--help] [-b|--branch=BRANCH] [PATTERN...]"
+        return 0
+    end
+
+    if test (count $argv) -eq 0
+        echo "Error: missing required PATTERN argument" >&2
+        echo "Run 'gg --help' for usage." >&2
+        return 1
+    end
+
+    if set -ql _flag_branch
+        for pattern in $argv
+            git grep -e $pattern $_flag_branch
+            echo ""
+        end
+    else
+        for pattern in $argv
+            git grep -e $pattern
+            echo ""
+        end
+    end
+end

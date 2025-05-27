@@ -121,7 +121,8 @@ in {
     # TERM = "ghostty";
     BROWSER = "brave";
     DOTFILES = "$HOME/nix-config";
-    PAGER = "less -FirSwX";
+    # PAGER = "less -FirSwX";
+    PAGER = "less -FiRSwX";
   };
 
   home.file.".inputrc".source = ./inputrc;
@@ -177,6 +178,9 @@ in {
       # "set -gx SSH_AUTH_SOCK ${onePassPath}"
     ]);
     shellAliases = {
+      gadd = "git add";
+      gc = "git commit";
+      gl = "git log";
       gs = "git status";
       gsh = "git show";
       gco = "git checkout";
@@ -187,13 +191,20 @@ in {
       gpr = "git pull --rebase";
 
       # Adding helpers
-      gadd = "git add .";
-      gca = "git add . && git commit -av";
+      # gadd = "git add .";
+      # gca = "git add . && git commit -av";
+      ga = "git add -p";
+      gca = "git commit --amend";
+      gcm = "git commit -m";
 
       # Branch helpers
       gout = "git checkout";
 
-      gfind = "git ls-files | grep -i";
+      # Shows the path of a file or directory on the current index and working tree.
+      # gfind = "git ls-files | grep -i";
+
+      # See when a file or directory was added/removed/renamed.
+      gfollow = "git log --follow";
 
       # Switching contexts
       gwip = ''git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "[WIP]: $(date)"'';
@@ -305,6 +316,8 @@ in {
     userName = "athomasprojects";
     aliases = {
       lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative";
+      find = "log --all --pretty --name-status --grep";
+      # find = "log --all --pretty=format:'%Cgreen%H %Cblue%s\n%b%Creset' --name-status --grep";
     };
     delta = {
       enable = true;
@@ -313,6 +326,30 @@ in {
         syntax-theme = "ansi"; # "Sublime Snazzy";
         side-by-side = false;
         file-modified-label = "modified:";
+        commit-style = "raw";
+        file-style = "blue";
+        hunk-header-style = "syntax";
+        minus-style = "normal \"#ffe0e0\"";
+        minus-non-emph-style = "normal \"#ffe0e0\"";
+        minus-emph-style = "normal \"#ffc0c0\"";
+        minus-empty-line-marker-style = "normal \"#ffe0e0\"";
+        zero-style = "syntax";
+        plus-style = "syntax \"#d0ffd0\"";
+        plus-non-emph-style = "syntax \"#d0ffd0\"";
+        plus-emph-style = "syntax \"#a0efa0\"";
+        plus-empty-line-marker-style = "normal \"#d0ffd0\"";
+        grep-file-style = "blue"; # "purple";
+        grep-line-number-style = "green";
+        grep-match-word-style = "bold \"#d0ffd0\"";
+        whitespace-error-style = "reverse purple";
+        blame-palette = "#FFFFFF #DDDDDD #BBBBBB";
+        file-added-label = "added:";
+        file-removed-label = "removed:";
+        file-renamed-label = "renamed:";
+        right-arrow = "⟶  ";
+        hyperlinks = false;
+        inspect-raw-lines = true;
+        keep-plus-minus-markers = false;
       };
     };
     extraConfig = {
@@ -329,6 +366,12 @@ in {
       user = {
         signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAo7MRrDY9I4IDpUSz3IsjaAwONhEArRqJhsq6bXRKqQ";
       };
+
+      # "color \"grep\"" = {
+      #   filename = "blue";
+      #   lineNumber = "green";
+      #   match = "bold red";
+      # };
     };
     lfs.enable = true;
   };

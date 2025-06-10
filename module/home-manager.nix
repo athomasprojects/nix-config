@@ -318,6 +318,7 @@ in {
       lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative";
       find = "log --all --pretty --name-status --grep";
       # find = "log --all --pretty=format:'%Cgreen%H %Cblue%s\n%b%Creset' --name-status --grep";
+      # prettylog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
     };
     delta = {
       enable = true;
@@ -349,7 +350,7 @@ in {
         right-arrow = "⟶  ";
         hyperlinks = false;
         inspect-raw-lines = true;
-        keep-plus-minus-markers = false;
+        keep-plus-minus-markers = true; # false;
       };
     };
     extraConfig = {

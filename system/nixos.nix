@@ -47,6 +47,10 @@ in
             xdg-launch
             usbutils
             gucharmap
+            gphoto2
+            v4l-utils
+            linuxKernel.packages.linux_6_6.v4l2loopback
+            # gphoto2fs
             # nautilus-python
             # xfce.xfce4-terminal
             libreoffice-qt6-fresh
@@ -70,6 +74,26 @@ in
               xset r rate 200 40
             '')
 
+            (pkgs.writeShellScriptBin "canonwbc" ''
+              # Commands taken from:
+              # https://maximevaillancourt.com/blog/canon-dslr-webcam-debian-ubuntu
+
+              # sudo modprobe v4l2loopback
+
+              vidsrc="video0"
+              # gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/$vidsrc
+
+              gphoto2 --stdout --capture-movie | ffmpeg -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/$vidsrc
+
+
+              # [ -z "$1" ] || vlc v4l2:///dev/$vidsrc
+              #
+              # # gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/$vidsrc
+
+
+              # gphoto2 --stdout --capture-movie | ffmpeg -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/$vidsrc
+            '')
+
             vim
             inputs.ghostty.packages.x86_64-linux.default
 
@@ -77,9 +101,11 @@ in
           ];
 
           # sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
-          # pathsToLink = [
-          #   "/share/nautilus-python/extensions"
-          # ];
+          pathsToLink = [
+            # "/share/nautilus-python/extensions"
+            "/share/xdg-desktop-portal"
+            "/share/applications"
+          ];
         };
 
         # I think we should only need to enable these settings if we are trying
@@ -99,6 +125,8 @@ in
           polkitPolicyOwners = ["thegusbus"];
         };
 
+        programs.obs-studio.enableVirtualCamera = true;
+
         fonts.packages = with pkgs; [
           cm_unicode
           jetbrains-mono
@@ -107,6 +135,7 @@ in
 
       {
         # services.displayManager.autoLogin.user = username;
+        boot.extraModulePackages = [pkgs.linuxPackages.v4l2loopback];
 
         services.gvfs.enable = true; # Mount, trash, and other functionalities
 

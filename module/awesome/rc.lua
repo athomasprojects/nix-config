@@ -2,6 +2,8 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+-- local submodule_dir = "/home/thegusbus/.config/awesome/themes/"
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -64,6 +66,30 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
+-- local theme_ok = pcall(function()
+--   -- local powerarrow_theme = submodule_dir .. "powerarrow/theme.lua"
+--   --
+--   -- -- log.info("Reading from %s...", powerarrow_theme)
+--   -- beautiful.init(powerarrow_theme)
+--   -- -- log.info("... Success")
+--
+--   beautiful.init("/home/thegusbus/.config/awesome/themes/steamburn/theme.lua")
+--
+--   naughty.config.default_preset.font = beautiful.notify_font
+--   naughty.config.default_preset.fg = beautiful.notify_fg
+--   naughty.config.default_preset.bg = beautiful.notify_bg
+--   naughty.config.presets.normal.border_color = beautiful.notify_border
+--   naughty.config.presets.normal.opacity = 0.8
+--   naughty.config.presets.low.opacity = 0.8
+--   naughty.config.presets.critical.opacity = 0.8
+-- end)
+-- if not theme_ok then
+--   beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+-- end
+
+-- beautiful.init("/home/thegusbus/.config/awesome/themes/vertex/theme.lua")
+
+-- Note: Delete 'theme_ok' stuff to get original default theme.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.

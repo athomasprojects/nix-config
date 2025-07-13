@@ -56,7 +56,7 @@ in {
   home.stateVersion = "24.11";
 
   # Add kitty pkgs for kitten
-  programs.kitty.enable = true;
+  # programs.kitty.enable = true;
 
   xdg = {
     enable = true;
@@ -72,6 +72,7 @@ in {
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];
+        "inode/directory" = ["org.gnome.Nautilus.desktop"];
       };
       defaultApplications = {
         "text/x-shellscript" = ["text.desktop"];
@@ -80,6 +81,7 @@ in {
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];
+        "inode/directory" = ["org.gnome.Nautilus.desktop"];
       };
     };
     desktopEntries = {
@@ -93,16 +95,17 @@ in {
         type = "Application";
         exec = "nsxiv -a %f";
       };
-      # pdf = {
-      #   name = "Sioyek";
-      #   comment = "PDF viewer for reading research papers and technical books";
-      #   exec = "sioyek %u";
-      #   terminal = false;
-      #   type = "Application";
-      #   icon = "sioyek-icon-linux";
-      #   categories = ["Development" "Viewer"];
-      #   mimeType = ["application/pdf"];
-      # };
+    };
+    portal = {
+      enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      config = {
+        common = {
+          default = [
+            "gtk"
+          ];
+        };
+      };
     };
   };
 
@@ -319,6 +322,7 @@ in {
       find = "log --all --pretty --name-status --grep";
       # find = "log --all --pretty=format:'%Cgreen%H %Cblue%s\n%b%Creset' --name-status --grep";
       # prettylog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
+      root = "rev-parse --show-toplevel";
     };
     delta = {
       enable = true;

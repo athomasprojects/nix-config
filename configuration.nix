@@ -1,6 +1,7 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = ["v4l2loopback"];
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;

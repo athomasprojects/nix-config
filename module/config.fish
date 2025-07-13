@@ -34,7 +34,7 @@ contains $HOME/bin $fish_user_paths; or set -Ua fish_user_paths $HOME/bin
 
 # Editor
 set -gx EDITOR nvim
-set -gx TERMIAL ghostty
+set -gx TERMINAL ghostty
 
 # Sourcegraph 
 set -gx SRC_ENDPOINT "https://sourcegraph.com"
@@ -44,7 +44,8 @@ set -gx SRC_ACCESS_TOKEN (cat $HOME/.sg-access-token)
 # Aliases
 #-------------------------------------------------------------------------------
 # Logging helpers
-alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+# alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 # alias gls="git log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate"
 alias glx="git log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --numstat"
 alias gdate="git log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate --date=relative"

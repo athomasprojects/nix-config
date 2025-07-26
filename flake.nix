@@ -4,7 +4,8 @@
   inputs = {
     # NixOS official package source, here using the nixos-24.11 branch
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    # nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -12,7 +13,7 @@
     };
 
     alejandra = {
-      url = "github:kamadorueda/alejandra/3.1.0";
+      url = "github:kamadorueda/alejandra/4.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -39,8 +40,8 @@
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    plugin-cmp-vimtex.url = "github:micangl/cmp-vimtex";
-    plugin-cmp-vimtex.flake = false;
+    # plugin-cmp-vimtex.url = "github:micangl/cmp-vimtex";
+    # plugin-cmp-vimtex.flake = false;
 
     plugin-express-line.url = "github:tjdevries/express_line.nvim";
     plugin-express-line.flake = false;
@@ -63,8 +64,8 @@
     plugin-qf-helper.url = "github:stevearc/qf_helper.nvim";
     plugin-qf-helper.flake = false;
 
-    plugin-vimtex.url = "github:lervag/vimtex";
-    plugin-vimtex.flake = false;
+    # plugin-vimtex.url = "github:lervag/vimtex";
+    # plugin-vimtex.flake = false;
 
     plugin-nvim-dap-nio.url = "github:nvim-neotest/nvim-nio";
     plugin-nvim-dap-nio.flake = false;
@@ -87,26 +88,26 @@
       rust-overlay.overlays.default
       inputs.odin-overlay.overlays.default
       inputs.neovim-nightly-overlay.overlays.default
-      (final: prev: {
-        vimPlugins =
-          prev.vimPlugins
-          // {
-            own-cmp-vimtex = prev.vimUtils.buildVimPlugin {
-              name = "cmp-vimtex";
-              src = inputs.plugin-cmp-vimtex;
-            };
-          };
-      })
-      (final: prev: {
-        vimPlugins =
-          prev.vimPlugins
-          // {
-            own-vimtex = prev.vimUtils.buildVimPlugin {
-              name = "vimtex";
-              src = inputs.plugin-vimtex;
-            };
-          };
-      })
+      # (final: prev: {
+      #   vimPlugins =
+      #     prev.vimPlugins
+      #     // {
+      #       own-cmp-vimtex = prev.vimUtils.buildVimPlugin {
+      #         name = "cmp-vimtex";
+      #         src = inputs.plugin-cmp-vimtex;
+      #       };
+      #     };
+      # })
+      # (final: prev: {
+      #   vimPlugins =
+      #     prev.vimPlugins
+      #     // {
+      #       own-vimtex = prev.vimUtils.buildVimPlugin {
+      #         name = "vimtex";
+      #         src = inputs.plugin-vimtex;
+      #       };
+      #     };
+      # })
       (final: prev: {
         vimPlugins =
           prev.vimPlugins
@@ -114,6 +115,9 @@
             own-express-line = prev.vimUtils.buildVimPlugin {
               name = "express_line";
               src = inputs.plugin-express-line;
+              buildInputs = [
+                prev.vimPlugins.plenary-nvim # This works for some reason. See: https://github.com/NixOS/nixpkgs/pull/215183#issuecomment-1421546984
+              ];
             };
           };
       })

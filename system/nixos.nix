@@ -139,21 +139,23 @@ in
 
         services.gvfs.enable = true; # Mount, trash, and other functionalities
 
+        services.displayManager.gdm = {
+          enable = true;
+          wayland = false;
+        };
+
+        # services.displayManager.lightdm = {
+        #   enable = true;
+        #   greeters.gtk = {
+        #     enable = true;
+        #     # cursorTheme.name = "Sweet-cursors";
+        #     # cursorTheme.package = sweet-cursors-theme;
+        #     cursorTheme.size = 128;
+        #   };
+        # };
+
         services.xserver = {
           displayManager = {
-            gdm = {
-              enable = true;
-              wayland = false;
-            };
-            # lightdm = {
-            #   enable = true;
-            #   greeters.gtk = {
-            #     enable = true;
-            #     # cursorTheme.name = "Sweet-cursors";
-            #     # cursorTheme.package = sweet-cursors-theme;
-            #     cursorTheme.size = 128;
-            #   };
-            # };
             sessionCommands = "remaps"; # "~/.local/bin/remaps";
           };
 

@@ -55,9 +55,6 @@ in {
 
   home.stateVersion = "24.11";
 
-  # Add kitty pkgs for kitten
-  # programs.kitty.enable = true;
-
   xdg = {
     enable = true;
     mime = {
@@ -284,6 +281,9 @@ in {
 
   programs.atuin = {
     enable = true;
+    settings = {
+      style = "full";
+    };
     flags = [
       "--disable-up-arrow"
     ];
@@ -445,7 +445,8 @@ in {
       (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
       pkgs.nil
       pkgs.pyright
-      pkgs.ruff-lsp
+      # pkgs.ruff-lsp
+      pkgs.ruff
       pkgs.yaml-language-server
       pkgs.nodePackages_latest.vscode-json-languageserver
 
@@ -527,7 +528,7 @@ in {
       cmp-buffer
       cmp_luasnip
       cmp-nvim-lsp
-      pkgs.vimPlugins.own-cmp-vimtex
+      cmp-vimtex # Use nixpkgs cmp-vimtex instead of latest version from GitHub repo ('own-cmp-vimtex').
       {
         plugin = nvim-cmp;
         config = toLuaFile ./nvim/plugin/completion.lua;
@@ -539,7 +540,7 @@ in {
       }
 
       {
-        plugin = pkgs.vimPlugins.own-vimtex;
+        plugin = vimtex; # Use nixpkgs vimtex instead of latest version from GitHub repo ('own-vimtex');
         config = toLua ''
           ${builtins.readFile ./nvim/plugin/vimtex.lua}
           vim.g.vimtex_view_sioyek_exe = "${pkgs.sioyek}/bin/sioyek"

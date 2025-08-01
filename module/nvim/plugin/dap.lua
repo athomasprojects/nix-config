@@ -12,6 +12,15 @@ dap_python.Config = {
 }
 -- dap_python.test_runner = "pytest"
 
+dap.adapters.codelldb = {
+  type = "server",
+  port = "${port}",
+  executable = {
+    command = "codelldb",
+    args = { "--port", "${port}" },
+  },
+}
+
 dap.configurations.cpp = {
   {
     name = "Launch file",

@@ -12,7 +12,10 @@ vim.opt.ignorecase = true
 
 ----- Personal Preferences -----
 vim.opt.number = true
-vim.opt.relativenumber = true
+-- vim.opt.relativenumber = true
+
+vim.api.nvim_set_option_value("cursorline", true, {})
+vim.api.nvim_set_option_value("cursorlineopt", "number", {})
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true

@@ -69,6 +69,9 @@
 
     plugin-nvim-dap-nio.url = "github:nvim-neotest/nvim-nio";
     plugin-nvim-dap-nio.flake = false;
+
+    # plugin-fff-nvim.url = "github:dmtrKovalenko/fff.nvim";
+    # plugin-fff-nvim.flake = true;
   };
 
   outputs = {
@@ -188,6 +191,16 @@
       #       own-ocaml-nvim = prev.vimUtils.buildVimPlugin {
       #         name = "ocaml";
       #         src = inputs.plugin-ocaml-nvim;
+      #       };
+      #     };
+      # })
+      # (final: prev: {
+      #   vimPlugins =
+      #     prev.vimPlugins
+      #     // {
+      #       own-fff = prev.vimUtils.buildVimPlugin {
+      #         name = "fff";
+      #         src = inputs.plugin-fff-nvim;
       #       };
       #     };
       # })

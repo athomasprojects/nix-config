@@ -6,7 +6,9 @@ if pcall(require, "cmp_nvim_lsp") then
 end
 
 local on_attach = function(client, bufnr)
-  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  -- NOTE: nvim_buf_get_option was deprecated in 0.11.
+  -- local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
 
   if filetype == "typescript" or filetype == "lua" then
     client.server_capabilities.semanticTokensProvider = nil
@@ -21,16 +23,41 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
   vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = bufnr })
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+  -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+  vim.keymap.set("n", "K", function()
+    vim.lsp.buf.hover({ border = "single" })
+  end, { buffer = bufnr })
 
   vim.keymap.set("n", "<space>vr", vim.lsp.buf.rename, { buffer = bufnr })
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = bufnr })
 
-  vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "show signature help" })
+  -- vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "show signature help" })
+  vim.keymap.set("i", "<c-s>", function()
+    vim.lsp.buf.signature_help({
+      border = "solid",
+      close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
+    })
+  end, { buffer = bufnr, desc = "show signature help" })
 
   vim.keymap.set("n", "<leader>gr", require("telescope.builtin").lsp_references, { buffer = bufnr })
-  vim.keymap.set("n", "<leader>ws", require("telescope.builtin").lsp_document_symbols, { buffer = bufnr })
-  vim.keymap.set("n", "<leader>wd", require("telescope.builtin").lsp_dynamic_workspace_symbols, { buffer = bufnr })
+  vim.keymap.set(
+    "n",
+    "<leader>ws",
+    require("telescope.builtin").lsp_document_symbols,
+    { buffer = bufnr, desc = "show document symbols" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>wd",
+    require("telescope.builtin").lsp_dynamic_workspace_symbols,
+    { buffer = bufnr, desc = "show dynamic workspace symbols" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>dg",
+    require("telescope.builtin").diagnostics,
+    { buffer = bufnr, desc = "Telescope diagnostics" }
+  )
 end
 
 require("neodev").setup()
@@ -165,12 +192,14 @@ lspconfig.ocamllsp.setup({
 
 -- require("ocaml").setup()
 
--- Add a border to the hover frame.
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "single",
-  close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
-})
+-- NOTE: This way of adding a border to the hover frame is deprecated. Instead, use vim.lsp.buf.hover (see above).
+-- -- Add a border to the hover frame.
+-- -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "solid" })
+-- -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+-- --   -- border = "single",
+-- --   border = "solid",
+-- --   close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
+-- -- })
 
 -- Autoformatting Setup
 require("conform").setup({

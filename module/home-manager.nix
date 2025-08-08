@@ -514,6 +514,13 @@ in {
         config = toLuaFile ./nvim/lua/telescope.lua;
       }
 
+      # Note: fff.nvim currently fails to build with pkgs.vimUtils.buildVimPlugin.
+      # See: https://github.com/dmtrKovalenko/fff.nvim/issues/67.
+      # {
+      #   plugin = own-fff;
+      #   config = toLuaFile ./nvim/plugin/fff_nvim.lua;
+      # }
+
       {
         plugin = luasnip;
         config = toLuaFile ./nvim/plugin/snippets.lua;

@@ -12,6 +12,8 @@ local Group = colorbuddy.Group
 Group.new("FloatBorder", c.black, c.black)
 Group.new("ElNormalMode", c.yellow, c.black, s.bold)
 Group.new("ElCmdMode", c.orange, c.black, s.bold)
+Group.new("CursorLine", nil, nil)
+Group.new("CursorLineNr", c.gray4, c.gray0)
 Group.new("LineNr", c.gray2:light(), c.gray0)
 
 local group = vim.api.nvim_create_augroup("vimtex_events", {})
@@ -27,4 +29,4 @@ vim.api.nvim_create_autocmd("User", {
 vim.cmd([[
   hi link ElNormal ElNormalMode
   hi link ElCommand ElCmdMode
-]])
+ ]])

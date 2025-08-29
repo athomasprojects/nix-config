@@ -432,7 +432,8 @@ in {
 
       # LSPs
       inputs.odin-overlay.packages.${pkgs.system}.ols
-      pkgs.zls
+      # pkgs.zls
+      inputs.zls_0_15.packages.x86_64-linux.default
       pkgs.clang-tools
       pkgs.vim-language-server
       pkgs.lua-language-server

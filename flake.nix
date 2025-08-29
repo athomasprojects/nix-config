@@ -72,6 +72,9 @@
 
     # plugin-fff-nvim.url = "github:dmtrKovalenko/fff.nvim";
     # plugin-fff-nvim.flake = true;
+
+    zls_0_15.url = "github:zigtools/zls?rev=ce6c8f02c78e622421cfc2405c67c5222819ec03";
+    zls_0_15.flake = true;
   };
 
   outputs = {

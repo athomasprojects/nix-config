@@ -17,10 +17,10 @@ vim.keymap.set("n", "<M-Right>", function()
   harpoon:list():next()
 end, { desc = "harpoon next file" })
 
-local keys = { ")", "(", "}", "{", "]", "[" }
+-- local keys = { ")", "(", "}", "{", "]", "[" }
 
-for i = 1, #keys do
-  vim.keymap.set("n", string.format("<space>%s", keys[i]), function()
+for i = 1, 6 do
+  vim.keymap.set("n", string.format("<space>%d", i), function()
     harpoon:list():select(i)
   end, { desc = "harpoon" .. " file #" .. i })
 end

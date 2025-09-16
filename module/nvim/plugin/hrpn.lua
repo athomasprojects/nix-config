@@ -19,7 +19,7 @@ end, { desc = "harpoon next file" })
 
 -- local keys = { ")", "(", "}", "{", "]", "[" }
 
-for i = 1, 6 do
+for i = 1, 9 do
   vim.keymap.set("n", string.format("<space>%d", i), function()
     harpoon:list():select(i)
   end, { desc = "harpoon" .. " file #" .. i })

@@ -471,6 +471,7 @@ in {
       vim-nix
       plenary-nvim
       nvim-web-devicons
+      tokyonight-nvim
       {
         plugin = nvim-nonicons;
         config = toLuaFile ./nvim/plugin/fonts.lua;

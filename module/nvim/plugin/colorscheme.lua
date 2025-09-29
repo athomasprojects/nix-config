@@ -46,6 +46,12 @@ require("tokyonight").setup({
       bg = c.bg_float,
       -- guibg=#d0d5e3
     }
+    hl.Substitute = {
+      bg = "#e8c6f2",
+    }
+    hl.IncSearch = {
+      bg = "#e5b35c",
+    }
   end,
 })
 

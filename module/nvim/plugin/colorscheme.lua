@@ -53,12 +53,17 @@ vim.cmd.colorscheme("tokyonight")
 
 -- And then modify as you like
 local colorbuddy = require("colorbuddy")
--- local c = colorbuddy.colors
--- local s = colorbuddy.styles
+local c = colorbuddy.colors
+local s = colorbuddy.styles
 -- local g = colorbuddy.groups
--- local Group = colorbuddy.Group
 
--- Group.new("FloatBorder", nil, g.Float, nil)
+local Color = colorbuddy.Color
+local Group = colorbuddy.Group
+
+--  Default 'Todo' hl: guifg=#e1e2e7 guibg=#8c6c3e
+Color.new("Todo", "#8c6c3e")
+Color.new("background", "#e1e2e7")
+Group.new("Todo", c.Todo, c.background, s.bold)
 
 -- Group.new("FloatBorder", c.black, c.black)
 -- Group.new("ElNormalMode", c.yellow, c.black, s.bold)

@@ -6,15 +6,19 @@ font-style-bold-italic = Bold Oblique
 font-family = nonicons
 
 mouse-hide-while-typing = true
-window-padding-x = 0
-window-padding-y = 0
 
-# Commenting out window decoration option so that the default value is used for KDE Plasma 6:
+# Commenting out window decoration and padding options so that the default value is used for KDE Plasma 6:
+window-decoration = server
 # window-decoration = false
+# window-padding-x = 0
+# window-padding-y = 0
+window-title-font-family = Noto Sans
 
-gtk-titlebar = false
-gtk-tabs-location = bottom
-gtk-wide-tabs = false
+gtk-titlebar = true
+# gtk-tabs-location = bottom
+# gtk-wide-tabs = false
+
+
 # gtk-adwaita = false
 # adw-toolbar-style = flat
 

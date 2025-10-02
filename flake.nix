@@ -89,7 +89,7 @@
   } @ inputs: let
     system = "x86_64-linux";
     overlays = [
-      (import ./overlays/sioyek.nix)
+      # (import ./overlays/sioyek.nix)
       (import ./overlays/fiji.nix)
       rust-overlay.overlays.default
       inputs.odin-overlay.overlays.default

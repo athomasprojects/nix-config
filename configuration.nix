@@ -6,6 +6,9 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  # Enable discovery of google cast devices in the same network
+  networking.firewall.allowedUDPPorts = [5353];
+
   nix = {
     settings = {
       auto-optimise-store = true;

@@ -18,8 +18,24 @@ in
 
       {nixpkgs.overlays = overlays;}
 
+      {nixpkgs.config.allowUnfree = true;}
+
       {
-        nixpkgs.config.allowUnfreePredicate = _: true;
+        # nixpkgs.config = {
+        #   allowUnfreePredicate = _: true;
+        #   # allowUnfree = true;
+        # };
+
+        nixpkgs.config.allowUnfreePredicate = pkg:
+          builtins.elem (pkgs.lib.getName pkg) [
+            "nvidia-x11"
+            "masterpdfeditor"
+            "obsidian"
+            "discord"
+            "1password"
+            "1password-cli"
+            "spotify"
+          ];
 
         programs.fish.enable = true;
 
@@ -45,8 +61,9 @@ in
             xdg-user-dirs
             xdg-utils
             xdg-launch
+            xsettingsd
             usbutils
-            gucharmap
+            # gucharmap
             gphoto2
             v4l-utils
             linuxKernel.packages.linux_6_6.v4l2loopback
@@ -66,15 +83,47 @@ in
             # pkgs.ninja
             # pkgs.meson
 
+            # KDE
+            kdePackages.discover # Install if you use Flatpak or fwupd firmware update sevice
+            kdePackages.kcalc
+            kdePackages.kcharselect # Tool to select and copy special characters from all installed fonts
+            kdePackages.kclock # Clock app
+            kdePackages.kcolorchooser # A small utility to select a color
+            kdePackages.kolourpaint # Easy-to-use paint program
+            kdePackages.ksystemlog # KDE SystemLog Application
+            kdePackages.sddm-kcm # Configuration module for SDDM
+            kdiff3 # Compares and merges 2 or 3 files or directories
+            kdePackages.isoimagewriter # Program to write hybrid ISO files onto USB disks
+            kdePackages.partitionmanager # Manage the disk devices, partitions and file systems on your computer
+            kdePackages.ktorrent
+            kdePackages.kmix # Sound mixer
+            kdePackages.kwave # Sound editor
+            kdePackages.kget # Download manager
+            kdePackages.kalzium # Periodic table of elements
+            okteta # Hex editor
+            labplot # Data visualization and analysis
+            kdePackages.kdenlive # Video editor
+            krita # Digital painting
+            kdePackages.kdeconnect-kde # Connect to phone
+            kdePackages.kruler
+            kdePackages.kdebugsettings # Useful for debugging Qt applications
+            haruna # Media player
+
+            # Non-KDE graphical packages
+            hardinfo2 # System information and benchmarks for Linux systems
+            vlc # Cross-platform media player and streaming server
+            wl-clipboard # Command-line copy/paste utilities for Wayland
+            wayland-utils
             qpwgraph
 
-            (pkgs.writeShellScriptBin "remaps" ''
-              ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode 64 = Alt_L"
-              ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode 134 = Hyper_L"
-              ${pkgs.xorg.xmodmap}/bin/xmodmap -e "remove mod4 = Hyper_L"
-              ${pkgs.xorg.xmodmap}/bin/xmodmap -e "add mod3 = Hyper_L"
-              xset r rate 200 40
-            '')
+            # (pkgs.writeShellScriptBin "remaps" ''
+            #   sleep 5 &&
+            #   ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode 64 = Alt_L"
+            #   ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode 134 = Hyper_L"
+            #   ${pkgs.xorg.xmodmap}/bin/xmodmap -e "remove mod4 = Hyper_L"
+            #   ${pkgs.xorg.xmodmap}/bin/xmodmap -e "add mod3 = Hyper_L"
+            #   xset r rate 200 40
+            # '')
 
             (pkgs.writeShellScriptBin "canonwbc" ''
               # Commands taken from:
@@ -202,14 +251,17 @@ in
           sddm = {
             enable = true;
             wayland.enable = true;
-            settings.General.DisplayServer = "wayland";
+            # settings.General.DisplayServer = "wayland";
           };
 
           defaultSession = "plasma"; # "none+awesome";
         };
 
         services.desktopManager = {
-          plasma6.enable = true;
+          plasma6 = {
+            enable = true;
+            # enableQt5Integration = true;
+          };
         };
 
         # services.displayManager.lightdm = {

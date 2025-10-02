@@ -8,7 +8,10 @@ font-family = nonicons
 mouse-hide-while-typing = true
 window-padding-x = 0
 window-padding-y = 0
-window-decoration = false
+
+# Commenting out window decoration option so that the default value is used for KDE Plasma 6:
+# window-decoration = false
+
 gtk-titlebar = false
 gtk-tabs-location = bottom
 gtk-wide-tabs = false

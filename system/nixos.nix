@@ -28,11 +28,11 @@ in
           shells = [pkgs.fish];
           systemPackages = with pkgs; [
             alejandra
-            awesome
+            # awesome
             brave
-            nautilus
+            # nautilus
             adwaita-icon-theme
-            gnomeExtensions.appindicator
+            # gnomeExtensions.appindicator
             mpv
             nsxiv
             nh
@@ -65,6 +65,8 @@ in
             # Other build tools
             # pkgs.ninja
             # pkgs.meson
+
+            qpwgraph
 
             (pkgs.writeShellScriptBin "remaps" ''
               ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode 64 = Alt_L"
@@ -106,6 +108,58 @@ in
             "/share/xdg-desktop-portal"
             "/share/applications"
           ];
+
+          # Exclude a bunch of games.
+          plasma6.excludePackages = with pkgs.kdePackages; [
+            kpat
+            kmines
+            kapman
+            ksudoku
+            kshisen
+            palapeli
+            kigo
+            kbreakout
+            kblocks
+            kreversi
+            knavalbattle
+            granatier
+            kolf
+            picmi
+            ksquares
+            konquest
+            katomic
+            kbounce
+            klickety
+            kubrick
+            kdiamond
+            bovo
+            ksnakeduel
+            kblackbox
+            kjumpingcube
+            kgoldrunner
+            kollision
+            kiriki
+            ksirk
+            kfourinline
+            lskat
+            bomber
+            kspaceduel
+            killbots
+            ktuberling
+            kiten
+            kajongg
+            itinerary
+            kwordquiz
+            kturtle
+            parley
+            kanagram
+            klettres
+            skladnik
+            khangman
+            kbruch
+            blinken
+            knetwalk
+          ];
         };
 
         # I think we should only need to enable these settings if we are trying
@@ -139,9 +193,23 @@ in
 
         services.gvfs.enable = true; # Mount, trash, and other functionalities
 
-        services.displayManager.gdm = {
-          enable = true;
-          wayland = false;
+        services.displayManager = {
+          # gdm = {
+          #   enable = true;
+          #   wayland = false;
+          # };
+
+          sddm = {
+            enable = true;
+            wayland.enable = true;
+            settings.General.DisplayServer = "wayland";
+          };
+
+          defaultSession = "plasma"; # "none+awesome";
+        };
+
+        services.desktopManager = {
+          plasma6.enable = true;
         };
 
         # services.displayManager.lightdm = {
@@ -155,6 +223,8 @@ in
         # };
 
         services.xserver = {
+          enable = true;
+
           displayManager = {
             sessionCommands = "remaps"; # "~/.local/bin/remaps";
           };
@@ -171,18 +241,16 @@ in
             wallpaper.mode = "fill";
           };
 
-          windowManager = {
-            awesome.enable = true;
-          };
+          # windowManager = {
+          #   awesome.enable = true;
+          # };
         };
-
-        services.displayManager.defaultSession = "none+awesome";
 
         # I think we should only need to enable these settings if we are trying to run GNOME applications outside of a GNOME DE?
         # Otherwise it looks like the nixos/nixpkgs/services/x11/desktop-managers/gnome.nix module sets all these things up for us by default when enabled.
-        services.udev.packages = with pkgs; [gnome-settings-daemon];
-        # services.dbus.packages = [];
-        # services.dbus.enable = true;
+        # services.udev.packages = with pkgs; [gnome-settings-daemon];
+        # # services.dbus.packages = [];
+        # # services.dbus.enable = true;
 
         users.defaultUserShell = pkgs.fish;
         users.users."${username}" = {

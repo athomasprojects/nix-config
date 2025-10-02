@@ -69,7 +69,7 @@ in {
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];
-        "inode/directory" = ["org.gnome.Nautilus.desktop"];
+        "inode/directory" = ["org.kde.dolphin.desktop"]; # ["org.gnome.Nautilus.desktop"];
       };
       defaultApplications = {
         "text/x-shellscript" = ["text.desktop"];
@@ -78,7 +78,7 @@ in {
         "image/png" = ["img.desktop"];
         "image/jpeg" = ["img.desktop"];
         "image/gif" = ["img.desktop"];
-        "inode/directory" = ["org.gnome.Nautilus.desktop"];
+        "inode/directory" = ["org.kde.dolphin.desktop"]; # ["org.gnome.Nautilus.desktop"];
       };
     };
     desktopEntries = {
@@ -95,12 +95,10 @@ in {
     };
     portal = {
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde]; # [pkgs.xdg-desktop-portal-gtk];
       config = {
         common = {
-          default = [
-            "gtk"
-          ];
+          default = ["kde"]; # ["gtk"];
         };
       };
     };
@@ -139,13 +137,6 @@ in {
   # };
 
   home.file."${config.xdg.configHome}/awesome/rc.lua".source = config.lib.file.mkOutOfStoreSymlink ./awesome/rc.lua;
-
-  # xdg.configFile = {
-  #     awesome = {
-  #       source = config.lib.file.mkOutOfStoreSymlink ./awesome;
-  #       recursive = true;
-  #     };
-  # };
 
   xdg.configFile = {
     sioyek = {
@@ -696,18 +687,18 @@ in {
 
   gtk = {
     enable = true;
-    theme = {
-      package = pkgs.arc-theme;
-      name = "Arc-Darker";
-    };
+    # theme = {
+    #   package = pkgs.arc-theme;
+    #   name = "Arc-Darker";
+    # };
     cursorTheme = {
       package = sweet-cursors-theme;
       name = "Sweet-cursors";
     };
-    iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
-    };
+    # iconTheme = {
+    #   package = pkgs.adwaita-icon-theme;
+    #   name = "Adwaita";
+    # };
     gtk2.extraConfig = gtk_cursor_size;
   };
 
@@ -721,9 +712,9 @@ in {
 
   xresources.extraConfig = builtins.readFile ./Xresources;
 
-  xsession.windowManager.awesome = {
-    enable = true;
-    package = pkgs.awesome;
-    luaModules = with pkgs.luaPackages; [luarocks luadbi-mysql];
-  };
+  # xsession.windowManager.awesome = {
+  #   enable = true;
+  #   package = pkgs.awesome;
+  #   luaModules = with pkgs.luaPackages; [luarocks luadbi-mysql];
+  # };
 }

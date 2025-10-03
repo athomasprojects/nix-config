@@ -84,7 +84,7 @@ in
             # pkgs.meson
 
             # KDE
-            kdePackages.discover # Install if you use Flatpak or fwupd firmware update sevice
+            # kdePackages.discover # Install if you use Flatpak or fwupd firmware update sevice
             kdePackages.kcalc
             kdePackages.kcharselect # Tool to select and copy special characters from all installed fonts
             kdePackages.kclock # Clock app

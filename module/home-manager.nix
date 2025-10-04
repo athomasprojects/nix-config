@@ -41,10 +41,8 @@ in {
     pkgs.manix
     pkgs.sioyek
     pkgs.src-cli
-    # tex
     pkgs.tokei
     pkgs.starship
-    # pkgs.wezterm
     pkgs.yazi
     pkgs.zoxide
     pkgs.valgrind
@@ -66,18 +64,18 @@ in {
         "text/x-shellscript" = ["text.desktop"];
         "text/plain" = ["text.desktop"];
         "application/pdf" = ["sioyek.desktop"];
-        "image/png" = ["img.desktop"];
-        "image/jpeg" = ["img.desktop"];
-        "image/gif" = ["img.desktop"];
+        # "image/png" = ["img.desktop"];
+        # "image/jpeg" = ["img.desktop"];
+        # "image/gif" = ["img.desktop"];
         "inode/directory" = ["org.kde.dolphin.desktop"]; # ["org.gnome.Nautilus.desktop"];
       };
       defaultApplications = {
         "text/x-shellscript" = ["text.desktop"];
         "text/plain" = ["text.desktop"];
         "application/pdf" = ["sioyek.desktop"];
-        "image/png" = ["img.desktop"];
-        "image/jpeg" = ["img.desktop"];
-        "image/gif" = ["img.desktop"];
+        # "image/png" = ["img.desktop"];
+        # "image/jpeg" = ["img.desktop"];
+        # "image/gif" = ["img.desktop"];
         "inode/directory" = ["org.kde.dolphin.desktop"]; # ["org.gnome.Nautilus.desktop"];
       };
     };
@@ -87,11 +85,11 @@ in {
         type = "Application";
         exec = "ghostty -e nvim %U";
       };
-      img = {
-        name = "Image viewer";
-        type = "Application";
-        exec = "nsxiv -a %f";
-      };
+      # img = {
+      #   name = "Image viewer";
+      #   type = "Application";
+      #   exec = "nsxiv -a %f";
+      # };
     };
     portal = {
       enable = true;

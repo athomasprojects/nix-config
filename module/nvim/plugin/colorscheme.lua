@@ -54,7 +54,6 @@ require("tokyonight").setup({
     }
   end,
 })
-
 vim.cmd.colorscheme("tokyonight")
 
 -- And then modify as you like
@@ -70,6 +69,13 @@ local Group = colorbuddy.Group
 Color.new("Todo", "#8c6c3e")
 Color.new("background", "#e1e2e7")
 Group.new("Todo", c.Todo, c.background, s.bold)
+
+vim.cmd([[ 
+    set guicursor=n-v-c-sm:block-Cursor/lCursor,i-ci-ve:ver25,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor
+    hi Cursor  guibg='LightGreen' guifg=#e1e2e7 
+    hi lCursor guibg='LightGreen' guifg=#e1e2e7
+    "hi CursorIM guibg='LightGreen' guifg=#e1e2e7
+]])
 
 -- Group.new("FloatBorder", c.black, c.black)
 -- Group.new("ElNormalMode", c.yellow, c.black, s.bold)

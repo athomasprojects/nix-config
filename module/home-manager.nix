@@ -685,6 +685,10 @@ in {
     # comma.enable = true;
   };
 
+  programs.brave.nativeMessagingHosts = [
+    pkgs.kdePackages.plasma-browser-integration
+  ];
+
   gtk = {
     enable = true;
 

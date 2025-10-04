@@ -13,4 +13,3 @@
  (#eq? @_2 "treesitter")
  (#eq? @_3 "query")
  (#eq? @_4 "parse"))
- 

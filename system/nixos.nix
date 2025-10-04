@@ -57,6 +57,7 @@ in
             zip
             xclip
             xorg.xev
+            wev # wayland event viewer
             xorg.xmodmap
             xdg-user-dirs
             xdg-utils
@@ -108,6 +109,12 @@ in
             kdePackages.kruler
             kdePackages.kdebugsettings # Useful for debugging Qt applications
             haruna # Media player
+            kdePackages.kio
+            kdePackages.kio-extras
+            kdePackages.plasma-browser-integration
+            kdePackages.plasma-wayland-protocols
+            kdePackages.wayland
+            kdePackages.kwin
 
             # Non-KDE graphical packages
             hardinfo2 # System information and benchmarks for Linux systems
@@ -277,9 +284,9 @@ in
         services.xserver = {
           enable = true;
 
-          displayManager = {
-            sessionCommands = "remaps"; # "~/.local/bin/remaps";
-          };
+          # displayManager = {
+          #   sessionCommands = "remaps"; # "~/.local/bin/remaps";
+          # };
 
           excludePackages = with pkgs; [xterm];
 

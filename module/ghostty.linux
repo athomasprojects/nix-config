@@ -7,26 +7,15 @@ font-family = nonicons
 
 mouse-hide-while-typing = true
 
-# Commenting out window decoration and padding options so that the default value is used for KDE Plasma 6:
 window-decoration = server
-# window-decoration = false
-# window-padding-x = 0
-# window-padding-y = 0
-window-title-font-family = Noto Sans
-
-gtk-titlebar = true
-# gtk-tabs-location = bottom
-# gtk-wide-tabs = false
-
-
-# gtk-adwaita = false
-# adw-toolbar-style = flat
+window-subtitle = working-directory
+window-theme = ghostty
+gtk-tabs-location = bottom
 
 keybind = ctrl+shift+w=close_surface
-
 keybind = ctrl+enter=unbind
 
-theme = SpaceGray
+theme = Spacegray
 background = 161719
 selection-background = #3A404A
 # selection-background = #41454E

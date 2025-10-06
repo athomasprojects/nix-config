@@ -24,7 +24,7 @@ in {
     pkgs.inkscape-with-extensions
     pkgs.bat
     pkgs.neofetch
-    pkgs.delta
+    # pkgs.delta
     pkgs.flameshot
     pkgs.fd
     pkgs.file
@@ -313,39 +313,39 @@ in {
       # prettylog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
       root = "rev-parse --show-toplevel";
     };
-    delta = {
-      enable = true;
-      options = {
-        line-numbers = true;
-        syntax-theme = "ansi"; # "Sublime Snazzy";
-        side-by-side = false;
-        file-modified-label = "modified:";
-        commit-style = "raw";
-        file-style = "blue";
-        hunk-header-style = "syntax";
-        minus-style = "normal \"#ffe0e0\"";
-        minus-non-emph-style = "normal \"#ffe0e0\"";
-        minus-emph-style = "normal \"#ffc0c0\"";
-        minus-empty-line-marker-style = "normal \"#ffe0e0\"";
-        zero-style = "syntax";
-        plus-style = "syntax \"#d0ffd0\"";
-        plus-non-emph-style = "syntax \"#d0ffd0\"";
-        plus-emph-style = "syntax \"#a0efa0\"";
-        plus-empty-line-marker-style = "normal \"#d0ffd0\"";
-        grep-file-style = "blue"; # "purple";
-        grep-line-number-style = "green";
-        grep-match-word-style = "bold \"#d0ffd0\"";
-        whitespace-error-style = "reverse purple";
-        blame-palette = "#FFFFFF #DDDDDD #BBBBBB";
-        file-added-label = "added:";
-        file-removed-label = "removed:";
-        file-renamed-label = "renamed:";
-        right-arrow = "⟶  ";
-        hyperlinks = false;
-        inspect-raw-lines = true;
-        keep-plus-minus-markers = true; # false;
-      };
-    };
+    # delta = {
+    #   enable = true;
+    #   options = {
+    #     line-numbers = true;
+    #     syntax-theme = "ansi"; # "Sublime Snazzy";
+    #     side-by-side = false;
+    #     file-modified-label = "modified:";
+    #     commit-style = "raw";
+    #     file-style = "blue";
+    #     hunk-header-style = "syntax";
+    #     minus-style = "normal \"#ffe0e0\"";
+    #     minus-non-emph-style = "normal \"#ffe0e0\"";
+    #     minus-emph-style = "normal \"#ffc0c0\"";
+    #     minus-empty-line-marker-style = "normal \"#ffe0e0\"";
+    #     zero-style = "syntax";
+    #     plus-style = "syntax \"#d0ffd0\"";
+    #     plus-non-emph-style = "syntax \"#d0ffd0\"";
+    #     plus-emph-style = "syntax \"#a0efa0\"";
+    #     plus-empty-line-marker-style = "normal \"#d0ffd0\"";
+    #     grep-file-style = "blue"; # "purple";
+    #     grep-line-number-style = "green";
+    #     grep-match-word-style = "bold \"#d0ffd0\"";
+    #     whitespace-error-style = "reverse purple";
+    #     blame-palette = "#FFFFFF #DDDDDD #BBBBBB";
+    #     file-added-label = "added:";
+    #     file-removed-label = "removed:";
+    #     file-renamed-label = "renamed:";
+    #     right-arrow = "⟶  ";
+    #     hyperlinks = false;
+    #     inspect-raw-lines = true;
+    #     keep-plus-minus-markers = true; # false;
+    #   };
+    # };
     extraConfig = {
       gpg = {
         format = "ssh";

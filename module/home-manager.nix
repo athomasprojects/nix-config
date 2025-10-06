@@ -5,7 +5,7 @@
 }: let
   onePassPath = "~/.1password/agent.sock";
   tex = pkgs.texlive.combined.scheme-full;
-  sweet-cursors-theme = import ./themes/sweet-cursors-theme.nix {inherit pkgs;};
+  # sweet-cursors-theme = import ./themes/sweet-cursors-theme.nix {inherit pkgs;};
   # pointer_cursor_size = 24; # 128;
   # gtk_cursor_size = "gtk-cursor-theme-size=${builtins.toString pointer_cursor_size}";
 in {
@@ -700,10 +700,10 @@ in {
       package = pkgs.kdePackages.breeze-gtk;
     };
 
-    cursorTheme = {
-      package = sweet-cursors-theme;
-      name = "Sweet-cursors";
-    };
+    # cursorTheme = {
+    #   package = sweet-cursors-theme;
+    #   name = "Sweet-cursors";
+    # };
 
     # iconTheme = {
     #   package = pkgs.adwaita-icon-theme;
@@ -712,13 +712,13 @@ in {
     # gtk2.extraConfig = gtk_cursor_size;
   };
 
-  home.pointerCursor = {
-    name = "Sweet-cursors";
-    package = sweet-cursors-theme;
-    # size = pointer_cursor_size;
-    x11.enable = true;
-    gtk.enable = true;
-  };
+  # home.pointerCursor = {
+  #   name = "Sweet-cursors";
+  #   package = sweet-cursors-theme;
+  #   # size = pointer_cursor_size;
+  #   x11.enable = true;
+  #   gtk.enable = true;
+  # };
 
   xresources.extraConfig = builtins.readFile ./Xresources;
 

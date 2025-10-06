@@ -14,6 +14,7 @@ gtk-tabs-location = bottom
 
 keybind = ctrl+shift+w=close_surface
 keybind = ctrl+enter=unbind
+keybind = ctrl+shift+,=unbind
 
 theme = Spacegray
 background = 161719

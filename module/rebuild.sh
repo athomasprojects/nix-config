@@ -16,20 +16,28 @@ if [ -n "${WAYLAND_DISPLAY-}" ] || [ -n "${DISPLAY-}" ]; then
 fi
 
 # Show git diff of Nix files
-git diff -U0 *.nix || true
+git diff -U0 -- *.nix || true
+
 
 echo "Starting NixOS rebuild..."
 LOG="nixos-switch.log"
 
-# Preserve environment variables for sudo (like PATH)
+# Try to use sudo without password first
 if sudo -n true 2>/dev/null; then
-    sudo -E nixos-rebuild switch &> "$LOG" || {
-        echo "Rebuild failed. Showing errors:"
-        grep --color=always -i error "$LOG" || true
-        exit 1
-    }
+    echo "Using passwordless sudo..."
 else
-    echo "Warning: Cannot run sudo without password prompt. Exiting."
+    echo "Sudo requires a password. Please enter it:"
+    # Prompt the user for their sudo password
+    if ! sudo -v; then
+        echo "Authentication failed. Exiting."
+        exit 1
+    fi
+fi
+
+# Run nixos-rebuild with sudo, preserving env vars
+if ! sudo nixos-rebuild switch 2>&1 | tee "$LOG"; then
+    echo "Rebuild failed. Showing errors:"
+    grep --color=always -i error "$LOG" || true
     exit 1
 fi
 

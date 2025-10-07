@@ -85,7 +85,7 @@ in
             # pkgs.meson
 
             # KDE
-            # kdePackages.discover # Install if you use Flatpak or fwupd firmware update sevice
+            kdePackages.discover # Install if you use Flatpak or fwupd firmware update sevice
             kdePackages.kcalc
             kdePackages.kcharselect # Tool to select and copy special characters from all installed fonts
             kdePackages.kclock # Clock app
@@ -269,6 +269,17 @@ in
             enable = true;
             # enableQt5Integration = true;
           };
+        };
+
+        services.flatpak.enable = true;
+
+        # Automatically configure Flatpak repositories for all users.
+        systemd.services.flatpak-repo = {
+          wantedBy = ["multi-user.target"];
+          path = [pkgs.flatpak];
+          script = ''
+            flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+          '';
         };
 
         # services.displayManager.lightdm = {

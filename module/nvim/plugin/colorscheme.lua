@@ -72,9 +72,9 @@ Group.new("Todo", c.Todo, c.background, s.bold)
 
 vim.cmd([[ 
     set guicursor=n-v-c-sm:block-Cursor/lCursor,i-ci-ve:ver25,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor
-    hi Cursor  guibg='LightGreen' guifg=#e1e2e7 
-    hi lCursor guibg='LightGreen' guifg=#e1e2e7
-    "hi CursorIM guibg='LightGreen' guifg=#e1e2e7
+    hi Cursor  guibg=#5cf759 guifg=#e1e2e7
+    hi lCursor guibg=#5cf759 guifg=#e1e2e7
+    "hi CursorIM guibg=#5cf759 guifg=#e1e2e7
 ]])
 
 -- Group.new("FloatBorder", c.black, c.black)

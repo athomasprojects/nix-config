@@ -167,9 +167,10 @@ vim.lsp.config["zls"] = {
 
 vim.lsp.config["clangd"] = {
   -- TODO: Could include cmd, but not sure those were all relevant flags.
-  --    looks like something i would have added while i was floundering
+  --    looks like something I would have added while I was floundering.
   init_options = { clangdFileStatus = true },
-  -- filetypes = { "c", "cpp" },
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 vim.lsp.config["ocamllsp"] = {

@@ -1,9 +1,11 @@
-local lspconfig = require("lspconfig")
+-- local lspconfig = require("lspconfig")
 
 local capabilities = nil
 if pcall(require, "cmp_nvim_lsp") then
   capabilities = require("cmp_nvim_lsp").default_capabilities()
 end
+
+-- vim.lsp.config("*", { capabilities = capabilities })
 
 local on_attach = function(client, bufnr)
   -- NOTE: nvim_buf_get_option was deprecated in 0.11.
@@ -60,9 +62,10 @@ local on_attach = function(client, bufnr)
   )
 end
 
-require("neodev").setup()
+-- require("neodev").setup()
+require("lazydev").setup()
 
-lspconfig.lua_ls.setup({
+vim.lsp.config["lua_ls"] = {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -77,29 +80,29 @@ lspconfig.lua_ls.setup({
   server_capabilities = {
     semanticTokensProvider = vim.NIL,
   },
-})
+}
 
-lspconfig.nil_ls.setup({
+vim.lsp.config["nil_ls"] = {
   on_attach = on_attach,
   capabilities = capabilities,
-})
+}
 
-lspconfig.bashls.setup({
+vim.lsp.config["bashls"] = {
   on_attach = on_attach,
   capabilities = capabilities,
-})
+}
 
-lspconfig.ruff.setup({
+vim.lsp.config["ruff"] = {
   on_attach = on_attach,
   capabilities = capabilities,
-})
+}
 
-lspconfig.vimls.setup({
+vim.lsp.config["vimls"] = {
   on_attach = on_attach,
   capabilities = capabilities,
-})
+}
 
-lspconfig.pyright.setup({
+vim.lsp.config["pyright"] = {
   filetypes = { "python" },
   capabilities = capabilities,
   settings = {
@@ -115,9 +118,9 @@ lspconfig.pyright.setup({
       },
     },
   },
-})
+}
 
-lspconfig.rust_analyzer.setup({
+vim.lsp.config["rust_analyzer"] = {
   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
   -- settings = {
   --   ["rust-analyzer"] = {
@@ -126,19 +129,19 @@ lspconfig.rust_analyzer.setup({
   --     },
   --   },
   -- },
-})
+}
 
 -- Probably want to disable formatting for this lang server
-lspconfig.jsonls.setup({
+vim.lsp.config["jsonls"] = {
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
       validate = { enable = true },
     },
   },
-})
+}
 
-lspconfig.yamlls.setup({
+vim.lsp.config["yamlls"] = {
   settings = {
     yaml = {
       schemaStore = {
@@ -148,28 +151,28 @@ lspconfig.yamlls.setup({
       schemas = require("schemastore").yaml.schemas(),
     },
   },
-})
+}
 
-lspconfig.ols.setup({
+vim.lsp.config["ols"] = {
   on_attach = on_attach,
   capabilities = capabilities,
   -- filetypes = { "odin" },
-})
+}
 
-lspconfig.zls.setup({
+vim.lsp.config["zls"] = {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "zig", "zir" },
-})
+}
 
-lspconfig.clangd.setup({
+vim.lsp.config["clangd"] = {
   -- TODO: Could include cmd, but not sure those were all relevant flags.
   --    looks like something i would have added while i was floundering
   init_options = { clangdFileStatus = true },
   -- filetypes = { "c", "cpp" },
-})
+}
 
-lspconfig.ocamllsp.setup({
+vim.lsp.config["ocamllsp"] = {
   -- manual_install = true,
   settings = {
     codelens = { enable = true },
@@ -188,7 +191,7 @@ lspconfig.ocamllsp.setup({
   -- end,
 
   -- TODO: Check if i still need the filtypes stuff i had before
-})
+}
 
 -- require("ocaml").setup()
 
@@ -200,6 +203,22 @@ lspconfig.ocamllsp.setup({
 -- --   border = "solid",
 -- --   close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
 -- -- })
+
+vim.lsp.enable({
+  "bashls",
+  "clangd",
+  "jsonls",
+  "lua_ls",
+  "nil_ls",
+  "ocamllsp",
+  "ols",
+  "pyright",
+  "ruff",
+  "rust_analyzer",
+  "vimls",
+  "yamlls",
+  "zls",
+})
 
 -- Autoformatting Setup
 require("conform").setup({

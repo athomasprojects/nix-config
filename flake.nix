@@ -69,11 +69,15 @@
     plugin-nvim-dap-nio.url = "github:nvim-neotest/nvim-nio";
     plugin-nvim-dap-nio.flake = false;
 
-    # plugin-fff-nvim.url = "github:dmtrKovalenko/fff.nvim";
-    # plugin-fff-nvim.flake = true;
+    fff = {
+      url = "github:dmtrKovalenko/fff.nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    zls_0_15.url = "github:zigtools/zls?rev=ce6c8f02c78e622421cfc2405c67c5222819ec03";
-    zls_0_15.flake = true;
+    plugin-fff-snacks = {
+      url = "github:madmaxieee/fff-snacks.nvim";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -84,6 +88,7 @@
     rust-overlay,
     nix-index-database,
     ghostty,
+    fff,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -186,6 +191,16 @@
             };
           };
       })
+      (final: prev: {
+        vimPlugins =
+          prev.vimPlugins
+          // {
+            fff-snacks = prev.vimUtils.buildVimPlugin {
+              name = "fff-snacks";
+              src = inputs.plugin-fff-snacks;
+            };
+          };
+      })
       # (final: prev: {
       #   vimPlugins =
       #     prev.vimPlugins
@@ -193,16 +208,6 @@
       #       own-ocaml-nvim = prev.vimUtils.buildVimPlugin {
       #         name = "ocaml";
       #         src = inputs.plugin-ocaml-nvim;
-      #       };
-      #     };
-      # })
-      # (final: prev: {
-      #   vimPlugins =
-      #     prev.vimPlugins
-      #     // {
-      #       own-fff = prev.vimUtils.buildVimPlugin {
-      #         name = "fff";
-      #         src = inputs.plugin-fff-nvim;
       #       };
       #     };
       # })

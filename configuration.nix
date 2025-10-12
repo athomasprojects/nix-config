@@ -6,7 +6,10 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # Enable discovery of google cast devices in the same network
+  # Enable syncing spotify local tracks from the file system with mobile devices in the same network.
+  networking.firewall.allowedTCPPorts = [57621];
+
+  # Enable discovery of google cast devices in the same network.
   networking.firewall.allowedUDPPorts = [5353];
 
   nix = {

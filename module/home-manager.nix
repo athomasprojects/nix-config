@@ -5,6 +5,14 @@
 }: let
   onePassPath = "~/.1password/agent.sock";
   tex = pkgs.texlive.combined.scheme-full;
+  fff-nvim = inputs.fff.packages.${pkgs.system}.fff-nvim;
+
+  # We need this work around to disable the lua check step at build time. This
+  # way fff-snacks will actually be able to find fff.nvim at runtime when we
+  # load the plugin.
+  fff-snacks-fixed = pkgs.vimPlugins.fff-snacks.overrideAttrs (old: {
+    doCheck = false;
+  });
   # sweet-cursors-theme = import ./themes/sweet-cursors-theme.nix {inherit pkgs;};
   # pointer_cursor_size = 24; # 128;
   # gtk_cursor_size = "gtk-cursor-theme-size=${builtins.toString pointer_cursor_size}";
@@ -49,9 +57,16 @@ in {
     pkgs.ruff
     pkgs.kitty
     pkgs.imagemagick
+    pkgs.spotify
   ];
 
   home.stateVersion = "24.11";
+
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.fcitx5-with-addons = pkgs.kdePackages.fcitx5-with-addons;
+  };
 
   xdg = {
     enable = true;
@@ -421,21 +436,19 @@ in {
 
       # LSPs
       inputs.odin-overlay.packages.${pkgs.system}.ols
-      # pkgs.zls
-      inputs.zls_0_15.packages.x86_64-linux.default
+      pkgs.zls
       pkgs.clang-tools
       pkgs.vim-language-server
       pkgs.lua-language-server
       pkgs.bash-language-server
 
-      # Todo: need to pass dune developer preview to neovim
+      # TODO: need to pass dune developer preview to neovim
       # inputs.ocaml-overlay.legacyPackages.${pkgs.system}.ocaml-ng.ocamlPackages.dune-dev
       pkgs.ocamlPackages.ocaml-lsp
 
       (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default))
       pkgs.nil
       pkgs.pyright
-      # pkgs.ruff-lsp
       pkgs.ruff
       pkgs.yaml-language-server
       pkgs.nodePackages_latest.vscode-json-languageserver
@@ -507,10 +520,16 @@ in {
 
       # Note: fff.nvim currently fails to build with pkgs.vimUtils.buildVimPlugin.
       # See: https://github.com/dmtrKovalenko/fff.nvim/issues/67.
-      # {
-      #   plugin = own-fff;
-      #   config = toLuaFile ./nvim/plugin/fff_nvim.lua;
-      # }
+      {
+        plugin = fff-nvim;
+        config = toLuaFile ./nvim/plugin/fff_nvim.lua;
+      }
+
+      snacks-nvim
+      {
+        plugin = fff-snacks-fixed;
+        config = toLuaFile ./nvim/plugin/fff_snacks_nvim.lua;
+      }
 
       {
         plugin = luasnip;
@@ -583,7 +602,8 @@ in {
       }
 
       lsp_lines-nvim
-      neodev-nvim
+      # neodev-nvim
+      lazydev-nvim
       conform-nvim
       SchemaStore-nvim
 

@@ -4,14 +4,11 @@ vim.opt.shortmess:append("c")
 local lspkind = require("lspkind")
 lspkind.init({})
 
--- local luasnip = require("luasnip")
-
 local cmp = require("cmp")
 
 cmp.setup({
   sources = {
     { name = "nvim_lsp" },
-    { name = "cody" },
     { name = "path" },
     { name = "buffer" },
     { name = "luasnip" },
@@ -64,17 +61,6 @@ cmp.setup.filetype({ "sql" }, {
 cmp.setup.filetype({ "tex", "plaintex", "bibtex" }, {
   sources = {
     { name = "vimtex" },
-    { name = "path" },
-    { name = "buffer" },
-    { name = "luasnip" },
-  },
-})
-
--- Setup zig completion sources (disable cody while learning Zig)
--- I'll turn this off once I feel like I've got a solid grasp of the std library and zig patterns/idioms.
-cmp.setup.filetype({ "zig" }, {
-  sources = {
-    { name = "nvim_lsp" },
     { name = "path" },
     { name = "buffer" },
     { name = "luasnip" },

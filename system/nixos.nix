@@ -65,12 +65,11 @@ in
             xsettingsd
             usbutils
             # gucharmap
+            # gphoto2fs
             gphoto2
             v4l-utils
             linuxKernel.packages.linux_6_6.v4l2loopback
-            # gphoto2fs
             # nautilus-python
-            # xfce.xfce4-terminal
             libreoffice-qt6-fresh
 
             # C/C++ build tools
@@ -167,54 +166,54 @@ in
 
           # Exclude a bunch of games.
           plasma6.excludePackages = with pkgs.kdePackages; [
-            kpat
-            kmines
-            kapman
-            ksudoku
-            kshisen
-            palapeli
-            kigo
-            kbreakout
-            kblocks
-            kreversi
-            knavalbattle
-            granatier
-            kolf
-            picmi
-            ksquares
-            konquest
-            katomic
-            kbounce
-            klickety
-            kubrick
-            kdiamond
-            bovo
-            ksnakeduel
-            kblackbox
-            kjumpingcube
-            kgoldrunner
-            kollision
-            kiriki
-            ksirk
-            kfourinline
-            lskat
-            bomber
-            kspaceduel
-            killbots
-            ktuberling
-            kiten
-            kajongg
-            itinerary
-            kwordquiz
-            kturtle
-            parley
-            kanagram
-            klettres
-            skladnik
-            khangman
-            kbruch
             blinken
+            bomber
+            bovo
+            granatier
+            itinerary
+            kajongg
+            kanagram
+            kapman
+            katomic
+            kblackbox
+            kblocks
+            kbounce
+            kbreakout
+            kbruch
+            kdiamond
+            kfourinline
+            kgoldrunner
+            khangman
+            kigo
+            killbots
+            kiriki
+            kiten
+            kjumpingcube
+            klettres
+            klickety
+            kmines
+            knavalbattle
             knetwalk
+            kolf
+            kollision
+            konquest
+            kpat
+            kreversi
+            kshisen
+            ksirk
+            ksnakeduel
+            kspaceduel
+            ksquares
+            ksudoku
+            ktuberling
+            kturtle
+            kubrick
+            kwordquiz
+            lskat
+            palapeli
+            parley
+            picmi
+            skladnik
           ];
         };
 
@@ -258,6 +257,7 @@ in
           sddm = {
             enable = true;
             wayland.enable = true;
+            enableHidpi = true;
             # settings.General.DisplayServer = "wayland";
           };
 
@@ -267,7 +267,7 @@ in
         services.desktopManager = {
           plasma6 = {
             enable = true;
-            # enableQt5Integration = true;
+            enableQt5Integration = true;
           };
         };
 

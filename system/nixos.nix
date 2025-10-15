@@ -116,6 +116,7 @@ in
             kdePackages.kwin
 
             # Non-KDE graphical packages
+            ksnip
             hardinfo2 # System information and benchmarks for Linux systems
             vlc # Cross-platform media player and streaming server
             wl-clipboard # Command-line copy/paste utilities for Wayland

@@ -33,7 +33,11 @@ in {
     pkgs.bat
     pkgs.neofetch
     # pkgs.delta
-    pkgs.flameshot
+
+    # It appears flameshot is not compatible with wayland. Use `spectacle`
+    # (KDE's builtin screenshot tool) instead.
+    # pkgs.flameshot
+
     pkgs.fd
     pkgs.file
     pkgs.fzf

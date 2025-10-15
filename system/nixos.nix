@@ -84,39 +84,39 @@ in
             # pkgs.meson
 
             # KDE
+
+            haruna # Media player
             kdePackages.discover # Install if you use Flatpak or fwupd firmware update sevice
+            kdePackages.isoimagewriter # Program to write hybrid ISO files onto USB disks
+            kdePackages.kalzium # Periodic table of elements
             kdePackages.kcalc
             kdePackages.kcharselect # Tool to select and copy special characters from all installed fonts
             kdePackages.kclock # Clock app
             kdePackages.kcolorchooser # A small utility to select a color
-            kdePackages.kolourpaint # Easy-to-use paint program
-            kdePackages.ksystemlog # KDE SystemLog Application
-            kdePackages.sddm-kcm # Configuration module for SDDM
-            kdiff3 # Compares and merges 2 or 3 files or directories
-            kdePackages.isoimagewriter # Program to write hybrid ISO files onto USB disks
-            kdePackages.partitionmanager # Manage the disk devices, partitions and file systems on your computer
-            kdePackages.ktorrent
-            kdePackages.kmix # Sound mixer
-            kdePackages.kwave # Sound editor
-            kdePackages.kget # Download manager
-            kdePackages.kalzium # Periodic table of elements
-            okteta # Hex editor
-            labplot # Data visualization and analysis
-            kdePackages.kdenlive # Video editor
-            krita # Digital painting
-            kdePackages.kdeconnect-kde # Connect to phone
-            kdePackages.kruler
             kdePackages.kdebugsettings # Useful for debugging Qt applications
-            haruna # Media player
+            kdePackages.kdeconnect-kde # Connect to phone
+            kdePackages.kdenlive # Video editor
+            kdePackages.kget # Download manager
             kdePackages.kio
             kdePackages.kio-extras
+            kdePackages.kmix # Sound mixer
+            kdePackages.kolourpaint # Easy-to-use paint program
+            kdePackages.kruler
+            kdePackages.ksystemlog # KDE SystemLog Application
+            kdePackages.ktorrent
+            kdePackages.kwave # Sound editor
+            kdePackages.kwin
+            kdePackages.partitionmanager # Manage the disk devices, partitions and file systems on your computer
             kdePackages.plasma-browser-integration
             kdePackages.plasma-wayland-protocols
+            kdePackages.sddm-kcm # Configuration module for SDDM
             kdePackages.wayland
-            kdePackages.kwin
-
-            # Non-KDE graphical packages
+            kdiff3 # Compares and merges 2 or 3 files or directories
+            krita # Digital painting
             ksnip
+            labplot # Data visualization and analysis
+            okteta # Hex editor
+            # Non-KDE graphical packages
             hardinfo2 # System information and benchmarks for Linux systems
             vlc # Cross-platform media player and streaming server
             wl-clipboard # Command-line copy/paste utilities for Wayland

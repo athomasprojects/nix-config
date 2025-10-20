@@ -60,7 +60,7 @@ vim.cmd.colorscheme("tokyonight")
 local colorbuddy = require("colorbuddy")
 local c = colorbuddy.colors
 local s = colorbuddy.styles
--- local g = colorbuddy.groups
+local g = colorbuddy.groups
 
 local Color = colorbuddy.Color
 local Group = colorbuddy.Group
@@ -68,7 +68,10 @@ local Group = colorbuddy.Group
 --  Default 'Todo' hl: guifg=#e1e2e7 guibg=#8c6c3e
 Color.new("Todo", "#8c6c3e")
 Color.new("background", "#e1e2e7")
+Color.new("inline_markup_blue", "#2e7de9")
 Group.new("Todo", c.Todo, c.background, s.bold)
+Group.new("InlineMarkup", c.inline_markup_blue, nil, s.bold + s.italic)
+Group.link("@markup.raw.markdown_inline", g.InlineMarkup)
 
 vim.cmd([[ 
     set guicursor=n-v-c-sm:block-Cursor/lCursor,i-ci-ve:ver25,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor

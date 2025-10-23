@@ -237,6 +237,8 @@ in
 
         programs.obs-studio.enableVirtualCamera = true;
 
+        programs.kdeconnect.enable = true;
+
         fonts.packages = with pkgs; [
           cm_unicode
           jetbrains-mono
@@ -257,9 +259,12 @@ in
 
           sddm = {
             enable = true;
-            wayland.enable = true;
+            wayland = {
+              enable = true;
+              compositor = "kwin";
+            };
             enableHidpi = true;
-            # settings.General.DisplayServer = "wayland";
+            settings.General.DisplayServer = "wayland";
           };
 
           defaultSession = "plasma"; # "none+awesome";
@@ -268,7 +273,7 @@ in
         services.desktopManager = {
           plasma6 = {
             enable = true;
-            enableQt5Integration = true;
+            # enableQt5Integration = true;
           };
         };
 
@@ -294,27 +299,27 @@ in
         # };
 
         services.xserver = {
-          enable = true;
+          enable = false;
 
-          # displayManager = {
-          #   sessionCommands = "remaps"; # "~/.local/bin/remaps";
+          # # displayManager = {
+          # #   sessionCommands = "remaps"; # "~/.local/bin/remaps";
+          # # };
+          #
+          # excludePackages = with pkgs; [xterm];
+          #
+          # desktopManager = {
+          #   xterm.enable = false;
+          #   # xfce = {
+          #   #   enable = true;
+          #   #   noDesktop = true;
+          #   #   enableXfwm = false;
+          #   # };
+          #   wallpaper.mode = "fill";
           # };
-
-          excludePackages = with pkgs; [xterm];
-
-          desktopManager = {
-            xterm.enable = false;
-            # xfce = {
-            #   enable = true;
-            #   noDesktop = true;
-            #   enableXfwm = false;
-            # };
-            wallpaper.mode = "fill";
-          };
-
-          # windowManager = {
-          #   awesome.enable = true;
-          # };
+          #
+          # # windowManager = {
+          # #   awesome.enable = true;
+          # # };
         };
 
         # I think we should only need to enable these settings if we are trying to run GNOME applications outside of a GNOME DE?

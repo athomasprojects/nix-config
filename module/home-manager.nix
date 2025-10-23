@@ -70,6 +70,7 @@ in {
     enable = true;
     type = "fcitx5";
     fcitx5.fcitx5-with-addons = pkgs.kdePackages.fcitx5-with-addons;
+    fcitx5.waylandFrontend = true;
   };
 
   xdg = {
@@ -172,8 +173,6 @@ in {
   #   # ----------------------
   #   inverse_search_command "${inputs.neovim-nightly-overlay}/bin/nvim" --headless -c "VimtexInverseSearch %1 '%2'"
   # '';
-
-  programs.sioyek.enable = true;
 
   programs.bash.enable = true;
 
@@ -734,6 +733,11 @@ in {
     #   name = "Adwaita";
     # };
     # gtk2.extraConfig = gtk_cursor_size;
+  };
+
+  qt = {
+    enable = true;
+    style.name = "breeze";
   };
 
   # home.pointerCursor = {

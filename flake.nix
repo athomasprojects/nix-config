@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     home-manager = {
@@ -93,7 +92,7 @@
   } @ inputs: let
     system = "x86_64-linux";
     overlays = [
-      # (import ./overlays/sioyek.nix)
+      (import ./overlays/sioyek.nix)
       (import ./overlays/fiji.nix)
       rust-overlay.overlays.default
       inputs.odin-overlay.overlays.default
